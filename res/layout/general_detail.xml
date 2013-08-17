@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/flota_listtop"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="2"
+        android:background="@drawable/futerbar"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:text="細節回應"
+        android:textColor="@android:color/white"
+        android:textSize="14pt" >
+    </TextView>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:text="是否要提供更詳細資料？\n(如：明確的災情或個人特徵等等)"
+        android:textColor="@android:color/black"
+        android:textSize="12pt" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/detailbutton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/styple_button"
+            android:gravity="center"
+            android:onClick="submit"
+            android:text="是"
+            android:textColor="@android:color/black"
+            android:textSize="14pt" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/styple_button"
+            android:gravity="center"
+            android:onClick="clock"
+            android:text="否"
+            android:textColor="@android:color/black"
+            android:textSize="14pt" />
+    </LinearLayout>
+
+</LinearLayout>

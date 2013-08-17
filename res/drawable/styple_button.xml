@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 沒有對焦的背景圖片 -->
+    <item android:drawable="@drawable/topbutton" android:state_window_focused="false"/>
+    <!-- 非觸控模式下獲得焦點並單擊時的背景圖片 -->
+    <item android:drawable="@drawable/topbutton_put" android:state_focused="true" android:state_pressed="true"/>
+    <!-- 觸控模式下單擊時的背景圖片 -->
+    <item android:drawable="@drawable/topbutton_put" android:state_focused="false" android:state_pressed="true"/>
+    <!-- 選中時的圖片背景 -->
+    <item android:drawable="@drawable/topbutton_put" android:state_selected="true"/>
+    <!-- 獲得焦時的圖片背景 -->
+    <item android:drawable="@drawable/topbutton_put" android:state_focused="true"/>
+
+</selector>
