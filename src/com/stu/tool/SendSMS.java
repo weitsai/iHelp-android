@@ -34,13 +34,13 @@ public class SendSMS {
 			Log.e("isConnected", it.isConnected() + "");
 			Log.e("isConnectedOrConnecting", it.isConnectedOrConnecting() + "");
 			Log.e("isFailover", it.isFailover() + "");
-			Log.e("isWanConnect", it.isWanConnect("120.119.77.60") + "");
+
 			String uid = UUID.randomUUID().toString().replaceAll("-", "");
 			String url = SERVER_URL + "?MSGID="
 					+ uid.substring(uid.length() - 6, uid.length()) + "&OA="
 					+ phone + "&SM=" + "http://maps.google.com.tw/maps?q="
 					+ location + "%0a" + content + "iHELP";
-
+			Log.e("length" + url.length(), "byte" + url.getBytes().length);
 			Log.e("url", url);
 			String result = it.GetTo(url);
 			Log.e("result", result);

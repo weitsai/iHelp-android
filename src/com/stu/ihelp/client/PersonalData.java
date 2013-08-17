@@ -23,12 +23,17 @@ public class PersonalData extends Activity {
 		confirm = (Button) findViewById(R.id.btn_submit);
 		cancel = (Button) findViewById(R.id.btn_cancel);
 
+		name.setText(Variable.name);
+		contact.setText(Variable.contact);
+		contact_phone.setText(Variable.contact_phone);
+
 		confirm.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Variable.name = name.getEditableText().toString();
-				Variable.contact = name.getEditableText().toString();
-				Variable.contact_phone = name.getEditableText().toString();
+				Variable.contact = contact.getEditableText().toString();
+				Variable.contact_phone = contact_phone.getEditableText()
+						.toString();
 				setResult(RESULT_OK);
 				PersonalData.this.finish();
 

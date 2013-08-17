@@ -1,20 +1,14 @@
 package com.stu.ihelp.client;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 
 public class IHelpActivity extends Activity {
 
 	public static final int INTENT_DATA = 0;
 	public static final int INTENT_GENERAL = 1;
-
-	private Button btn_general, btn_Urgent, btn_data;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

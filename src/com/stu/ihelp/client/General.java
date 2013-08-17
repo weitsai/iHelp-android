@@ -37,9 +37,6 @@ public class General extends Activity {
 
 	Locate gps;
 
-	// Handle
-	private final int submitOK = 1;
-
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -71,8 +68,14 @@ public class General extends Activity {
 					@Override
 					public void run() {
 						super.run();
-						new SendSMS(General.this, Variable.contact_phone, "Help!HELP!",
-								located);
+						String content = Variable.name + "這裡發生"
+								+ joindata[join1.getCurrentItem()] + "，總共有"
+								+ joindata2[join2.getCurrentItem()] + "人";
+
+						new SendSMS(General.this, Variable.contact_phone,
+								content, located);
+
+						General.this.finish();
 					}
 				}.start();
 			}
