@@ -1,6 +1,7 @@
 package com.stu.ihelp.client;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -8,32 +9,47 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class PersonalData extends Activity {
-
-	private EditText name, contact, contact_phone;
+	
+	private EditText et_name, et_contact, et_contact_phone;
 	private Button confirm, cancel;
+	private SharedPreferences spfs;
+
+	private static final String NAME = "name";
+	private static final String CONTACT = "contact";
+	private static final String CONTACT_PHONE = "contact_phone";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.personal_data);
 
-		name = (EditText) findViewById(R.id.edit_name);
-		contact = (EditText) findViewById(R.id.edit_contact);
-		contact_phone = (EditText) findViewById(R.id.edit_contact_phone);
+		et_name = (EditText) findViewById(R.id.edit_name);
+		et_contact = (EditText) findViewById(R.id.edit_contact);
+		et_contact_phone = (EditText) findViewById(R.id.edit_contact_phone);
 		confirm = (Button) findViewById(R.id.btn_submit);
 		cancel = (Button) findViewById(R.id.btn_cancel);
 
-		name.setText(Variable.name);
-		contact.setText(Variable.contact);
-		contact_phone.setText(Variable.contact_phone);
+		et_name.setText(Variable.name);
+		et_contact.setText(Variable.contact);
+		et_contact_phone.setText(Variable.contact_phone);
+
+		spfs = getPreferences(MODE_PRIVATE);
+
+		et_name.setText(spfs.getString(NAME, ""));
+		et_contact.setText(spfs.getString(CONTACT_PHONE, ""));
+		et_contact_phone.setText(spfs.getString(CONTACT_PHONE, ""));
 
 		confirm.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Variable.name = name.getEditableText().toString();
-				Variable.contact = contact.getEditableText().toString();
-				Variable.contact_phone = contact_phone.getEditableText()
-						.toString();
+
+				spfs.edit()
+						.putString(NAME, et_name.getEditableText().toString())
+						.putString(CONTACT,
+								et_contact.getEditableText().toString())
+						.putString(CONTACT_PHONE,
+								et_contact_phone.getEditableText().toString())
+						.commit();
 				setResult(RESULT_OK);
 				PersonalData.this.finish();
 
@@ -49,5 +65,4 @@ public class PersonalData extends Activity {
 			}
 		});
 	}
-
 }

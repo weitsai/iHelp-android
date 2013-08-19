@@ -49,7 +49,6 @@ public class General extends Activity {
 
 	}
 
-	// 按鈕事件
 	public void clock(View v) {
 		this.finish();
 	}
@@ -94,10 +93,9 @@ public class General extends Activity {
 			}
 		};
 		Calendar calendar = Calendar.getInstance();
-		// 控制一開始的位子
-		// APRIL 為第一個
-		// ALL_STYLES 為第二個
-		// MONTH 為中間值
+		/*
+		 * 控制一開始的位子 APRIL為第一個,ALL_STYLES 為第二個,MONTH 為中間值
+		 */
 		int curMonth = calendar.get(Calendar.APRIL);
 		joindata = new String[] { "請選擇災情", "火災", "鬧事", "身體狀況", "搶劫", "交通事故",
 				"偷竊", "不清楚" };
@@ -178,18 +176,6 @@ public class General extends Activity {
 			String content = smsUrl + located + key;
 			new SendSMS(getBaseContext(), phone, located, content);
 			return null;
-		}
-	}
-
-	class text implements Runnable {
-
-		text() {
-
-		}
-
-		@Override
-		public void run() {
-
 		}
 	}
 
