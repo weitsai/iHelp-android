@@ -181,16 +181,4 @@ public class General extends Activity {
 		}
 	}
 
-	class text implements Runnable {
-
-		text() {
-
-		}
-
-		@Override
-		public void run() {
-
-		}
-	}
-
 }
