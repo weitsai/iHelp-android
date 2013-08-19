@@ -1,8 +1,8 @@
-{
+ï»¿{
     "author": "guanting",
     "status": "alpha",
     "name": "iHelp",
-    "name_zh": "Å¤³q°T",
+    "name_zh": "è¾é€šè¨Š",
     "homepage": "https://github.com/cy-project/iHelp-android",
     "contributors": [
         "weitsai",
@@ -10,7 +10,7 @@
         "librabilly"
     ],
     "description": "Deaf reporting system app",
-    "description_zh": "Å¤°×¤H¤h³ø®×¨t²ÎAPP",
+    "description_zh": "è¾å•äººå£«å ±æ¡ˆç³»çµ±APP",
     "document": "",
     "repository": {
         "type": "git",
