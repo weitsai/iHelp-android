@@ -1,8 +1,8 @@
 ﻿{
     "author": "guanting",
     "status": "alpha",
-    "name": "iHelp",
-    "name_zh": "聾通訊",
+    "name": "iHelp-Android",
+    "name_zh": "聾通訊 - Android",
     "homepage": "https://github.com/cy-project/iHelp-android",
     "contributors": [
         "weitsai",
