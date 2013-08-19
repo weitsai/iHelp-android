@@ -2,14 +2,15 @@
     "author": "guanting",
     "status": "alpha",
     "name": "iHelp",
-    "name_zh": "聾通訊",
+    "name_zh": "聾嚙緬嚙確",
+    "homepage": "https://github.com/cy-project/iHelp-android",
     "contributors": [
         "weitsai",
         "guanting",
         "librabilly"
     ],
     "description": "Deaf reporting system app",
-    "description_zh": "聾啞人士報案系統APP",
+    "description_zh": "聾嚙論人嚙篁嚙踝蕭嚙論系嚙踝蕭APP",
     "document": "",
     "repository": {
         "type": "git",
