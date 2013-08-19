@@ -1,0 +1,47 @@
+{
+    "author": "guanting"
+    "status": "alpha",
+    "name": "iHelp",
+    "name_zh": "聾通訊",
+    "contributors": [
+        "weitsai",
+        "guanting",
+        "librabilly"
+    ],
+    "description": "Deaf reporting system app",
+    "description_zh": "聾啞人士報案系統APP",
+    "document": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cy-project/iHelp-android"
+    },
+    "licenses": [
+        {
+            "type": "GPL v2"
+        }
+    ],
+    "keywords": [
+        "dumb",
+        "deaf",
+        "report"
+        "reporting system",
+        "ihelp",
+	"android",
+	"app"
+    ],
+    "audience": [
+        "public"
+    ],
+    "products": [
+        "android app"
+    ],
+    "projects": [
+        "iHelp-android"
+    ],
+    "thumbnail": "",
+    "needs": [
+        "programmer",
+        "writer",
+        "designer"
+    ]
+}

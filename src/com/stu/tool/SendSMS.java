@@ -1,5 +1,6 @@
 package com.stu.tool;
 
+import java.util.List;
 import java.util.UUID;
 
 import android.app.PendingIntent;
@@ -38,9 +39,13 @@ public class SendSMS {
 			String uid = UUID.randomUUID().toString().replaceAll("-", "");
 			String url = SERVER_URL + "?MSGID="
 					+ uid.substring(uid.length() - 6, uid.length()) + "&OA="
-					+ phone + "&SM=" + "http://maps.google.com.tw/maps?q="
-					+ location + "%0a" + content + "iHELP";
-			Log.e("length" + url.length(), "byte" + url.getBytes().length);
+					+ phone + "&SM=http://maps.google.com.tw/maps?q="
+					+ location + "	" + content + "iHELP";
+
+			String dataContent = "http://maps.google.com.tw/maps?q=" + location
+					+ "%0A" + content + "iHELP";
+			Log.e("length" + dataContent.length(),
+					"byte" + dataContent.getBytes().length);
 			Log.e("url", url);
 			String result = it.GetTo(url);
 			Log.e("result", result);
@@ -61,10 +66,11 @@ public class SendSMS {
 	 */
 	public void sendMessage(Context context, String phone, String content) {
 		SmsManager smsManager = SmsManager.getDefault();
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-				new Intent(), 0);
 
-		smsManager.sendTextMessage(phone, null, content, pendingIntent, null);
+		List<String> texts = smsManager.divideMessage(content);
+
+		for (String text : texts)
+			smsManager.sendTextMessage(phone, null, text, null, null);
+
 	}
-
 }
