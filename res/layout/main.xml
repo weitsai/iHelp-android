@@ -51,18 +51,6 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="2"
-                android:background="@drawable/styple_button"
-                android:onClick="sendEmergencyReport"
-                android:text="緊急報案"
-                android:textColor="@android:color/white"
-                android:textSize="14pt" />
-
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
@@ -95,9 +83,9 @@
 
             <EditText
                 android:id="@+id/data"
-                android:textColor="@android:color/widget_edittext_dark"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/widget_edittext_dark"
                 android:textSize="10pt" />
 
             <TextView
