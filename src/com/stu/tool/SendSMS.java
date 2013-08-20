@@ -31,18 +31,22 @@ public class SendSMS {
 		String text = null;
 		if (it.isConnectedOrConnecting()) {
 			Log.e("network", "online");
-			Log.e("isAvailable", it.isAvailable() + "");
-			Log.e("isConnected", it.isConnected() + "");
-			Log.e("isConnectedOrConnecting", it.isConnectedOrConnecting() + "");
-			Log.e("isFailover", it.isFailover() + "");
+			// Log.e("isAvailable", it.isAvailable() + "");
+			// Log.e("isConnected", it.isConnected() + "");
+			// Log.e("isConnectedOrConnecting", it.isConnectedOrConnecting() +
+			// "");
+			// Log.e("isFailover", it.isFailover() + "");
 
 			String uid = UUID.randomUUID().toString().replaceAll("-", "");
 			uid = uid.substring(uid.length() - 6, uid.length());
 			text = "http://maps.google.com.tw/maps?q=" + location + "%0A"
 					+ content + "iHELP";
-
+			
 			String[] key = { "MSGID", "OA", "SM" };
 			String[] data = { uid, phone, text };
+			
+			for (String str:data)
+				Log.e("String",str);
 			String result = it.toPost(key, data, SERVER_URL);
 			Log.e("result", result);
 		} else {

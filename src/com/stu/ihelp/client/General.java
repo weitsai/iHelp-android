@@ -70,6 +70,7 @@ public class General extends Activity {
 								+ joindata[join1.getCurrentItem()] + "，總共有"
 								+ joindata2[join2.getCurrentItem()] + "人";
 
+						Log.e("phone",Variable.contact_phone);
 						new SendSMS(General.this, Variable.contact_phone,
 								content, located);
 
