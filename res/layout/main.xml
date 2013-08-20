@@ -84,6 +84,7 @@
             <EditText
                 android:id="@+id/data"
                 android:layout_width="fill_parent"
+                android:background="@null"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/widget_edittext_dark"
                 android:textSize="10pt" />
