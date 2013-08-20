@@ -10,12 +10,11 @@ import android.widget.EditText;
 
 public class PersonalData extends Activity {
 	
-	private EditText et_name, et_contact, et_contact_phone;
+	private EditText et_name, et_contact_phone;
 	private Button confirm, cancel;
 	private SharedPreferences spfs;
 
 	private static final String NAME = "name";
-	private static final String CONTACT = "contact";
 	private static final String CONTACT_PHONE = "contact_phone";
 
 	@Override
@@ -24,19 +23,16 @@ public class PersonalData extends Activity {
 		setContentView(R.layout.personal_data);
 
 		et_name = (EditText) findViewById(R.id.edit_name);
-		et_contact = (EditText) findViewById(R.id.edit_contact);
 		et_contact_phone = (EditText) findViewById(R.id.edit_contact_phone);
 		confirm = (Button) findViewById(R.id.btn_submit);
 		cancel = (Button) findViewById(R.id.btn_cancel);
 
 		et_name.setText(Variable.name);
-		et_contact.setText(Variable.contact);
 		et_contact_phone.setText(Variable.contact_phone);
 
 		spfs = getPreferences(MODE_PRIVATE);
 
 		et_name.setText(spfs.getString(NAME, ""));
-		et_contact.setText(spfs.getString(CONTACT_PHONE, ""));
 		et_contact_phone.setText(spfs.getString(CONTACT_PHONE, ""));
 
 		confirm.setOnClickListener(new OnClickListener() {
@@ -45,8 +41,6 @@ public class PersonalData extends Activity {
 
 				spfs.edit()
 						.putString(NAME, et_name.getEditableText().toString())
-						.putString(CONTACT,
-								et_contact.getEditableText().toString())
 						.putString(CONTACT_PHONE,
 								et_contact_phone.getEditableText().toString())
 						.commit();

@@ -59,29 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="緊急聯絡人："
-            android:textColor="@android:color/black"
-            android:textSize="14pt" />
-
-        <EditText
-            android:id="@+id/edit_contact"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="請選擇緊急聯絡人" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="聯絡人電話："
             android:textColor="@android:color/black"
             android:textSize="14pt" />
