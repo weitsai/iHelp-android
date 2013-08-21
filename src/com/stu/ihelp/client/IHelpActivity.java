@@ -2,9 +2,7 @@ package com.stu.ihelp.client;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 public class IHelpActivity extends Activity {
@@ -25,9 +23,10 @@ public class IHelpActivity extends Activity {
 
     public void setPersonalData(View v) {
         if (!bool) {
+            this.setFinishOnTouchOutside(false);
+            IHelpActivity.this.setFinishOnTouchOutside(true);
             bool = true;
             startActivityForResult(new Intent(IHelpActivity.this, PersonalData.class), INTENT_DATA);
-            System.out.println("123123");
         }
     }
 
