@@ -67,18 +67,15 @@ public class General extends Activity {
             } else {
 
                 String title = "http://maps.google.com.tw/maps?q=" + located
-                        + "&iHELP";
+                        + "GeoSMS=iHELP";
                 String body = "我是" + Variable.name + "這裡發生"
                         + joindata[join1.getCurrentItem()] + "，總共有"
                         + joindata2[join2.getCurrentItem()] + "人，";
 
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(Variable.contact_phone, null, title,
+                smsManager.sendTextMessage(Variable.contact_phone, null, title
+                        + body + "地址在" + gps.getAddressByLocation(located),
                         null, null);
-                smsManager.sendTextMessage(Variable.contact_phone, null, body,
-                        null, null);
-                smsManager.sendTextMessage(Variable.contact_phone, null, "地址在"
-                        + gps.getAddressByLocation(located), null, null);
 
                 General.this.finish();
             }
