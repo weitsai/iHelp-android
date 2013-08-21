@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -64,13 +65,20 @@ public class General extends Activity {
                 Toast.makeText(getBaseContext(), "請選擇災情與人數", Toast.LENGTH_SHORT)
                         .show();
             } else {
-                String content = "我是" + Variable.name + "這裡發生"
-                        + joindata[join1.getCurrentItem()] + "，總共有"
-                        + joindata2[join2.getCurrentItem()] + "人";
 
-                Log.e("phone", Variable.contact_phone);
-                new SendSMS(General.this, Variable.contact_phone, content,
-                        located);
+                String title = "http://maps.google.com.tw/maps?q=" + located
+                        + "&iHELP";
+                String body = "我是" + Variable.name + "這裡發生"
+                        + joindata[join1.getCurrentItem()] + "，總共有"
+                        + joindata2[join2.getCurrentItem()] + "人，";
+
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(Variable.contact_phone, null, title,
+                        null, null);
+                smsManager.sendTextMessage(Variable.contact_phone, null, body,
+                        null, null);
+                smsManager.sendTextMessage(Variable.contact_phone, null, "地址在"
+                        + gps.getAddressByLocation(located), null, null);
 
                 General.this.finish();
             }
