@@ -66,7 +66,7 @@ public class General extends Activity {
 					@Override
 					public void run() {
 						super.run();
-						String content = Variable.name + "這裡發生"
+						String content = "我是" + Variable.name + "這裡發生"
 								+ joindata[join1.getCurrentItem()] + "，總共有"
 								+ joindata2[join2.getCurrentItem()] + "人";
 
