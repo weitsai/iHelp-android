@@ -36,10 +36,10 @@ public class PersonalData extends Activity {
 			public void onClick(View v) {
 
 				spfs.edit()
-						.putString(Variable.name = Variable.NAME,
+						.putString(Variable.NAME,
 								et_name.getEditableText().toString())
 						.putString(
-								Variable.contact_phone = Variable.CONTACT_PHONE,
+								Variable.CONTACT_PHONE,
 								et_contact_phone.getEditableText().toString())
 						.commit();
 				setResult(RESULT_OK);
