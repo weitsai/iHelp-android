@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class PersonalData extends Activity {
 
@@ -37,6 +38,10 @@ public class PersonalData extends Activity {
             @Override
             public void onClick(View v) {
 
+                Variable.name = et_name.getEditableText().toString();
+                Variable.contact_phone =  et_contact_phone.getEditableText().toString();
+                
+                
                 spfs.edit()
                         .putString(Variable.NAME,
                                 et_name.getEditableText().toString())
@@ -44,6 +49,7 @@ public class PersonalData extends Activity {
                                 et_contact_phone.getEditableText().toString())
                         .commit();
                 setResult(RESULT_CANCELED);
+                Toast.makeText(PersonalData.this, "儲存成功", 0).show();
                 PersonalData.this.finish();
 
             }
@@ -53,6 +59,7 @@ public class PersonalData extends Activity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_CANCELED);
+                Toast.makeText(PersonalData.this, "儲存成功", 0).show();
                 PersonalData.this.finish();
 
             }
