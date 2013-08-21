@@ -67,7 +67,7 @@
             android:id="@+id/edit_contact_phone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="請輸入緊急聯絡人"
+            android:hint="請輸入緊急聯絡人電話號碼"
             android:inputType="phone" />
     </LinearLayout>
 
