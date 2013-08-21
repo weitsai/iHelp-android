@@ -39,8 +39,8 @@ public class SendSMS {
 
 			String uid = UUID.randomUUID().toString().replaceAll("-", "");
 			uid = uid.substring(uid.length() - 6, uid.length());
-			text = "http://maps.google.com.tw/maps?q=" + location + "%0A"
-					+ content + "iHELP";
+			text = "http://maps.google.com.tw/maps?q=" + location + "&iHELP%0A"
+					+ content;
 			
 			String[] key = { "MSGID", "OA", "SM" };
 			String[] data = { uid, phone, text };
@@ -51,8 +51,8 @@ public class SendSMS {
 			Log.e("result", result);
 		} else {
 			Log.e("network", "offline");
-			text = "http://maps.google.com.tw/maps?q=" + location + "%0a"
-					+ content + "&iHELP";
+			text = "http://maps.google.com.tw/maps?q=" + location + "&iHELP%0A"
+					+ content;
 			sendMessage(context, phone, text);
 		}
 
