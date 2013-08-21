@@ -59,7 +59,7 @@ public class PersonalData extends Activity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_CANCELED);
-                Toast.makeText(PersonalData.this, "儲存成功", 0).show();
+                Toast.makeText(PersonalData.this, "取消儲存", 0).show();
                 PersonalData.this.finish();
 
             }
