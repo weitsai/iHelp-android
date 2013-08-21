@@ -36,7 +36,7 @@ public class PersonalData extends Activity {
             public void onClick(View v) {
 
                 spfs.edit().putString(Variable.NAME, et_name.getEditableText().toString()).putString(Variable.CONTACT_PHONE, et_contact_phone.getEditableText().toString()).commit();
-                setResult(RESULT_OK);
+                setResult(RESULT_CANCELED);
                 PersonalData.this.finish();
 
             }

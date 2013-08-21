@@ -21,8 +21,14 @@ public class IHelpActivity extends Activity {
 
     }
 
+    boolean bool = false;
+
     public void setPersonalData(View v) {
-        startActivityForResult(new Intent(IHelpActivity.this, PersonalData.class), INTENT_DATA);
+        if (!bool) {
+            bool = true;
+            startActivityForResult(new Intent(IHelpActivity.this, PersonalData.class), INTENT_DATA);
+            System.out.println("123123");
+        }
     }
 
     public void onClickGeneral(View v) {
@@ -31,6 +37,9 @@ public class IHelpActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println(requestCode + "," + resultCode);
+        bool = false;
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
