@@ -1,6 +1,5 @@
 package com.stu.tool;
 
-
 public class PointInPolygon {
     static double kaohsiungCoordinatesArr[][] = {
             {
