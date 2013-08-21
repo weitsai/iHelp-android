@@ -38,7 +38,6 @@ public class IHelpActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println(requestCode + "," + resultCode);
         bool = false;
 
         super.onActivityResult(requestCode, resultCode, data);
