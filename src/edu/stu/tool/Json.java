@@ -1,4 +1,4 @@
-package com.stu.tool;
+package edu.stu.tool;
 
 import org.json.JSONArray;
 import org.json.JSONException;

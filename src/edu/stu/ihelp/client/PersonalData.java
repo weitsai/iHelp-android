@@ -1,4 +1,6 @@
-package com.stu.ihelp.client;
+package edu.stu.ihelp.client;
+
+import com.stu.ihelp.client.R;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -35,7 +37,12 @@ public class PersonalData extends Activity {
             @Override
             public void onClick(View v) {
 
-                spfs.edit().putString(Variable.NAME, et_name.getEditableText().toString()).putString(Variable.CONTACT_PHONE, et_contact_phone.getEditableText().toString()).commit();
+                spfs.edit()
+                        .putString(Variable.NAME,
+                                et_name.getEditableText().toString())
+                        .putString(Variable.CONTACT_PHONE,
+                                et_contact_phone.getEditableText().toString())
+                        .commit();
                 setResult(RESULT_CANCELED);
                 PersonalData.this.finish();
 

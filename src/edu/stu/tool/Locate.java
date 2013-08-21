@@ -1,4 +1,4 @@
-package com.stu.tool;
+package edu.stu.tool;
 
 import android.app.AlertDialog;
 import android.app.Service;

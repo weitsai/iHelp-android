@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.stu.ihelp.client"
+    package="edu.stu.ihelp.client"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -28,7 +28,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
-        <activity android:name="com.stu.ihelp.client.IHelpActivity" >
+        <activity android:name="edu.stu.ihelp.client.IHelpActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +45,7 @@
             android:name=".Contact"
             android:theme="@android:style/Theme.Dialog" />
 
-        <receiver android:name="com.stu.tool.receiverSMS" >
+        <receiver android:name="edu.stu.tool.receiverSMS" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

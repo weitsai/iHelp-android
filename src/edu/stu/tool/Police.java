@@ -1,4 +1,4 @@
-package com.stu.tool;
+package edu.stu.tool;
 
 import java.util.ArrayList;
 import java.util.HashMap;

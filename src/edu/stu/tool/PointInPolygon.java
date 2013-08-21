@@ -1,4 +1,4 @@
-package com.stu.tool;
+package edu.stu.tool;
 
 public class PointInPolygon {
     static double kaohsiungCoordinatesArr[][] = {

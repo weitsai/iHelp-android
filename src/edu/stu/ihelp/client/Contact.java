@@ -1,4 +1,6 @@
-package com.stu.ihelp.client;
+package edu.stu.ihelp.client;
+
+import com.stu.ihelp.client.R;
 
 import android.app.Activity;
 import android.os.Bundle;

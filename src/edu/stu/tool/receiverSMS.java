@@ -1,4 +1,4 @@
-package com.stu.tool;
+package edu.stu.tool;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

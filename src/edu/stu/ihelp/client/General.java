@@ -1,4 +1,4 @@
-package com.stu.ihelp.client;
+package edu.stu.ihelp.client;
 
 import java.util.Calendar;
 
@@ -20,11 +20,13 @@ import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.stu.tool.Internet;
-import com.stu.tool.Json;
-import com.stu.tool.Locate;
-import com.stu.tool.Police;
-import com.stu.tool.SendSMS;
+import com.stu.ihelp.client.R;
+
+import edu.stu.tool.Internet;
+import edu.stu.tool.Json;
+import edu.stu.tool.Locate;
+import edu.stu.tool.Police;
+import edu.stu.tool.SendSMS;
 
 public class General extends Activity {
     String tag = "General";
@@ -59,20 +61,18 @@ public class General extends Activity {
             final String located = gps.getPosition();
 
             if (join1.getCurrentItem() == 0 || join2.getCurrentItem() == 0) {
-                Toast.makeText(getBaseContext(), "請選擇災情與人數", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "請選擇災情與人數", Toast.LENGTH_SHORT)
+                        .show();
             } else {
-                new Thread() {
-                    @Override
-                    public void run() {
-                        super.run();
-                        String content = "我是" + Variable.name + "這裡發生" + joindata[join1.getCurrentItem()] + "，總共有" + joindata2[join2.getCurrentItem()] + "人";
+                String content = "我是" + Variable.name + "這裡發生"
+                        + joindata[join1.getCurrentItem()] + "，總共有"
+                        + joindata2[join2.getCurrentItem()] + "人";
 
-                        Log.e("phone", Variable.contact_phone);
-                        new SendSMS(General.this, Variable.contact_phone, content, located);
+                Log.e("phone", Variable.contact_phone);
+                new SendSMS(General.this, Variable.contact_phone, content,
+                        located);
 
-                        General.this.finish();
-                    }
-                }.start();
+                General.this.finish();
             }
 
         } else {
@@ -93,15 +93,13 @@ public class General extends Activity {
          * 控制一開始的位子 APRIL為第一個,ALL_STYLES 為第二個,MONTH 為中間值
          */
         int curMonth = calendar.get(Calendar.APRIL);
-        joindata = new String[] {
-                "請選擇災情", "火災", "鬧事", "身體狀況", "搶劫", "交通事故", "偷竊", "不清楚"
-        };
+        joindata = new String[] { "請選擇災情", "火災", "鬧事", "身體狀況", "搶劫", "交通事故",
+                "偷竊", "不清楚" };
         join1.setViewAdapter(new DateArrayAdapter(this, joindata, 0));
         join1.setCurrentItem(curMonth);
 
-        joindata2 = new String[] {
-                "請選擇人數", "未知", "1", "2", "3", "4", "5", "6", "7", "8"
-        };
+        joindata2 = new String[] { "請選擇人數", "未知", "1", "2", "3", "4", "5", "6",
+                "7", "8" };
         join2.setViewAdapter(new DateArrayAdapter(this, joindata2, 0));
         join2.setCurrentItem(curMonth);
     }

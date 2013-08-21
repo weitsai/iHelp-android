@@ -1,4 +1,4 @@
-package com.stu.ihelp.client;
+package edu.stu.ihelp.client;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,6 +8,7 @@ public class Variable {
     public static final String FILENAME = "data";
     public static final String NAME = "name";
     public static final String CONTACT_PHONE = "contact_phone";
+    public static final String PHONE_NUM = "phone_num";
     private static SharedPreferences spfs;
     static String name = "";
     static String gender = "";
