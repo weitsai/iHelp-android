@@ -21,9 +21,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!-- 電話 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
