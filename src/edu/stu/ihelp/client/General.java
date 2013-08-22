@@ -1,5 +1,6 @@
 package edu.stu.ihelp.client;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.json.JSONException;

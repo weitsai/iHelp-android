@@ -18,7 +18,6 @@ local.properties
 # Eclipse project files
 .classpath
 .project
-.settings/
 
 # MAC
 .DS_Store
