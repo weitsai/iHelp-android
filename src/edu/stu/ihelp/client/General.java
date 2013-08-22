@@ -71,9 +71,10 @@ public class General extends Activity {
                         + joindata2[join2.getCurrentItem()] + "人，";
 
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(Variable.contact_phone, null, title
-                        + body + "地址在" + gps.getAddressByLocation(located),
-                        null, null);
+                ArrayList<String> messageArray = smsManager.divideMessage(title
+                        + body + "地址在\n" + gps.getAddressByLocation(located));
+                smsManager.sendMultipartTextMessage(Variable.contact_phone,
+                        null, messageArray, null, null);
 
                 General.this.finish();
             }
