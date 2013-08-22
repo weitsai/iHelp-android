@@ -57,7 +57,7 @@
             android:onClick="submit"
             android:text="報　案"
             android:textColor="@android:color/white"
-            android:textSize="12pt" />
+            android:textSize="28sp" />
 
         <Button
             android:id="@+id/general"
@@ -69,7 +69,7 @@
             android:onClick="clock"
             android:text="取　消"
             android:textColor="@android:color/white"
-            android:textSize="12pt" />
+            android:textSize="28sp" />
     </LinearLayout>
 
 </LinearLayout>
