@@ -25,8 +25,6 @@ public class IHelpActivity extends Activity {
 
     public void setPersonalData(View v) {
         if (!bool) {
-            this.setFinishOnTouchOutside(false);
-            IHelpActivity.this.setFinishOnTouchOutside(true);
             bool = true;
             startActivityForResult(new Intent(IHelpActivity.this, PersonalData.class), INTENT_DATA);
         }
