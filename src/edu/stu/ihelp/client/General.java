@@ -78,9 +78,10 @@ public class General extends Activity {
                 if (Locate.address == null) {
                     Log.i("住址  ", "未獲得");
                 }
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(Variable.contact_phone, null, title
-                        + body + "地址在" + Locate.address, null, null);
+                // SmsManager smsManager = SmsManager.getDefault();
+                // smsManager.sendTextMessage(Variable.contact_phone, null,
+                // title
+                //    + body + "地址在" + Locate.address, null, null);
 
                 General.this.finish();
             }
@@ -171,9 +172,10 @@ public class General extends Activity {
                 Locate.address = new Json().getCountry(result);
             } catch (JSONException e) {
                 e.printStackTrace();
+                Locate.address = null;
             }
 
-            Locate.address = null;
+         
         }
     }
 
