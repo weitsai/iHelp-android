@@ -1,5 +1,6 @@
 package edu.stu.ihelp.client;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.json.JSONException;
@@ -78,10 +79,12 @@ public class General extends Activity {
                 if (Locate.address == null) {
                     Log.i("住址  ", "未獲得");
                 }
-                // SmsManager smsManager = SmsManager.getDefault();
-                // smsManager.sendTextMessage(Variable.contact_phone, null,
-                // title
-                //    + body + "地址在" + Locate.address, null, null);
+
+                SmsManager smsManager = SmsManager.getDefault();
+                ArrayList<String> messageArray = smsManager.divideMessage(title
+                        + body + "地址在\n" + gps.getAddressByLocation(located));
+                smsManager.sendMultipartTextMessage(Variable.contact_phone,
+                        null, messageArray, null, null);
 
                 General.this.finish();
             }
@@ -175,7 +178,6 @@ public class General extends Activity {
                 Locate.address = null;
             }
 
-         
         }
     }
 
