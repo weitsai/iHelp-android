@@ -1,7 +1,5 @@
 package edu.stu.ihelp.client;
 
-import com.stu.ihelp.client.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
