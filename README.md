@@ -10,7 +10,7 @@ iHelp-Android
 ▼畫面一，點選個人資料編輯個人資料
 - 首先必須填寫個人資料才能夠進行報案動作唷！！
 
-![github](https://lh6.googleusercontent.com/mKEg3eIip4VNxzCE8E2UJqb2oUuORQD1hXwAE3iJsHuu0nNQPg_HyDoghaSHuviynDvsGkRIcE4 "進入畫面")
+![github](https://lh6.googleusercontent.com/JqvC3nbX2Y_TAGY1axLmkyiVyGL8fBYCGZXaeseLiMyEKoHqlR0_ZXFQ6qjx-grwJ6q3bG3uS5Y "進入畫面")
 
 ▼畫面二，填寫個人資料並儲存
 - 緊急聯絡人電話號碼必須填寫正確，若沒有正確填寫會無法接收到此 App 所發送出求救訊息
