@@ -17,7 +17,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 public class Locate implements LocationListener {
-
+    public static String address = null;
     private final Context mContext;
 
     // flag for GPS status
@@ -226,5 +226,9 @@ public class Locate implements LocationListener {
             e.printStackTrace();
         }
         return returnAddress;
+    }
+
+    public String getAddress(String location) {
+        return null;
     }
 }

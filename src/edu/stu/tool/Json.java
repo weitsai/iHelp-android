@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class Json {
     private JSONObject obj;
     private JSONArray arr;
@@ -21,10 +23,7 @@ public class Json {
         obj = new JSONObject(jsonText);
         arr = obj.getJSONArray("results");
         obj = arr.getJSONObject(0);
-        arr = obj.getJSONArray("address_components");
-        obj = arr.getJSONObject(3);
-        result = obj.getString("long_name");
-        return result;
+        Log.e("address_components", obj.getString("formatted_address"));
+        return obj.getString("formatted_address");
     }
-
 }

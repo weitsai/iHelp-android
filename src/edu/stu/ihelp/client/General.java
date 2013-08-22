@@ -1,6 +1,5 @@
 package edu.stu.ihelp.client;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.json.JSONException;
@@ -11,7 +10,6 @@ import test.whell.adapters.ArrayWheelAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -24,8 +22,6 @@ import android.widget.Toast;
 import edu.stu.tool.Internet;
 import edu.stu.tool.Json;
 import edu.stu.tool.Locate;
-import edu.stu.tool.Police;
-import edu.stu.tool.SendSMS;
 
 public class General extends Activity {
     String tag = "General";
@@ -48,6 +44,13 @@ public class General extends Activity {
         gps = new Locate(General.this);
         setWhellData();
 
+        if (gps.canGetLocation()) {
+            String located = gps.getPosition();
+            new Thread(new GetAddress(located)).start();
+
+        } else {
+            gps.showSettingsAlert();
+        }
     }
 
     public void clock(View v) {
@@ -70,11 +73,14 @@ public class General extends Activity {
                         + joindata[join1.getCurrentItem()] + "，總共有"
                         + joindata2[join2.getCurrentItem()] + "人，";
 
+                Log.e("content", title + body + "地址在" + Locate.address);
+
+                if (Locate.address == null) {
+                    Log.i("住址  ", "未獲得");
+                }
                 SmsManager smsManager = SmsManager.getDefault();
-                ArrayList<String> messageArray = smsManager.divideMessage(title
-                        + body + "地址在\n" + gps.getAddressByLocation(located));
-                smsManager.sendMultipartTextMessage(Variable.contact_phone,
-                        null, messageArray, null, null);
+                smsManager.sendTextMessage(Variable.contact_phone, null, title
+                        + body + "地址在" + Locate.address, null, null);
 
                 General.this.finish();
             }
@@ -147,35 +153,27 @@ public class General extends Activity {
         }
     }
 
-    // 位址轉換並查詢警察局簡訊電話並寄出簡訊
-    class addressTransform extends AsyncTask<Void, Void, String> {
+    class GetAddress implements Runnable {
         private final String url = "http://maps.google.com/maps/api/geocode/json?sensor=true&language=zh-TW&latlng=";
-        private final String smsUrl = "http://maps.google.com/maps?q=";
-        private final String key = "&iHELP";
         private String located;
 
-        addressTransform(String located) {
+        GetAddress(String located) {
             this.located = located;
             Log.i("URL：" + url, "located：" + located);
+
         }
 
-        @Override
-        protected String doInBackground(Void... arg0) {
-
+        public void run() {
             Internet connect = new Internet(General.this);
             String result = connect.toGet(url + located);
-            String country = null;
             try {
 
-                country = new Json().getCountry(result);
+                Locate.address = new Json().getCountry(result);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.e("result", country);
-            String phone = new Police().query(country);
-            String content = smsUrl + located + key;
-            new SendSMS(getBaseContext(), phone, located, content);
-            return null;
+
+            Locate.address = null;
         }
     }
 
