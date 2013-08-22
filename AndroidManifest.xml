@@ -39,9 +39,6 @@
         <activity
             android:name=".General"
             android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:name=".Contact"
-            android:theme="@android:style/Theme.Dialog" />
 
         <receiver android:name="edu.stu.tool.receiverSMS" >
             <intent-filter>
