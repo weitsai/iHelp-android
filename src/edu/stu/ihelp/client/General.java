@@ -55,7 +55,7 @@ public class General extends Activity {
     }
 
     public void clock(View v) {
-	Toast.makeText(this, "取消求救", 0).show();
+        Toast.makeText(this, "取消求救", 0).show();
         this.finish();
     }
 
@@ -70,7 +70,7 @@ public class General extends Activity {
             } else {
 
                 String title = "http://maps.google.com.tw/maps?q=" + located
-                        + "GeoSMS=iHELP";
+                        + "&GeoSMS=iHELP\n";
                 String body = "我是" + Variable.name + "這裡發生"
                         + joindata[join1.getCurrentItem()] + "，總共有"
                         + joindata2[join2.getCurrentItem()] + "人，";
@@ -87,7 +87,7 @@ public class General extends Activity {
                 smsManager.sendMultipartTextMessage(Variable.contact_phone,
                         null, messageArray, null, null);
 
-		Toast.makeText(this, "求救成功", 0).show();
+                Toast.makeText(this, "求救成功", 0).show();
 
                 General.this.finish();
             }
