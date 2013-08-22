@@ -21,3 +21,18 @@ iHelp-Android
 ![github](https://raw.github.com/cy-project/iHelp-android/master/image/3.jpg "github")
 
 
+開發團隊
+========
+- @cht3147      陳冠廷
+- @aliptre1911  郭冠里
+- @librabilly   林尚民
+
+
+特別感謝
+========
+- @kny          陳坤助
+- @clkao        高嘉良
+- @ronnywang    榮尼王
+- @slayer       莊國煜
+- @afutseng     曾坤福
+
