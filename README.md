@@ -8,17 +8,19 @@ iHelp-Android
 [安裝檔下載](https://docs.google.com/file/d/0BxjvKLescVarbWdDRGd1UENMMHM/edit?usp=sharing)
 
 ▼畫面一，點選個人資料編輯個人資料
+- 首先必須填寫個人資料才能夠進行報案動作唷！！
 
-![github](https://raw.github.com/cy-project/iHelp-android/master/image/1.jpg "github")
+![github](https://lh6.googleusercontent.com/mKEg3eIip4VNxzCE8E2UJqb2oUuORQD1hXwAE3iJsHuu0nNQPg_HyDoghaSHuviynDvsGkRIcE4 "進入畫面")
 
 ▼畫面二，填寫個人資料並儲存
-- 電話號碼必須填寫正確，若沒有正確填寫會無法接收到警方回報資訊
+- 緊急聯絡人電話號碼必須填寫正確，若沒有正確填寫會無法接收到此 App 所發送出求救訊息
   
-![github](https://raw.github.com/cy-project/iHelp-android/master/image/2.jpg "github")
+![github](https://lh5.googleusercontent.com/whbsbTMrfWt3pNxmNc1nJffpWFbMsJrVnszYkHaigeqpLDlvkTeobgap_Akf-irdHFd_1SBiJoY "填寫個人資訊")
 
 ▼畫面三，選擇報案類型，並點擊報案
 - 建議使用地點為室外，因為 GPS 定位會較為準確，警方比較好掌握位置，但不論在室內或室外，警方都會發送簡訊詢問更確切的位置
-![github](https://raw.github.com/cy-project/iHelp-android/master/image/3.jpg "github")
+
+![github](https://lh6.googleusercontent.com/4B0Pmizxms6KkDwwbpgaWctEQ6bgHF0Au58YqpBcjeVUjwhdRJWXZZEKSZN7SZWeivWR4dWy-d8 "報案畫面")
 
 
 開發團隊
