@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:text="一般報案"
         android:textColor="@android:color/white"
-        android:textSize="14pt" >
+        android:textSize="30sp" >
     </TextView>
 
     <LinearLayout
