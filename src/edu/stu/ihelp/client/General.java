@@ -55,6 +55,7 @@ public class General extends Activity {
     }
 
     public void clock(View v) {
+	Toast.makeText(this, "取消求救", 0).show();
         this.finish();
     }
 
@@ -85,6 +86,8 @@ public class General extends Activity {
                         + body + "地址在\n" + gps.getAddressByLocation(located));
                 smsManager.sendMultipartTextMessage(Variable.contact_phone,
                         null, messageArray, null, null);
+
+		Toast.makeText(this, "求救成功", 0).show();
 
                 General.this.finish();
             }
