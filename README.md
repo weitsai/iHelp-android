@@ -25,6 +25,7 @@ iHelp-Android
 
 開發團隊
 ========
+- @weitsai      蔡佳緯
 - @cht3147      陳冠廷
 - @aliptre1911  郭冠里
 - @librabilly   林尚民
