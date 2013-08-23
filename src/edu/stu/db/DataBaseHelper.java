@@ -18,11 +18,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // destination path (location) of our database on device
     private static String DB_PATH = "";
     private static String DB_NAME = "city.sqlite3";// Database name
+    private static final int DB_VESION = 1;
     private SQLiteDatabase mDataBase;
     private final Context mContext;
 
     public DataBaseHelper(Context context) {
-        super(context, DB_NAME, null, 1);// 1? its Database Version
+	super(context, DB_NAME, null, DB_VESION);// 1? its Database Version
         if (android.os.Build.VERSION.SDK_INT >= 4.2) {
             DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
         } else {
