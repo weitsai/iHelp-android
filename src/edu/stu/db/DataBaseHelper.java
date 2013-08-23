@@ -14,10 +14,8 @@ import android.util.Log;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static String TAG = "DataBaseHelper"; // Tag just for the LogCat
-    // window
-    // destination path (location) of our database on device
     private static String DB_PATH = "";
-    private static String DB_NAME = "city.sqlite3";// Database name
+    private static final String DB_NAME = "city.sqlite3";// Database name
     private static final int DB_VESION = 1;
     private SQLiteDatabase mDataBase;
     private final Context mContext;
