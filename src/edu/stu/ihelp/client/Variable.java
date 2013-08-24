@@ -29,12 +29,22 @@ public class Variable {
     static String Longitude = "";
 
     static void setData(Context context) {
-        spfs = context.getSharedPreferences(Variable.FILENAME, Context.MODE_PRIVATE);
+        spfs = context.getSharedPreferences(Variable.FILENAME,
+                Context.MODE_PRIVATE);
 
         Variable.name = spfs.getString(Variable.NAME, "");
         Log.e("name", spfs.getString("name", ""));
         Variable.contact_phone = spfs.getString(Variable.CONTACT_PHONE, "");
         Log.e("phone", spfs.getString("contact_phone", ""));
+    }
+
+    static boolean existData() {
+        if (Variable.name.equals("")) {
+            return false;
+        } else if (Variable.contact_phone.equals("")) {
+            return false;
+        }
+        return true;
     }
 
     static boolean checkData() {

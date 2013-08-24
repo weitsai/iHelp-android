@@ -48,9 +48,13 @@ public class General extends Activity {
         if (gps.canGetLocation()) {
             String located = gps.getPosition();
             new Thread(new GetAddress(located)).start();
-
         } else {
             gps.showSettingsAlert();
+        }
+        
+        if (!Variable.existData()) {
+            General.this.finish();
+            Toast.makeText(General.this, "請輸入個人資料", 0).show();
         }
     }
 
