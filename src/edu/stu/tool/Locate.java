@@ -116,30 +116,6 @@ public class Locate implements LocationListener {
         }
     }
 
-    /**
-     * Function to get latitude
-     * */
-    public double getLatitude() {
-        if (location != null) {
-            latitude = location.getLatitude();
-        }
-
-        // return latitude
-        return latitude;
-    }
-
-    /**
-     * Function to get longitude
-     * */
-    public double getLongitude() {
-        if (location != null) {
-            longitude = location.getLongitude();
-        }
-
-        // return longitude
-        return longitude;
-    }
-
     public String getPosition() {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
@@ -224,7 +200,5 @@ public class Locate implements LocationListener {
         return returnAddress;
     }
 
-    public String getAddress(String location) {
-        return null;
-    }
+   
 }
