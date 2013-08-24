@@ -46,7 +46,7 @@ public class PersonalData extends Activity {
                         .putString(Variable.CONTACT_PHONE,
                                 et_contact_phone.getEditableText().toString())
                         .commit();
-                setResult(RESULT_CANCELED);
+                setResult(RESULT_OK);
                 Toast.makeText(PersonalData.this, "儲存成功", 0).show();
                 PersonalData.this.finish();
 
