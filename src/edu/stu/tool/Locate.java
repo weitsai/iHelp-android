@@ -162,15 +162,11 @@ public class Locate implements LocationListener {
     public void showSettingsAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
-        // Setting Dialog Title
-        alertDialog.setTitle("GPS is settings");
-
         // Setting Dialog Message
-        alertDialog
-                .setMessage("GPS is not enabled. Do you want to go to settings menu?");
+        alertDialog.setMessage("開啟GPS");
 
         // On pressing Settings button
-        alertDialog.setPositiveButton("Settings",
+        alertDialog.setPositiveButton("前往",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(
@@ -180,7 +176,7 @@ public class Locate implements LocationListener {
                 });
 
         // on pressing cancel button
-        alertDialog.setNegativeButton("Cancel",
+        alertDialog.setNegativeButton("取消",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
