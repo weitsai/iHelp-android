@@ -41,7 +41,6 @@
     ],
     "thumbnail": "",
     "needs": [
-        "programmer",
         "writer",
         "designer",
         "tech"
