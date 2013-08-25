@@ -43,6 +43,7 @@
     "needs": [
         "programmer",
         "writer",
-        "designer"
+        "designer",
+        "tech"
     ]
 }
