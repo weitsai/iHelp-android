@@ -11,7 +11,7 @@
     ],
     "description": "Deaf reporting system app",
     "description_zh": "聾啞人士報案系統APP",
-    "document": "",
+    "document": "https://g0v.hackpad.com/iHelp-android-ulv07iXiTkb",
     "repository": {
         "type": "git",
         "url": "https://github.com/cy-project/iHelp-android"
