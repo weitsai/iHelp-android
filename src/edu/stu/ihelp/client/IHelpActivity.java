@@ -16,6 +16,10 @@ public class IHelpActivity extends Activity {
         setContentView(R.layout.main);
 
         Variable.setData(IHelpActivity.this);
+        
+        if (!Variable.existData()) {
+            startActivityForResult(new Intent(IHelpActivity.this, PersonalData.class), INTENT_DATA);
+        }
 
     }
 
