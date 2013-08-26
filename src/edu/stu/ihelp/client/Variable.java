@@ -63,9 +63,9 @@ public class Variable {
                 Context.MODE_PRIVATE);
 
         Variable.name = spfs.getString(Variable.NAME, "");
-        Log.e("name", spfs.getString("name", ""));
-        Variable.contact_phone = spfs.getString(Variable.CONTACT_PHONE, "");
-        Log.e("phone", spfs.getString("contact_phone", ""));
+        Log.e("name", Variable.name);
+        Variable.contact_phone = spfs.getString(contactArray[0], "");
+        Log.e("phone", Variable.contact_phone);
     }
 
     static boolean existData() {
