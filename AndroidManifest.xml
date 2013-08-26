@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="14" />
+        android:targetSdkVersion="17" />
     <!-- SMS -->
     <uses-permission android:name="android.permission.SEND_SMS" />
 
@@ -22,6 +22,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:screenOrientation="unspecified"
@@ -35,10 +36,9 @@
         </activity>
         <activity
             android:name=".PersonalData"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:name=".General"
-            android:theme="@android:style/Theme.Dialog" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".General" />
 
         <receiver android:name="edu.stu.tool.receiverSMS" >
             <intent-filter>
