@@ -15,7 +15,7 @@ public class IHelpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Variable.setData(IHelpActivity.this);
+        Variable.getData(IHelpActivity.this);
         
         if (!Variable.existData()) {
             startActivityForResult(new Intent(IHelpActivity.this, PersonalData.class), INTENT_DATA);
