@@ -43,13 +43,19 @@ public class Variable {
             if (data.size() == i) {
                 break;
             } else {
-                spfs.edit().putString(contactArray[i],
-                        data.get(i).get(CONTACT_PHONE)).commit();
+                spfs.edit()
+                        .putString(contactArray[i],
+                                data.get(i).get(CONTACT_PHONE)).commit();
+            }
+
+            if (i == 0) {
+                contact_phone = data.get(i).get(Variable.CONTACT_PHONE);
             }
             Log.e("set_name:" + data.get(i).get(Variable.CONTACT_NAME),
                     "set_phone:" + data.get(i).get(Variable.CONTACT_PHONE));
             Log.i("now", i + "");
         }
+
     }
 
     static void getData(Context context) {
