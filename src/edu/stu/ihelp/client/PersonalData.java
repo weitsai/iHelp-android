@@ -67,6 +67,11 @@ public class PersonalData extends Activity {
 
         getPhoneBookData();
 
+        if (contactsArrayList.size() == 0) {
+            PersonalData.this.finish();
+            Toast.makeText(PersonalData.this, "請新增聯絡人", 0).show();
+        }
+
         adapter = new ContactList(PersonalData.this, contactsArrayList);
 
         listview.setAdapter(adapter);
@@ -104,7 +109,7 @@ public class PersonalData extends Activity {
             @Override
             public void onClick(View v) {
                 if (adapter.getList().size() > 0) {
-                    Variable.setData(PersonalData.this,adapter.getList());
+                    Variable.setData(PersonalData.this, adapter.getList());
                 }
 
                 Variable.name = et_name.getEditableText().toString();
