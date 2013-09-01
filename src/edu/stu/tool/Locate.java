@@ -1,5 +1,7 @@
 package edu.stu.tool;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -7,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,6 +18,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import edu.stu.db.TestAdapter;
 
 public class Locate implements LocationListener {
     public static String address = null;
@@ -200,5 +204,123 @@ public class Locate implements LocationListener {
         return returnAddress;
     }
 
-   
+    public String getCity(double x, double y) {
+        TestAdapter test = new TestAdapter(mContext);
+        test.createDatabase();
+        test.open();
+
+        for (HashMap<String, Integer> map : getCitiesByPoint(x, y)) {
+            for (int cityGroupIndex = 0; cityGroupIndex < map.get("city_size"); cityGroupIndex++) {
+                Cursor cursor = test.getCityCoordinates(map.get("id"),
+                        cityGroupIndex);
+                int right_node = 0, left_node = 0;
+                double lastY = 0.0, lastX = 0.0;
+                while (cursor.moveToNext()) {
+                    if (lastX == 0.0) {
+                        lastX = cursor.getDouble(cursor
+                                .getColumnIndex("longitude"));
+                        lastY = cursor.getDouble(cursor
+                                .getColumnIndex("latitude"));
+                        continue;
+                    }
+
+                    double theX = cursor.getDouble(cursor
+                            .getColumnIndex("longitude"));
+                    double theY = cursor.getDouble(cursor
+                            .getColumnIndex("latitude"));
+
+                    if ((theY >= y && y >= lastY) || (lastY >= y && y >= theY)) {
+                        if (x >= theX && x >= lastX) {
+                            right_node++;
+                        } else if (x <= theX && x <= lastX) {
+                            left_node++;
+                        } else {
+                            double deltax, deltay, tempx;
+                            deltax = theX - lastX;
+                            deltay = theY - lastY;
+                            tempx = (y - lastY) * deltax / deltay + lastX;
+                            if (x >= deltax) {
+                                right_node++;
+                            } else {
+                                left_node++;
+                            }
+                        }
+                    }
+
+                    lastX = theX;
+                    lastY = theY;
+
+                }
+
+                if (left_node % 2 == 1 && right_node % 2 == 1) {
+                    return test.getCityName(map.get("id"));
+                }
+                cursor.close();
+            }
+        }
+        test.close();
+        return "";
+    }
+
+    private List<HashMap<String, Integer>> getCitiesByPoint(double x, double y) {
+        TestAdapter test = new TestAdapter(mContext);
+        test.createDatabase();
+        test.open();
+        Cursor cursor = test.getTestData();
+        List<HashMap<String, Integer>> cityData = new ArrayList<HashMap<String, Integer>>();
+        while (cursor.moveToNext()) {
+            double maxX = cursor.getDouble(cursor.getColumnIndex("x_max"));
+            double maxY = cursor.getDouble(cursor.getColumnIndex("y_max"));
+            double minX = cursor.getDouble(cursor.getColumnIndex("x_min"));
+            double minY = cursor.getDouble(cursor.getColumnIndex("y_min"));
+            CityRect rect = new CityRect(maxX, maxY, minX, minY);
+            if (rect.isPointInRect(x, y)) {
+                HashMap<String, Integer> cityMap = new HashMap<String, Integer>();
+                cityMap.put("id", cursor.getInt(cursor.getColumnIndex("id")));
+                cityMap.put("city_size",
+                        cursor.getInt(cursor.getColumnIndex("city_size")));
+                cityData.add(cityMap);
+
+            }
+        }
+        cursor.close();
+        test.close();
+        return cityData;
+    }
+
+    class CityRect {
+        double maxX, maxY, minX, minY;
+
+        CityRect(double maxX, double maxY, double minX, double minY) {
+            this.maxX = maxX;
+            this.maxY = maxY;
+            this.minX = minX;
+            this.minX = minX;
+        }
+
+        public double getMaxX() {
+            return maxX;
+        }
+
+        public double getMaxY() {
+            return maxY;
+        }
+
+        public double getMinX() {
+            return minX;
+        }
+
+        public double getMinY() {
+            return minY;
+        }
+
+        public boolean isPointInRect(double x, double y) {
+            if (x <= this.maxX && y <= this.maxY && x >= this.minX
+                    && y >= this.minY) {
+                return true;
+            }
+            return false;
+        }
+    }
+
 }

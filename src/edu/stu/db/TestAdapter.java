@@ -50,11 +50,31 @@ public class TestAdapter {
             String sql = "SELECT * FROM city";
 
             Cursor mCur = mDb.rawQuery(sql, null);
-            if (mCur != null) {
-                mCur.moveToNext();
-                System.out.println(mCur.getColumnNames()[1]);
-            }
             return mCur;
+        } catch (SQLException mSQLException) {
+            Log.e(TAG, "getTestData >>" + mSQLException.toString());
+            throw mSQLException;
+        }
+    }
+
+    public Cursor getCityCoordinates(int city_id, int city_group) {
+        try {
+            String sql = "SELECT * FROM city_bound where city_id = " + city_id
+                    + " AND city_group = " + city_group;
+            Cursor mCur = mDb.rawQuery(sql, null);
+            return mCur;
+        } catch (SQLException mSQLException) {
+            Log.e(TAG, "getTestData >>" + mSQLException.toString());
+            throw mSQLException;
+        }
+    }
+
+    public String getCityName(int city_id) {
+        try {
+            String sql = "SELECT name FROM city where id = " + city_id;
+            Cursor mCur = mDb.rawQuery(sql, null);
+            mCur.moveToNext();
+            return mCur.getString(mCur.getColumnIndex("name"));
         } catch (SQLException mSQLException) {
             Log.e(TAG, "getTestData >>" + mSQLException.toString());
             throw mSQLException;
