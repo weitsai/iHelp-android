@@ -45,13 +45,10 @@ public class General extends Activity {
         gps = new Locate(General.this);
         setWhellData();
 
-        if (gps.canGetLocation()) {
-            String located = gps.getPosition();
-            new Thread(new GetAddress(located)).start();
-        } else {
+        if (!gps.canGetLocation()) {
             gps.showSettingsAlert();
         }
-        
+
         if (!Variable.existData()) {
             General.this.finish();
             Toast.makeText(General.this, "請輸入個人資料", 0).show();
@@ -64,42 +61,39 @@ public class General extends Activity {
     }
 
     public void submit(View v) {
-        if (gps.canGetLocation()) {
-
-            final String located = gps.getPosition();
-
-            if (join1.getCurrentItem() == 0 || join2.getCurrentItem() == 0) {
-                Toast.makeText(getBaseContext(), "請選擇災情與人數", Toast.LENGTH_SHORT)
-                        .show();
-            } else {
-
-                String title = "http://maps.google.com.tw/maps?q=" + located
-                        + "&GeoSMS=iHELP\n";
-                String body = "我是" + Variable.name + "這裡發生"
-                        + joindata[join1.getCurrentItem()] + "，總共有"
-                        + joindata2[join2.getCurrentItem()] + "人，";
-
-                Log.e("content", title + body + "地址在" + Locate.address);
-
-                if (Locate.address == null) {
-                    Log.i("住址  ", "未獲得");
-                }
-
-                SmsManager smsManager = SmsManager.getDefault();
-                ArrayList<String> messageArray = smsManager.divideMessage(title
-                        + body + "地址在\n" + gps.getAddressByLocation(located));
-                smsManager.sendMultipartTextMessage(Variable.contact_phone,
-                        null, messageArray, null, null);
-
-                Toast.makeText(this, "求救成功", 0).show();
-
-                General.this.finish();
-            }
-
-        } else {
-
+        if (!gps.canGetLocation()) {
             gps.showSettingsAlert();
         }
+        final String located = gps.getPosition();
+
+        if (join1.getCurrentItem() == 0 || join2.getCurrentItem() == 0) {
+            Toast.makeText(getBaseContext(), "請選擇災情與人數", Toast.LENGTH_SHORT)
+                    .show();
+        } else {
+
+            String title = "http://maps.google.com.tw/maps?q=" + located
+                    + "&GeoSMS=iHELP\n";
+            String body = "我是" + Variable.name + "這裡發生"
+                    + joindata[join1.getCurrentItem()] + "，總共有"
+                    + joindata2[join2.getCurrentItem()] + "人，";
+
+            Log.e("content", title + body + "地址在" + Locate.address);
+
+            if (Locate.address == null) {
+                Log.i("住址  ", "未獲得");
+            }
+
+            SmsManager smsManager = SmsManager.getDefault();
+            ArrayList<String> messageArray = smsManager.divideMessage(title
+                    + body + "地址在\n" + gps.getAddressByLocation(located));
+            smsManager.sendMultipartTextMessage(Variable.contact_phone, null,
+                    messageArray, null, null);
+
+            Toast.makeText(this, "求救成功", 0).show();
+
+            General.this.finish();
+        }
+
     }
 
     private void setWhellData() {
