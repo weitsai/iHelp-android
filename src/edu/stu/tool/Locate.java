@@ -18,7 +18,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import edu.stu.db.TestAdapter;
+import edu.stu.db.CityAdapter;
 
 public class Locate implements LocationListener {
     public static String address = null;
@@ -205,7 +205,7 @@ public class Locate implements LocationListener {
     }
 
     public String getCity(double x, double y) {
-        TestAdapter test = new TestAdapter(mContext);
+        CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
         test.open();
 
@@ -263,7 +263,7 @@ public class Locate implements LocationListener {
     }
 
     private List<HashMap<String, Integer>> getCitiesByPoint(double x, double y) {
-        TestAdapter test = new TestAdapter(mContext);
+        CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
         test.open();
         Cursor cursor = test.getTestData();

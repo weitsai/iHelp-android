@@ -7,19 +7,19 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-public class TestAdapter {
+public class CityAdapter {
     protected static final String TAG = "DataAdapter";
 
     private final Context mContext;
     private SQLiteDatabase mDb;
     private DataBaseHelper mDbHelper;
 
-    public TestAdapter(Context context) {
+    public CityAdapter(Context context) {
         this.mContext = context;
         mDbHelper = new DataBaseHelper(mContext);
     }
 
-    public TestAdapter createDatabase() throws SQLException {
+    public CityAdapter createDatabase() throws SQLException {
         try {
             mDbHelper.createDataBase();
         } catch (IOException mIOException) {
@@ -29,7 +29,7 @@ public class TestAdapter {
         return this;
     }
 
-    public TestAdapter open() throws SQLException {
+    public CityAdapter open() throws SQLException {
         try {
             mDbHelper.openDataBase();
             mDbHelper.close();
