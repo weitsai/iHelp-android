@@ -8,9 +8,10 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/title"
         android:gravity="center"
+        android:padding="5dp"
         android:text="個人資料"
         android:textColor="@android:color/white"
         android:textSize="20sp" >
@@ -19,13 +20,13 @@
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:orientation="vertical" >
 
         <EditText
             android:id="@+id/edit_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:hint="請輸入姓名"
@@ -62,23 +63,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:background="@android:color/white"
         android:padding="5dp" >
 
         <EditText
             android:id="@+id/searchName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/search_stroke"
             android:hint="搜尋"
             android:inputType="text"
-            android:paddingBottom="5dp"
             android:paddingLeft="5dp"
-            android:paddingTop="5dp"
             android:textColor="@android:color/black" />
     </LinearLayout>
 
@@ -90,7 +89,7 @@
     <ListView
         android:id="@+id/contact_list"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="200dp"
         android:background="@android:color/white"
         android:divider="#2DA7ED"
         android:transcriptMode="alwaysScroll" />
@@ -98,7 +97,7 @@
     <RelativeLayout
         android:id="@+id/btn"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@color/attach_color"
         android:orientation="horizontal"
         android:padding="10dp" >
