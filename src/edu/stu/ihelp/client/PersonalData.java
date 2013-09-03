@@ -57,7 +57,6 @@ public class PersonalData extends Activity {
         et_search = (EditText) findViewById(R.id.searchName);
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
-        cancel = (Button) findViewById(R.id.btn_cancel);
 
         et_name.setText(Variable.name);
 
@@ -121,14 +120,6 @@ public class PersonalData extends Activity {
             }
         });
 
-        cancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CANCELED);
-                Toast.makeText(PersonalData.this, "取消儲存", 0).show();
-                PersonalData.this.finish();
-            }
-        });
     }
 
     private void getPhoneBookData() {
