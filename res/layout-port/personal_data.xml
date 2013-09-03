@@ -23,14 +23,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="使用者姓名："
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
-
         <EditText
             android:id="@+id/edit_name"
             android:layout_width="match_parent"
@@ -99,30 +91,28 @@
     <ListView
         android:id="@+id/contact_list"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="270dp"
         android:background="@android:color/white"
         android:divider="#2DA7ED"
         android:transcriptMode="alwaysScroll" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:background="@color/attach_color"
         android:orientation="horizontal"
         android:padding="10dp" >
 
         <Button
             android:id="@+id/btn_submit"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/styple_button"
-            android:text="儲　　存"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button_blue"
+            android:text="確認"
             android:textColor="#DDD"
             android:textSize="20sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
