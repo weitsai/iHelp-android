@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="title">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">#FFFFFF</item>
+	<item name="android:paddingTop">16sp</item>
+	<item name="android:paddingBottom">16sp</item>
+	<item name="android:textSize">16sp</item>
+	<item name="android:textStyle">bold</item>
+	<item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="text_black_content">
