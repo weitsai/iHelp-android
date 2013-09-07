@@ -6,105 +6,113 @@
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/futerbar"
+        android:layout_height="48dp"
+        android:background="@drawable/title"
         android:gravity="center"
-        android:lines="1"
-        android:maxLines="1"
-        android:orientation="vertical"
-        android:singleLine="true"
         android:text="個人資料"
         android:textColor="@android:color/white"
-        android:textSize="30sp" >
+        android:textSize="20sp" >
     </TextView>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="姓　　　名："
-            android:textColor="@android:color/black"
-            android:textSize="30sp" />
+        android:layout_height="96dp"
+        android:orientation="vertical" >
 
         <EditText
             android:id="@+id/edit_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="請輸入姓名"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@null"
+            android:hint="使用者姓名"
             android:lines="1"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="聯絡人電話："
             android:textColor="@android:color/black"
             android:textSize="30sp" />
+    </RelativeLayout>
 
-        <EditText
-            android:id="@+id/edit_contact_phone"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="@drawable/title" >
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="請輸入緊急聯絡人電話號碼"
-            android:inputType="phone" />
-    </LinearLayout>
+            android:layout_marginLeft="10dp"
+            android:text="緊急聯絡人"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
 
-    <LinearLayout
+        <TextView
+            android:id="@+id/contact_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/white" >
+
+        <EditText
+            android:id="@+id/searchName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/search_stroke"
+            android:hint="搜尋"
+            android:inputType="text"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#75B3D0" />
+
+    <ListView
+        android:id="@+id/contact_list_1"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@android:color/white"
+        android:divider="@color/attach_color"
+        android:dividerHeight="1dp"
+        android:transcriptMode="alwaysScroll" />
+
+    <RelativeLayout
+        android:id="@+id/btn"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:gravity="center"
-        android:layout_weight="1"
+        android:background="@color/attach_color"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/btn_submit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/styple_button"
-            android:text="儲　　存"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="40dp"
+            android:background="@drawable/button_blue"
+            android:text="確認"
             android:textColor="#DDD"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/styple_button"
-            android:text="取　　消"
-            android:textColor="#DDD"
-            android:textSize="30sp" />
-    </LinearLayout>
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </LinearLayout>

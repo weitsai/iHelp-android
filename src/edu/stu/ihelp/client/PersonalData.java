@@ -37,6 +37,7 @@ public class PersonalData extends Activity {
 
     private EditText et_name, et_search;
     private Button confirm, cancel;
+    private TextView contactCount;
     private SharedPreferences spfs;
 
     private ContentResolver resolver;
@@ -55,8 +56,9 @@ public class PersonalData extends Activity {
 
         et_name = (EditText) findViewById(R.id.edit_name);
         et_search = (EditText) findViewById(R.id.searchName);
-        listview = (ListView) findViewById(R.id.contact_list);
+        listview = (ListView) findViewById(R.id.contact_list_1);
         confirm = (Button) findViewById(R.id.btn_submit);
+        contactCount = (TextView) findViewById(R.id.contact_count);
 
         et_name.setText(Variable.name);
 
@@ -71,7 +73,9 @@ public class PersonalData extends Activity {
             Toast.makeText(PersonalData.this, "請新增聯絡人", 0).show();
         }
 
-        adapter = new ContactList(PersonalData.this, contactsArrayList);
+        contactCount.setText(contactsArrayList.size() + "");
+
+        adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
         listview.setAdapter(adapter);
 
@@ -153,8 +157,8 @@ public class PersonalData extends Activity {
         List<Map<String, String>> show;
         List<Map<String, String>> origin;
 
-        ContactList(Context context, List<Map<String, String>> list) {
-            this.inflater = LayoutInflater.from(context);
+        ContactList(LayoutInflater inflat, List<Map<String, String>> list) {
+            this.inflater = inflat;
             this.show = list;
             this.origin = list;
 
