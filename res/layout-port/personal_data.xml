@@ -7,34 +7,39 @@
 
     <TextView
         android:id="@+id/title"
+        style="@style/title"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/title"
         android:gravity="center"
-        android:text="個人資料"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" >
-    </TextView>
+        android:text="個人資料" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:background="#EFEFEF"
+        android:orientation="vertical"
+        android:paddingBottom="31dp"
+        android:paddingTop="31dp" >
 
-        <EditText
-            android:id="@+id/edit_name"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/name"
+            style="@style/text_black_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:hint="請輸入姓名"
-            android:lines="1"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text=""
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:layout_centerInParent="true"
+            android:text="使用者姓名"
+            android:textSize="24sp" />
+
+        <Button
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="42.1dp"
+            android:layout_toRightOf="@id/name"
+            android:background="@drawable/pen" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,22 +47,22 @@
         android:background="@drawable/title" >
 
         <TextView
+            style="@style/text_white_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:padding="3dp"
-            android:text="緊急聯絡人"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:layout_marginLeft="28.42dp"
+            android:padding="4dp"
+            android:text="緊急聯絡人" />
 
         <TextView
+            android:id="@+id/contact_count"
+            style="@style/text_white_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="1"
-            android:textColor="@android:color/white" />
+            android:layout_marginRight="28.42dp"
+            android:text="1" />
     </RelativeLayout>
 
     <LinearLayout
@@ -82,36 +87,43 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
 
-    <ImageView
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#75B3D0" />
 
-    <ListView
-        android:id="@+id/contact_list"
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:background="@android:color/white"
-        android:divider="#2DA7ED"
-        android:transcriptMode="alwaysScroll" />
-
     <RelativeLayout
-        android:id="@+id/btn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/attach_color"
-        android:orientation="horizontal"
-        android:padding="10dp" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/button_blue"
-            android:text="確認"
-            android:textColor="#DDD"
-            android:textSize="20sp" />
+        <ListView
+            android:id="@+id/contact_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:divider="#2DA7ED"
+            android:transcriptMode="alwaysScroll" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/attach_color"
+            android:padding="10dp" >
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/text_white_content"
+                android:layout_width="84dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@drawable/button_blue"
+                android:gravity="center"
+                android:text="確認" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </LinearLayout>

@@ -7,7 +7,6 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -35,7 +34,8 @@ import edu.stu.ihelp.client.PersonalData.ContactList.ViewHolder;
 
 public class PersonalData extends Activity {
 
-    private EditText et_name, et_search;
+    private EditText et_search;
+    private TextView name;
     private Button confirm, cancel;
     private TextView contactCount;
     private SharedPreferences spfs;
@@ -54,14 +54,11 @@ public class PersonalData extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.personal_data);
 
-        et_name = (EditText) findViewById(R.id.edit_name);
         et_search = (EditText) findViewById(R.id.searchName);
-        listview = (ListView) findViewById(R.id.contact_list_1);
+        listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
-
-        et_name.setText(Variable.name);
-
+        
         spfs = getSharedPreferences(Variable.FILENAME, MODE_PRIVATE);
 
         resolver = getContentResolver();
@@ -73,7 +70,7 @@ public class PersonalData extends Activity {
             Toast.makeText(PersonalData.this, "請新增聯絡人", 0).show();
         }
 
-        contactCount.setText(contactsArrayList.size() + "");
+        contactCount.setText(contactsArrayList.size());
 
         adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
@@ -115,7 +112,6 @@ public class PersonalData extends Activity {
                     Variable.setData(PersonalData.this, adapter.getList());
                 }
 
-                Variable.name = et_name.getEditableText().toString();
                 spfs.edit().putString(Variable.NAME, Variable.name).commit();
 
                 setResult(RESULT_OK);
