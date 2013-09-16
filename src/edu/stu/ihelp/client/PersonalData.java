@@ -58,7 +58,7 @@ public class PersonalData extends Activity {
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
-        
+
         spfs = getSharedPreferences(Variable.FILENAME, MODE_PRIVATE);
 
         resolver = getContentResolver();
@@ -70,7 +70,7 @@ public class PersonalData extends Activity {
             Toast.makeText(PersonalData.this, "請新增聯絡人", 0).show();
         }
 
-        contactCount.setText(contactsArrayList.size());
+        contactCount.setText(contactsArrayList.size() + "");
 
         adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
