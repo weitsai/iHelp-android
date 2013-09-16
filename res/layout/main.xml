@@ -6,15 +6,11 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/title"
+        style="@style/title"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/title"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:text="@string/app_name"
-        android:textColor="@android:color/white"
-        android:textSize="30sp" >
+        android:text="一般報案" >
     </TextView>
 
     <ImageView
