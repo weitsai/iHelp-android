@@ -40,13 +40,6 @@
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
             android:layout_weight="1" />
-
-        <test.whell.WheelView
-            android:id="@+id/join2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <TextView
