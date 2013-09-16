@@ -2,6 +2,7 @@ package edu.stu.ihelp.client;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,6 +17,12 @@ public class IHelpActivity extends Activity {
         setContentView(R.layout.main);
 
         Variable.getData(IHelpActivity.this);
+        
+        SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
+        Variable.name = spfs.getString("UserName", "");
+        if (Variable.name.equals("")) {
+            startActivity(new Intent(IHelpActivity.this, PersonalData.class));
+        }
 
     }
 
