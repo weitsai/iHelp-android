@@ -34,8 +34,7 @@ import edu.stu.ihelp.client.PersonalData.ContactList.ViewHolder;
 
 public class PersonalData extends Activity {
 
-    private EditText et_search;
-    private TextView name;
+    private EditText et_search, et_name;
     private Button confirm, cancel;
     private TextView contactCount;
     private SharedPreferences spfs;
@@ -54,6 +53,7 @@ public class PersonalData extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.personal_data);
 
+	et_name = (EditText) findViewById(R.id.name);
         et_search = (EditText) findViewById(R.id.searchName);
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
