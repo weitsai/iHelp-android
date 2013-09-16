@@ -34,6 +34,7 @@
             android:cursorVisible="false"
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/pen"
+            android:gravity="center"
             android:hint="請輸入使用者姓名"
             android:textSize="24sp" />
     </RelativeLayout>
