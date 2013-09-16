@@ -53,13 +53,15 @@ public class PersonalData extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.personal_data);
 
-	et_name = (EditText) findViewById(R.id.name);
+        et_name = (EditText) findViewById(R.id.name);
         et_search = (EditText) findViewById(R.id.searchName);
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
 
-        spfs = getSharedPreferences(Variable.FILENAME, MODE_PRIVATE);
+        spfs = getSharedPreferences("PersonalData", 0);
+        Variable.name = spfs.getString("UserName", "");
+        et_name.setText(Variable.name);
 
         resolver = getContentResolver();
 
@@ -112,7 +114,15 @@ public class PersonalData extends Activity {
                     Variable.setData(PersonalData.this, adapter.getList());
                 }
 
-                spfs.edit().putString(Variable.NAME, Variable.name).commit();
+                if (et_name.getText().toString().equals("")) {
+                    Toast.makeText(PersonalData.this, "請輸入使用者姓名", 0).show();
+                    return;
+                }
+
+                spfs.edit().putString("UserName", et_name.getText().toString())
+                        .commit();
+
+                Variable.name = et_name.getText().toString();
 
                 setResult(RESULT_OK);
                 Toast.makeText(PersonalData.this, "儲存成功", 0).show();
