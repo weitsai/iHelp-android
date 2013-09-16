@@ -50,10 +50,6 @@ public class General extends Activity {
             gps.showSettingsAlert();
         }
 
-        if (!Variable.existData()) {
-            General.this.finish();
-            Toast.makeText(General.this, "請輸入個人資料", 0).show();
-        }
     }
 
     public void clock(View v) {
