@@ -115,7 +115,6 @@
                 android:layout_width="84dp"
                 android:layout_height="32dp"
                 android:layout_centerInParent="true"
-                android:layout_gravity="center"
                 android:background="@drawable/button_blue"
                 android:gravity="center"
                 android:text="確認" />
