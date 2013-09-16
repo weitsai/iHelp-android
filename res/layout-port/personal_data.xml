@@ -23,22 +23,18 @@
         android:paddingBottom="31dp"
         android:paddingTop="31dp" >
 
-        <TextView
+        <EditText
             android:id="@+id/name"
             style="@style/text_black_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="使用者姓名"
+            android:layout_marginLeft="100dp"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:drawableLeft="@drawable/pen"
+            android:hint="使用者姓名"
             android:textSize="24sp" />
-
-        <Button
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="42.1dp"
-            android:layout_toRightOf="@id/name"
-            android:background="@drawable/pen" />
     </RelativeLayout>
 
     <RelativeLayout
