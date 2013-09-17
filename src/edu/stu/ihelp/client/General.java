@@ -30,7 +30,6 @@ public class General extends Activity {
     // Wheel
     WheelView join1;
     String[] joindata;
-    String[] joindata2;
 
     Locate gps;
 
