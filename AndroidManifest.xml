@@ -44,7 +44,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".General"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
         <receiver android:name="edu.stu.tool.receiverSMS" >
             <intent-filter>
