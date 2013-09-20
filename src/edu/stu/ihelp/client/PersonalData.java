@@ -7,7 +7,6 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -35,8 +34,9 @@ import edu.stu.ihelp.client.PersonalData.ContactList.ViewHolder;
 
 public class PersonalData extends Activity {
 
-    private EditText et_name, et_search;
+    private EditText et_search, et_name;
     private Button confirm, cancel;
+    private TextView contactCount;
     private SharedPreferences spfs;
 
     private ContentResolver resolver;
@@ -53,15 +53,15 @@ public class PersonalData extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.personal_data);
 
-        et_name = (EditText) findViewById(R.id.edit_name);
+        et_name = (EditText) findViewById(R.id.name);
         et_search = (EditText) findViewById(R.id.searchName);
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
-        cancel = (Button) findViewById(R.id.btn_cancel);
+        contactCount = (TextView) findViewById(R.id.contact_count);
 
+        spfs = getSharedPreferences("PersonalData", 0);
+        Variable.name = spfs.getString("UserName", "");
         et_name.setText(Variable.name);
-
-        spfs = getSharedPreferences(Variable.FILENAME, MODE_PRIVATE);
 
         resolver = getContentResolver();
 
@@ -72,7 +72,9 @@ public class PersonalData extends Activity {
             Toast.makeText(PersonalData.this, "請新增聯絡人", 0).show();
         }
 
-        adapter = new ContactList(PersonalData.this, contactsArrayList);
+        contactCount.setText(contactsArrayList.size() + "");
+
+        adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
         listview.setAdapter(adapter);
 
@@ -112,8 +114,15 @@ public class PersonalData extends Activity {
                     Variable.setData(PersonalData.this, adapter.getList());
                 }
 
-                Variable.name = et_name.getEditableText().toString();
-                spfs.edit().putString(Variable.NAME, Variable.name).commit();
+                if (et_name.getText().toString().equals("")) {
+                    Toast.makeText(PersonalData.this, "請輸入使用者姓名", 0).show();
+                    return;
+                }
+
+                spfs.edit().putString("UserName", et_name.getText().toString())
+                        .commit();
+
+                Variable.name = et_name.getText().toString();
 
                 setResult(RESULT_OK);
                 Toast.makeText(PersonalData.this, "儲存成功", 0).show();
@@ -121,14 +130,6 @@ public class PersonalData extends Activity {
             }
         });
 
-        cancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CANCELED);
-                Toast.makeText(PersonalData.this, "取消儲存", 0).show();
-                PersonalData.this.finish();
-            }
-        });
     }
 
     private void getPhoneBookData() {
@@ -162,8 +163,8 @@ public class PersonalData extends Activity {
         List<Map<String, String>> show;
         List<Map<String, String>> origin;
 
-        ContactList(Context context, List<Map<String, String>> list) {
-            this.inflater = LayoutInflater.from(context);
+        ContactList(LayoutInflater inflat, List<Map<String, String>> list) {
+            this.inflater = inflat;
             this.show = list;
             this.origin = list;
 

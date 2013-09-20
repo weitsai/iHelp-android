@@ -25,9 +25,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="unspecified"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
-        <activity android:name="edu.stu.ihelp.client.IHelpActivity" >
+        <activity
+            android:name=".iHELP"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,10 +37,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".IHelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".PersonalData"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".General"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".General" />
+            android:windowSoftInputMode="adjustPan" />
 
         <receiver android:name="edu.stu.tool.receiverSMS" >
             <intent-filter>

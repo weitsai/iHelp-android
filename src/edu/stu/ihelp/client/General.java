@@ -29,9 +29,7 @@ public class General extends Activity {
     TextView data;
     // Wheel
     WheelView join1;
-    WheelView join2;
     String[] joindata;
-    String[] joindata2;
 
     Locate gps;
 
@@ -40,7 +38,6 @@ public class General extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.general);
         join1 = (WheelView) findViewById(R.id.join1);
-        join2 = (WheelView) findViewById(R.id.join2);
 
         gps = new Locate(General.this);
         setWhellData();
@@ -51,11 +48,7 @@ public class General extends Activity {
         } else {
             gps.showSettingsAlert();
         }
-        
-        if (!Variable.existData()) {
-            General.this.finish();
-            Toast.makeText(General.this, "請輸入個人資料", 0).show();
-        }
+
     }
 
     public void clock(View v) {
@@ -68,7 +61,7 @@ public class General extends Activity {
 
             final String located = gps.getPosition();
 
-            if (join1.getCurrentItem() == 0 || join2.getCurrentItem() == 0) {
+            if (join1.getCurrentItem() == 0) {
                 Toast.makeText(getBaseContext(), "請選擇災情與人數", Toast.LENGTH_SHORT)
                         .show();
             } else {
@@ -76,8 +69,7 @@ public class General extends Activity {
                 String title = "http://maps.google.com.tw/maps?q=" + located
                         + "&GeoSMS=iHELP\n";
                 String body = "我是" + Variable.name + "這裡發生"
-                        + joindata[join1.getCurrentItem()] + "，總共有"
-                        + joindata2[join2.getCurrentItem()] + "人，";
+                        + joindata[join1.getCurrentItem()] + "。";
 
                 Log.e("content", title + body + "地址在" + Locate.address);
 
@@ -106,7 +98,6 @@ public class General extends Activity {
         OnWheelChangedListener listener = new OnWheelChangedListener() {
             public void onChanged(WheelView wheel, int oldValue, int newValue) {
                 updateDays(join1);
-                updateDays(join2);
             }
         };
         Calendar calendar = Calendar.getInstance();
@@ -119,10 +110,6 @@ public class General extends Activity {
         join1.setViewAdapter(new DateArrayAdapter(this, joindata, 0));
         join1.setCurrentItem(curMonth);
 
-        joindata2 = new String[] { "請選擇人數", "未知", "1", "2", "3", "4", "5", "6",
-                "7", "8" };
-        join2.setViewAdapter(new DateArrayAdapter(this, joindata2, 0));
-        join2.setCurrentItem(curMonth);
     }
 
     /**

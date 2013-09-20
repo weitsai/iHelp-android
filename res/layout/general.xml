@@ -2,78 +2,102 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/flota_listtop"
+    android:background="@android:color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical" >
 
     <TextView
+        style="@style/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/futerbar"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:text="一般報案"
-        android:textColor="@android:color/white"
-        android:textSize="30sp" >
-    </TextView>
+        android:text="一般報案" />
+
+    <TextView
+        style="@style/text_black_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:text="請選擇災情：" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="6"
-        android:orientation="horizontal" >
+        android:layout_height="200dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/wheel_bg_color"
+        android:orientation="vertical"
+        android:padding="6dp" >
 
         <test.whell.WheelView
             android:id="@+id/join1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="3" />
 
-        <test.whell.WheelView
-            android:id="@+id/join2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="點我增加分類"
+            android:inputType="text"
+            android:maxLength="6" />
     </LinearLayout>
+
+    <TextView
+        style="@style/text_black_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="25dp"
+        android:text="您即將傳送的報案內容如下：" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal" >
+        android:background="#EEEFEF" >
 
-        <Button
-            android:id="@+id/gengeralbutton"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/report_data"
+            style="@style/text_black_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/styple_button"
-            android:onClick="submit"
-            android:text="報　案"
-            android:textColor="@android:color/white"
-            android:textSize="28sp" />
-
-        <Button
-            android:id="@+id/general"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/styple_button"
-            android:onClick="clock"
-            android:text="取　消"
-            android:textColor="@android:color/white"
-            android:textSize="28sp" />
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_margin="25dp" >
+
+        <Button
+            style="@style/text_white_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_blue"
+            android:text="確定送出" />
+
+        <Button
+            style="@style/text_white_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_blue"
+            android:text="取消報案" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_black_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="本系統以簡訊報案（提醒使用簡訊）" />
 
 </LinearLayout>

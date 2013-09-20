@@ -67,24 +67,4 @@ public class Variable {
         Variable.contact_phone = spfs.getString(contactArray[0], "");
         Log.e("phone", Variable.contact_phone);
     }
-
-    static boolean existData() {
-        if (Variable.name.equals("")) {
-            return false;
-        } else if (Variable.contact_phone.equals("")) {
-            return false;
-        }
-        return true;
-    }
-
-    static boolean checkData() {
-        if (name.equals("") || idNumbet.equals("") || contact.equals("")) {
-            return false;
-        }
-        return true;
-    }
-
-    static void getAllData() {
-        System.out.println(name + ", " + idNumbet + ", " + contact);
-    }
 }
