@@ -239,7 +239,7 @@ public class Locate implements LocationListener {
                             deltax = theX - lastX;
                             deltay = theY - lastY;
                             tempx = (y - lastY) * deltax / deltay + lastX;
-                            if (x >= deltax) {
+			    if (x >= tempx) {
                                 right_node++;
                             } else {
                                 left_node++;
