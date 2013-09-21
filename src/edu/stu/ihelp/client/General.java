@@ -42,10 +42,7 @@ public class General extends Activity {
         gps = new Locate(General.this);
         setWhellData();
 
-        if (gps.canGetLocation()) {
-            String located = gps.getPosition();
-            new Thread(new GetAddress(located)).start();
-        } else {
+        if (!gps.canGetLocation()) {
             gps.showSettingsAlert();
         }
 
@@ -72,26 +69,12 @@ public class General extends Activity {
                         + joindata[join1.getCurrentItem()] + "。";
 
                 Log.e("content", title + body + "地址在" + Locate.address);
-
-                if (Locate.address == null) {
-                    Log.i("住址  ", "未獲得");
-                }
-
-                SmsManager smsManager = SmsManager.getDefault();
-                ArrayList<String> messageArray = smsManager.divideMessage(title
-                        + body + "地址在\n" + gps.getAddressByLocation(located));
-                smsManager.sendMultipartTextMessage(Variable.contact_phone,
-                        null, messageArray, null, null);
-
-                Toast.makeText(this, "求救成功", 0).show();
-
-                General.this.finish();
-            }
-
-        } else {
-
+        if (!gps.canGetLocation()) {
             gps.showSettingsAlert();
         }
+
+        General.this.finish();
+
     }
 
     private void setWhellData() {
