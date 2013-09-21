@@ -259,7 +259,7 @@ public class Locate implements LocationListener {
             }
         }
         test.close();
-        return "";
+        return "無法判斷經緯度的位置";
     }
 
     private List<HashMap<String, Integer>> getCitiesByPoint(double x, double y) {
