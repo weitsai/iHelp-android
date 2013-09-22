@@ -71,6 +71,9 @@ public class CityAdapter {
 
     public String getCityName(int city_id) {
         try {
+            if (city_id < 0) {
+                return "找不到縣市";
+            }
             String sql = "SELECT name FROM city where id = " + city_id;
             Cursor mCur = mDb.rawQuery(sql, null);
             mCur.moveToNext();
@@ -80,9 +83,12 @@ public class CityAdapter {
             throw mSQLException;
         }
     }
-    
+
     public String getCityPhoneNumber(int city_id) {
         try {
+            if (city_id < 0) {
+                return "0988281110";
+            }
             String sql = "SELECT phone FROM city where id = " + city_id;
             Cursor mCur = mDb.rawQuery(sql, null);
             mCur.moveToNext();
@@ -92,6 +98,4 @@ public class CityAdapter {
             throw mSQLException;
         }
     }
-    
-    
 }
