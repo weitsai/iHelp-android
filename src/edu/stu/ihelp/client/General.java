@@ -56,25 +56,20 @@ public class General extends Activity {
     public void submit(View v) {
         if (!gps.canGetLocation()) {
             gps.showSettingsAlert();
+            return;
         }
 
         final String located = gps.getPosition();
 
-        if (join1.getCurrentItem() == 0) {
-            Toast.makeText(getBaseContext(), "請選擇災情與人數", Toast.LENGTH_SHORT)
-                    .show();
-        } else {
+        String title = "http://maps.google.com.tw/maps?q=" + located
+                + "&GeoSMS=iHELP\n";
+        String body = "我是" + Variable.name + "這裡發生"
+                + joindata[join1.getCurrentItem()] + "。";
 
-            String title = "http://maps.google.com.tw/maps?q=" + located
-                    + "&GeoSMS=iHELP\n";
-            String body = "我是" + Variable.name + "這裡發生"
-                    + joindata[join1.getCurrentItem()] + "。";
+        Log.e("content", title + body + "地址在" + Locate.address);
 
-            Log.e("content", title + body + "地址在" + Locate.address);
+        General.this.finish();
 
-            General.this.finish();
-
-        }
     }
 
     private void setWhellData() {
