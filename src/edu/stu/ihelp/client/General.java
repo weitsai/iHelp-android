@@ -1,9 +1,6 @@
 package edu.stu.ihelp.client;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-
-import org.json.JSONException;
 
 import test.whell.OnWheelChangedListener;
 import test.whell.WheelView;
@@ -12,7 +9,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -20,8 +16,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
-import edu.stu.tool.Internet;
-import edu.stu.tool.Json;
 import edu.stu.tool.Locate;
 
 public class General extends Activity {
