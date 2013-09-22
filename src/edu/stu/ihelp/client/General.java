@@ -60,11 +60,11 @@ public class General extends Activity {
         String body = "我是" + Variable.name + "這裡發生"
                 + joindata[join1.getCurrentItem()] + "。";
 
-        if (!checkIntrnet()) {
-            System.out.println(title + body);
-        } else {
+        if (checkIntrnet()) {
             String address = gps.getAddressByLocation(located);
             System.out.println(title + body + "\n我在" + address);
+        } else {
+            System.out.println(title + body);
         }
 
         General.this.finish();
