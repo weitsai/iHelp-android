@@ -73,8 +73,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_margin="25dp" >
+        android:layout_margin="25dp"
+        android:orientation="horizontal" >
 
         <Button
             style="@style/text_white_content"
@@ -82,6 +82,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_blue"
+            android:onClick="submit"
             android:text="確定送出" />
 
         <Button
@@ -90,6 +91,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_blue"
+            android:onClick="clock"
             android:text="取消報案" />
     </LinearLayout>
 
