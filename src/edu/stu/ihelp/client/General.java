@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+import edu.stu.tool.Internet;
 import edu.stu.tool.Locate;
 
 public class General extends Activity {
@@ -59,15 +60,24 @@ public class General extends Activity {
         String body = "我是" + Variable.name + "這裡發生"
                 + joindata[join1.getCurrentItem()] + "。";
 
-        String address = gps.getAddressByLocation(located);
-        if (address.endsWith("")) {
+        if (!checkIntrnet()) {
             System.out.println(title + body);
         } else {
+            String address = gps.getAddressByLocation(located);
             System.out.println(title + body + "\n我在" + address);
         }
 
         General.this.finish();
 
+    }
+
+    private boolean checkIntrnet() {
+        Internet interner = new Internet(General.this);
+        if (!interner.isConnectedOrConnecting() && interner.isFailover()) {
+            return false;
+        }
+
+        return interner.isWanConnect("8.8.8.8");
     }
 
     private void setWhellData() {
