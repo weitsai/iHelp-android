@@ -24,9 +24,12 @@ import edu.stu.tool.Locate;
 public class General extends Activity {
     private String tag = "General";
     private TextView data;
+    private EditText reportData;
     // Wheel
     private WheelView join1;
     private String[] joindata;
+
+    private String reportBody = "";
 
     private Locate gps;
 
@@ -35,6 +38,7 @@ public class General extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.general);
         join1 = (WheelView) findViewById(R.id.join1);
+        reportData = (EditText) findViewById(R.id.report_data);
 
         join1.addScrollingListener(new OnWheelScrollListener() {
 
@@ -42,6 +46,10 @@ public class General extends Activity {
             }
 
             public void onScrollingFinished(WheelView wheel) {
+                reportBody = "我是" + Variable.name + "這裡發生"
+                        + joindata[join1.getCurrentItem()] + "。";
+                reportData.setText("我是" + Variable.name + "這裡發生"
+                        + joindata[join1.getCurrentItem()] + "。");
             }
         });
         gps = new Locate(General.this);
