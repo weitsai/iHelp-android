@@ -60,10 +60,6 @@ public class PersonalData extends Activity {
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
 
-        spfs = getSharedPreferences("PersonalData", 0);
-        Variable.name = spfs.getString("UserName", "");
-        Variable.contactsPhone = (HashSet<String>) spfs.getStringSet(
-                "contacts", Variable.contactsPhone);
         et_name.setText(Variable.name);
 
         resolver = getContentResolver();

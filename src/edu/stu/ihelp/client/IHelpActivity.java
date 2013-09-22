@@ -1,5 +1,7 @@
 package edu.stu.ihelp.client;
 
+import java.util.HashSet;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +23,8 @@ public class IHelpActivity extends Activity {
         
         SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
+        Variable.contactsPhone = (HashSet<String>) spfs.getStringSet(
+                "contacts", Variable.contactsPhone);
         if (Variable.name.equals("")) {
             Toast.makeText(this, "建議您到個人資料輸入姓名", 0).show();
         }
