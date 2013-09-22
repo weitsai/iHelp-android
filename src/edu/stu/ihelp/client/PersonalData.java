@@ -67,11 +67,6 @@ public class PersonalData extends Activity {
 
         getPhoneBookData();
 
-        if (contactsArrayList.size() == 0) {
-            PersonalData.this.finish();
-            Toast.makeText(PersonalData.this, "請新增聯絡人", 0).show();
-        }
-
         contactCount.setText(contactsArrayList.size() + "");
 
         adapter = new ContactList(getLayoutInflater(), contactsArrayList);
