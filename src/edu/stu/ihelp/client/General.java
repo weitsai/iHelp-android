@@ -1,5 +1,6 @@
 package edu.stu.ihelp.client;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import test.whell.OnWheelChangedListener;
@@ -10,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -97,6 +99,13 @@ public class General extends Activity {
 
         General.this.finish();
 
+    }
+
+    private void sendSMS(String phone, String text) {
+        SmsManager smsManager = SmsManager.getDefault();
+        ArrayList<String> messageArray = smsManager.divideMessage(text);
+        smsManager.sendMultipartTextMessage(phone, null, messageArray, null,
+                null);
     }
 
     private boolean checkIntrnet() {
