@@ -264,9 +264,6 @@ public class Locate implements LocationListener {
     }
 
     public String getCityPhone(double x, double y) {
-        double tmp = x;
-        x = y;
-        y = tmp;
         CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
         test.open();
