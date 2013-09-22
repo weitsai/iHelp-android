@@ -204,7 +204,7 @@ public class Locate implements LocationListener {
         return returnAddress;
     }
 
-    public String getCity(double x, double y) {
+    public String getCityName(double x, double y) {
         CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
         test.open();
