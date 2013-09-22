@@ -86,7 +86,7 @@ public class CityAdapter {
             String sql = "SELECT phone FROM city where id = " + city_id;
             Cursor mCur = mDb.rawQuery(sql, null);
             mCur.moveToNext();
-            return mCur.getString(mCur.getColumnIndex("name"));
+            return mCur.getString(mCur.getColumnIndex("phone"));
         } catch (SQLException mSQLException) {
             Log.e(TAG, "getTestData >>" + mSQLException.toString());
             throw mSQLException;
