@@ -59,6 +59,7 @@ public class PersonalData extends Activity {
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
+        spfs = getSharedPreferences("PersonalData", 0);
 
         et_name.setText(Variable.name);
 
