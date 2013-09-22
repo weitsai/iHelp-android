@@ -208,62 +208,21 @@ public class Locate implements LocationListener {
         CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
         test.open();
-
-        for (HashMap<String, Integer> map : getCitiesByPoint(x, y)) {
-            for (int cityGroupIndex = 0; cityGroupIndex < map.get("city_size"); cityGroupIndex++) {
-                Cursor cursor = test.getCityCoordinates(map.get("id"),
-                        cityGroupIndex);
-                int right_node = 0, left_node = 0;
-                double lastY = 0.0, lastX = 0.0;
-                while (cursor.moveToNext()) {
-                    if (lastX == 0.0) {
-                        lastX = cursor.getDouble(cursor
-                                .getColumnIndex("longitude"));
-                        lastY = cursor.getDouble(cursor
-                                .getColumnIndex("latitude"));
-                        continue;
-                    }
-
-                    double theX = cursor.getDouble(cursor
-                            .getColumnIndex("longitude"));
-                    double theY = cursor.getDouble(cursor
-                            .getColumnIndex("latitude"));
-
-                    if ((theY >= y && y >= lastY) || (lastY >= y && y >= theY)) {
-                        if (x >= theX && x >= lastX) {
-                            right_node++;
-                        } else if (x <= theX && x <= lastX) {
-                            left_node++;
-                        } else {
-                            double deltax, deltay, tempx;
-                            deltax = theX - lastX;
-                            deltay = theY - lastY;
-                            tempx = (y - lastY) * deltax / deltay + lastX;
-                            if (x >= tempx) {
-                                right_node++;
-                            } else {
-                                left_node++;
-                            }
-                        }
-                    }
-
-                    lastX = theX;
-                    lastY = theY;
-
-                }
-
-                if (left_node % 2 == 1 && right_node % 2 == 1) {
-                    return test.getCityName(map.get("id"));
-                }
-                cursor.close();
-            }
-
-        }
+        String cityName = test.getCityName(getCityId(x, y));
         test.close();
-        return "找不到縣市";
+        return cityName;
     }
 
     public String getCityPhone(double x, double y) {
+        CityAdapter test = new CityAdapter(mContext);
+        test.createDatabase();
+        test.open();
+        String cityPhone = test.getCityPhoneNumber(getCityId(x, y));
+        test.close();
+        return cityPhone;
+    }
+
+    private int getCityId(double x, double y) {
         CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
         test.open();
@@ -312,14 +271,14 @@ public class Locate implements LocationListener {
                 }
 
                 if (left_node % 2 == 1 && right_node % 2 == 1) {
-                    return test.getCityPhoneNumber(map.get("id"));
+                    return map.get("id");
                 }
                 cursor.close();
             }
 
         }
         test.close();
-        return "0988281110";
+        return -1;
     }
 
     private List<HashMap<String, Integer>> getCitiesByPoint(double x, double y) {
