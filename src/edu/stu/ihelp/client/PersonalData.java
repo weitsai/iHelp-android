@@ -2,6 +2,7 @@ package edu.stu.ihelp.client;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +62,8 @@ public class PersonalData extends Activity {
 
         spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
+        Variable.contactsPhone = (HashSet<String>) spfs.getStringSet(
+                "contacts", Variable.contactsPhone);
         et_name.setText(Variable.name);
 
         resolver = getContentResolver();
@@ -94,10 +97,19 @@ public class PersonalData extends Activity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                     long arg3) {
-                Log.e("CheckBox clicked", arg2 + "");
                 ViewHolder holder = (ViewHolder) arg1.getTag();
                 holder.selected.toggle();
+
                 String name = holder.name.getText().toString();
+                String phone = holder.phone.getText().toString();
+                if (holder.selected.isChecked()) {
+                    Variable.contactsPhone.add(phone);
+                } else {
+                    Variable.contactsPhone.remove(phone);
+                }
+
+                Log.e("CheckBox clicked",
+                        arg2 + "   " + holder.selected.isChecked() + name);
                 adapter.setStatus(name, holder.selected.isChecked());
             }
         });
@@ -115,6 +127,8 @@ public class PersonalData extends Activity {
                 }
 
                 spfs.edit().putString("UserName", et_name.getText().toString())
+                        .commit();
+                spfs.edit().putStringSet("contacts", Variable.contactsPhone)
                         .commit();
 
                 Variable.name = et_name.getText().toString();
