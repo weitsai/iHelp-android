@@ -3,6 +3,7 @@ package edu.stu.ihelp.client;
 import java.util.Calendar;
 
 import test.whell.OnWheelChangedListener;
+import test.whell.OnWheelScrollListener;
 import test.whell.WheelView;
 import test.whell.adapters.ArrayWheelAdapter;
 import android.app.Activity;
@@ -14,6 +15,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import edu.stu.tool.Internet;
@@ -34,6 +36,14 @@ public class General extends Activity {
         setContentView(R.layout.general);
         join1 = (WheelView) findViewById(R.id.join1);
 
+        join1.addScrollingListener(new OnWheelScrollListener() {
+
+            public void onScrollingStarted(WheelView wheel) {
+            }
+
+            public void onScrollingFinished(WheelView wheel) {
+            }
+        });
         gps = new Locate(General.this);
         setWhellData();
 
