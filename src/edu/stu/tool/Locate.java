@@ -143,10 +143,10 @@ public class Locate implements LocationListener {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
         // Setting Dialog Message
-        alertDialog.setMessage("開啟GPS");
+        alertDialog.setMessage("若不開啟 GPS 警方可能無法正確判斷您的位置");
 
         // On pressing Settings button
-        alertDialog.setPositiveButton("前往",
+        alertDialog.setPositiveButton("開啟",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(
