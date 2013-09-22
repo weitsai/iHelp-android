@@ -19,8 +19,6 @@ public class IHelpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Variable.getData(IHelpActivity.this);
-        
         SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
         Variable.contactsPhone = (HashSet<String>) spfs.getStringSet(
