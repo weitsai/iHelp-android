@@ -129,28 +129,4 @@ public class General extends Activity {
         }
     }
 
-    class GetAddress implements Runnable {
-        private final String url = "http://maps.google.com/maps/api/geocode/json?sensor=true&language=zh-TW&latlng=";
-        private String located;
-
-        GetAddress(String located) {
-            this.located = located;
-            Log.i("URL：" + url, "located：" + located);
-
-        }
-
-        public void run() {
-            Internet connect = new Internet(General.this);
-            String result = connect.toGet(url + located);
-            try {
-
-                Locate.address = new Json().getCountry(result);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Locate.address = null;
-            }
-
-        }
-    }
-
 }
