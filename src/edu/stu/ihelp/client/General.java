@@ -95,7 +95,11 @@ public class General extends Activity {
                 Double.parseDouble(locatedArray[1]),
                 Double.parseDouble(locatedArray[0]));
 
-        System.out.println(cityPhone + "----" + title + reportBody);
+        sendSMS(cityPhone, reportBody);
+
+        for (String phone : Variable.contactsPhone) {
+            sendSMS(phone, reportBody);
+        }
 
         General.this.finish();
 
