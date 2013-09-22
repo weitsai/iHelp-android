@@ -70,7 +70,7 @@ public class PersonalData extends Activity {
 
         getPhoneBookData();
 
-        contactCount.setText(contactsArrayList.size() + "");
+        contactCount.setText(Variable.contactsPhone.size() + "");
 
         adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
@@ -107,6 +107,7 @@ public class PersonalData extends Activity {
                 } else {
                     Variable.contactsPhone.remove(phone);
                 }
+                contactCount.setText(Variable.contactsPhone.size() + "");
 
                 Log.e("CheckBox clicked",
                         arg2 + "   " + holder.selected.isChecked() + name);
