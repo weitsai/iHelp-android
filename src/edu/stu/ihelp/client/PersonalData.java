@@ -122,8 +122,7 @@ public class PersonalData extends Activity {
                 }
 
                 if (et_name.getText().toString().equals("")) {
-                    Toast.makeText(PersonalData.this, "請輸入使用者姓名", 0).show();
-                    return;
+                    Toast.makeText(PersonalData.this, "建議您輸入姓名", 0).show();
                 }
 
                 spfs.edit().putString("UserName", et_name.getText().toString())
