@@ -30,6 +30,7 @@ public class General extends Activity {
     private String[] joindata;
 
     private String reportBody = "";
+    private String address = "";
 
     private Locate gps;
 
@@ -46,10 +47,17 @@ public class General extends Activity {
             }
 
             public void onScrollingFinished(WheelView wheel) {
-                reportBody = "我是" + Variable.name + "這裡發生"
-                        + joindata[join1.getCurrentItem()] + "。";
-                reportData.setText("我是" + Variable.name + "這裡發生"
-                        + joindata[join1.getCurrentItem()] + "。");
+                if (join1.getCurrentItem() == 0) {
+                    reportBody = "我是" + Variable.name + "發生緊急狀況。";
+                } else {
+                    reportBody = "我是" + Variable.name + "這裡發生"
+                            + joindata[join1.getCurrentItem()] + "。";
+                }
+
+                reportBody = (address.equals("")) ? reportBody : reportBody
+                        + "\n" + address;
+
+                reportData.setText(reportBody);
             }
         });
         gps = new Locate(General.this);
@@ -57,6 +65,10 @@ public class General extends Activity {
 
         if (!gps.canGetLocation()) {
             gps.showSettingsAlert();
+        }
+
+        if (checkIntrnet()) {
+            address = gps.getAddressByLocation(gps.getPosition());
         }
 
     }
@@ -75,21 +87,13 @@ public class General extends Activity {
         final String located = gps.getPosition();
         String title = "http://maps.google.com.tw/maps?q=" + located
                 + "&GeoSMS=iHELP\n";
-        String body = "我是" + Variable.name + "這裡發生"
-                + joindata[join1.getCurrentItem()] + "。";
 
         String locatedArray[] = located.split(",");
         String cityPhone = gps.getCityPhone(
-                Double.parseDouble(locatedArray[0]),
-                Double.parseDouble(locatedArray[1]));
+                Double.parseDouble(locatedArray[1]),
+                Double.parseDouble(locatedArray[0]));
 
-        System.out.println(cityPhone);
-        if (checkIntrnet()) {
-            String address = gps.getAddressByLocation(located);
-            System.out.println(title + body + "\n我在" + address);
-        } else {
-            System.out.println(title + body);
-        }
+        System.out.println(cityPhone + "----" + title + reportBody);
 
         General.this.finish();
 
