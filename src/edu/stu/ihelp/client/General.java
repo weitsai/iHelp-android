@@ -12,6 +12,8 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -62,6 +64,24 @@ public class General extends Activity {
                 reportData.setText(reportBody);
             }
         });
+
+        reportData.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before,
+                    int count) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                    int after) {
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                reportBody = reportData.getText().toString();
+            }
+        });
+
         gps = new Locate(General.this);
         setWhellData();
 
