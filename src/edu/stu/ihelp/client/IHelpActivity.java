@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class IHelpActivity extends Activity {
 
@@ -21,7 +22,7 @@ public class IHelpActivity extends Activity {
         SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
         if (Variable.name.equals("")) {
-            startActivity(new Intent(IHelpActivity.this, PersonalData.class));
+            Toast.makeText(this, "建議您到個人資料輸入姓名", 0).show();
         }
 
     }
