@@ -1,5 +1,6 @@
 package edu.stu.ihelp.client;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -24,9 +25,9 @@ public class Variable {
     static String disaster = "";
     static String diStringNumber = "";
     static String Address = "";
-    static String contact = "";
     static String contact_phone = "";
     static String location = "";
+    static HashSet<String> contactsPhone = new HashSet<String>();
 
     static String web_id;
 
