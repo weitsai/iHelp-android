@@ -25,13 +25,13 @@ import edu.stu.tool.Json;
 import edu.stu.tool.Locate;
 
 public class General extends Activity {
-    String tag = "General";
-    TextView data;
+    private String tag = "General";
+    private TextView data;
     // Wheel
-    WheelView join1;
-    String[] joindata;
+    private WheelView join1;
+    private String[] joindata;
 
-    Locate gps;
+    private Locate gps;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
