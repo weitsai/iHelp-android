@@ -60,12 +60,12 @@ public class General extends Activity {
         String body = "我是" + Variable.name + "這裡發生"
                 + joindata[join1.getCurrentItem()] + "。";
 
-	String locatedArray[] = located.split(",");
-	String cityPhone = gps.getCityPhone(
-		Double.parseDouble(locatedArray[0]),
-		Double.parseDouble(locatedArray[1]));
+        String locatedArray[] = located.split(",");
+        String cityPhone = gps.getCityPhone(
+                Double.parseDouble(locatedArray[0]),
+                Double.parseDouble(locatedArray[1]));
 
-	System.out.println(cityPhone);
+        System.out.println(cityPhone);
         if (checkIntrnet()) {
             String address = gps.getAddressByLocation(located);
             System.out.println(title + body + "\n我在" + address);
