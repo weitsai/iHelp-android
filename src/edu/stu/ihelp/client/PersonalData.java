@@ -228,7 +228,7 @@ public class PersonalData extends Activity {
             String phone = show.get(position).get(Variable.CONTACT_PHONE);
             holder.name.setText(name);
             holder.phone.setText(phone);
-            holder.selected.setChecked(btnStatus.get(name));
+            holder.selected.setChecked(Variable.contactsPhone.contains(phone));
 
             return view;
         }
