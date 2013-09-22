@@ -60,13 +60,17 @@ public class General extends Activity {
         }
 
         final String located = gps.getPosition();
-
         String title = "http://maps.google.com.tw/maps?q=" + located
                 + "&GeoSMS=iHELP\n";
         String body = "我是" + Variable.name + "這裡發生"
                 + joindata[join1.getCurrentItem()] + "。";
 
-        Log.e("content", title + body + "地址在" + Locate.address);
+        String address = gps.getAddressByLocation(located);
+        if (address.endsWith("")) {
+            System.out.println(title + body);
+        } else {
+            System.out.println(title + body + "\n我在" + address);
+        }
 
         General.this.finish();
 
