@@ -123,7 +123,7 @@ public class Locate implements LocationListener {
     public String getPosition() {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        return longitude + "," + latitude;
+        return latitude + "," + longitude;
     }
 
     /**
