@@ -2,7 +2,7 @@ package edu.stu.ihelp.client;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -125,7 +125,14 @@ public class PersonalData extends Activity {
 
                 spfs.edit().putString("UserName", et_name.getText().toString())
                         .commit();
-                spfs.edit().putStringSet("contacts", Variable.contactsPhone)
+
+                String contactsPhone = "";
+                Iterator iterator = Variable.contactsPhone.iterator();
+                while (iterator.hasNext()) {
+                    contactsPhone += iterator.next() + ",";
+                }
+
+                spfs.edit().putString("contacts", contactsPhone)
                         .commit();
 
                 Variable.name = et_name.getText().toString();

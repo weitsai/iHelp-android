@@ -1,5 +1,6 @@
 package edu.stu.ihelp.client;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import android.app.Activity;
@@ -21,8 +22,8 @@ public class IHelpActivity extends Activity {
 
         SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
-        Variable.contactsPhone = (HashSet<String>) spfs.getStringSet(
-                "contacts", Variable.contactsPhone);
+        String contactsPhone = spfs.getString("contacts", "");
+        Variable.contactsPhone = new HashSet<String>(Arrays.asList(contactsPhone.split(","))); 
         if (Variable.name.equals("")) {
             Toast.makeText(this, "建議您到個人資料輸入姓名", 0).show();
         }
@@ -34,12 +35,14 @@ public class IHelpActivity extends Activity {
     public void setPersonalData(View v) {
         if (!bool) {
             bool = true;
-            startActivityForResult(new Intent(IHelpActivity.this, PersonalData.class), INTENT_DATA);
+            startActivityForResult(new Intent(IHelpActivity.this,
+                    PersonalData.class), INTENT_DATA);
         }
     }
 
     public void onClickGeneral(View v) {
-        startActivityForResult(new Intent(IHelpActivity.this, General.class), INTENT_GENERAL);
+        startActivityForResult(new Intent(IHelpActivity.this, General.class),
+                INTENT_GENERAL);
     }
 
     @Override
