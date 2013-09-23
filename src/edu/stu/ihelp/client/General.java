@@ -9,11 +9,15 @@ import test.whell.WheelView;
 import test.whell.adapters.ArrayWheelAdapter;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -33,7 +37,7 @@ public class General extends Activity {
     private WheelView join1;
     private String[] joindata;
 
-    private String reportBody = "";
+    private SpannableStringBuilder reportBody = null;
     private String address = "";
 
     private Locate gps;
@@ -44,6 +48,7 @@ public class General extends Activity {
         setContentView(R.layout.general);
         join1 = (WheelView) findViewById(R.id.join1);
         reportData = (EditText) findViewById(R.id.report_data);
+        SpannableStringBuilder builder = null;
 
         join1.addScrollingListener(new OnWheelScrollListener() {
 
@@ -51,15 +56,31 @@ public class General extends Activity {
             }
 
             public void onScrollingFinished(WheelView wheel) {
-                if (join1.getCurrentItem() == 0) {
-                    reportBody = "我是" + Variable.name + "發生緊急狀況。";
-                } else {
-                    reportBody = "我是" + Variable.name + "這裡發生"
-                            + joindata[join1.getCurrentItem()] + "。";
+                reportBody = new SpannableStringBuilder();
+                int titleLength = 0;
+
+                if (!Variable.name.equals("")) {
+                    reportBody.append("我是" + Variable.name);
                 }
 
-                reportBody = (address.equals("")) ? reportBody : reportBody
-                        + "\n" + address;
+                titleLength = reportBody.length();
+
+                if (join1.getCurrentItem() == 0) {
+                    reportBody.append("發生緊急狀況。");
+                    reportBody.setSpan(new ForegroundColorSpan(Color.RED),
+                            titleLength + 2, reportBody.length() - 1,
+                            Spanned.SPAN_COMPOSING);
+                } else {
+                    reportBody.append("發生" + joindata[join1.getCurrentItem()]
+                            + "。");
+                    reportBody.setSpan(new ForegroundColorSpan(Color.RED),
+                            titleLength + 2, reportBody.length() - 1,
+                            Spanned.SPAN_COMPOSING);
+                }
+
+                if (address.equals("")) {
+                    reportBody.append("\n" + address);
+                }
 
                 reportData.setText(reportBody);
             }
@@ -69,16 +90,17 @@ public class General extends Activity {
 
             public void onTextChanged(CharSequence s, int start, int before,
                     int count) {
-
+                String temp = reportData.getText().toString();
+                reportBody.delete(0, temp.length());
+                reportBody.append(temp);
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count,
                     int after) {
-
             }
 
             public void afterTextChanged(Editable s) {
-                reportBody = reportData.getText().toString();
+
             }
         });
 
@@ -115,7 +137,7 @@ public class General extends Activity {
                 Double.parseDouble(locatedArray[1]),
                 Double.parseDouble(locatedArray[0]));
 
-//        sendSMS(cityPhone, title + reportBody);
+        // sendSMS(cityPhone, title + reportBody);
 
         for (String phone : Variable.contactsPhone) {
             sendSMS(phone, title + reportBody);
