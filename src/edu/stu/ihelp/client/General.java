@@ -90,9 +90,6 @@ public class General extends Activity {
 
             public void onTextChanged(CharSequence s, int start, int before,
                     int count) {
-                String temp = reportData.getText().toString();
-                reportBody.delete(0, temp.length());
-                reportBody.append(temp);
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count,
@@ -100,7 +97,9 @@ public class General extends Activity {
             }
 
             public void afterTextChanged(Editable s) {
-
+                String temp = reportData.getText().toString();
+                reportBody = new SpannableStringBuilder();
+                reportBody.append(temp);
             }
         });
 
