@@ -175,7 +175,7 @@ public class General extends Activity {
          */
         int curMonth = calendar.get(Calendar.APRIL);
         joindata = new String[] { "請選擇災情", "火災", "鬧事", "身體狀況", "搶劫", "交通事故",
-                "偷竊", "不清楚" };
+                "偷竊" };
         join1.setViewAdapter(new DateArrayAdapter(this, joindata, 0));
         join1.setCurrentItem(curMonth);
 
