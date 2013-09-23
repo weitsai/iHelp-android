@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/title"
-        android:text="一般報案" >
+        android:text="iHELP" >
     </TextView>
 
     <ImageView
