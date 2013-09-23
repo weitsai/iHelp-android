@@ -78,13 +78,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/attach_color"
         android:orientation="horizontal"
-        android:paddingTop="10dp" >
+        android:paddingTop="5dp" >
 
         <Button
             style="@style/text_white_content"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
             android:background="@drawable/button_blue"
@@ -95,6 +97,7 @@
             style="@style/text_white_content"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
@@ -104,11 +107,12 @@
     </LinearLayout>
 
     <TextView
-        style="@style/text_black_content"
+        style="@style/text_white_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/attach_color"
         android:gravity="center"
-        android:text="本系統以簡訊報案（提醒使用簡訊）" />
+        android:text="本系統以簡訊報案" />
 
 </LinearLayout>
