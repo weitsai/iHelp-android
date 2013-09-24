@@ -39,13 +39,13 @@
             android:layout_marginBottom="8dp"
             android:layout_weight="3" />
 
-<!--         <EditText -->
-<!--             android:layout_width="match_parent" -->
-<!--             android:layout_height="0dp" -->
-<!--             android:layout_weight="1" -->
-<!--             android:hint="點我增加分類" -->
-<!--             android:inputType="text" -->
-<!--             android:maxLength="6" /> -->
+        <!-- <EditText -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="0dp" -->
+        <!-- android:layout_weight="1" -->
+        <!-- android:hint="點我增加分類" -->
+        <!-- android:inputType="text" -->
+        <!-- android:maxLength="6" /> -->
     </LinearLayout>
 
     <TextView
@@ -61,14 +61,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#EEEFEF" >
 
         <EditText
             android:id="@+id/report_data"
             style="@style/text_black_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="2dp"
             android:gravity="center" />
@@ -77,42 +77,49 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/attach_color"
-        android:orientation="horizontal"
-        android:paddingTop="5dp" >
+        android:layout_weight="1.5"
+        android:orientation="vertical" >
 
-        <Button
-            style="@style/text_white_content"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@drawable/button_blue"
-            android:onClick="submit"
-            android:text="確定送出" />
+            android:background="@color/attach_color"
+            android:orientation="horizontal"
+            android:paddingTop="5dp" >
 
-        <Button
+            <Button
+                style="@style/text_white_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_blue"
+                android:onClick="submit"
+                android:text="確定送出" />
+
+            <Button
+                style="@style/text_white_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_blue"
+                android:onClick="clock"
+                android:text="取消報案" />
+        </LinearLayout>
+
+        <TextView
             style="@style/text_white_content"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_blue"
-            android:onClick="clock"
-            android:text="取消報案" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@color/attach_color"
+            android:gravity="center"
+            android:text="本系統以簡訊方式，通知警方及緊急聯絡人" />
     </LinearLayout>
-
-    <TextView
-        style="@style/text_white_content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/attach_color"
-        android:gravity="center"
-        android:text="本系統以簡訊方式，通知警方及緊急聯絡人" />
 
 </LinearLayout>
