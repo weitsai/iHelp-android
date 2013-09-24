@@ -15,6 +15,7 @@ import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +31,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 import edu.stu.ihelp.client.PersonalData.ContactList.ViewHolder;
 
@@ -71,6 +73,15 @@ public class PersonalData extends Activity {
         adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
         listview.setAdapter(adapter);
+
+        et_name.setOnEditorActionListener(new OnEditorActionListener() {
+
+            public boolean onEditorAction(TextView v, int actionId,
+                    KeyEvent event) {
+
+                return event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
+            }
+        });
 
         et_search.addTextChangedListener(new TextWatcher() {
             @Override
