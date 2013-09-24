@@ -48,7 +48,6 @@ public class General extends Activity {
         setContentView(R.layout.general);
         join1 = (WheelView) findViewById(R.id.join1);
         reportData = (EditText) findViewById(R.id.report_data);
-        SpannableStringBuilder builder = null;
 
         join1.addScrollingListener(new OnWheelScrollListener() {
 
