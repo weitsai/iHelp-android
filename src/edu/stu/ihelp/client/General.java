@@ -110,7 +110,7 @@ public class General extends Activity {
             gps.showSettingsAlert();
         }
 
-        if (checkIntrnet() && !gps.canGetLocation()) {
+        if (checkIntrnet() && checkIntrnet()) {
             address = gps.getAddressByLocation(gps.getPosition());
         }
 
