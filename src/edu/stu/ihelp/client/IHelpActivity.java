@@ -23,7 +23,9 @@ public class IHelpActivity extends Activity {
         SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
         String contactsPhone = spfs.getString("contacts", "");
-        Variable.contactsPhone = new HashSet<String>(Arrays.asList(contactsPhone.split(","))); 
+        if (!contactsPhone.equals(""))
+            Variable.contactsPhone = new HashSet<String>(
+                    Arrays.asList(contactsPhone.split(",")));
         if (Variable.name.equals("")) {
             Toast.makeText(this, "建議您到個人資料輸入姓名", 0).show();
         }
