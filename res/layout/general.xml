@@ -39,13 +39,13 @@
             android:layout_marginBottom="8dp"
             android:layout_weight="3" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="點我增加分類"
-            android:inputType="text"
-            android:maxLength="6" />
+<!--         <EditText -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="0dp" -->
+<!--             android:layout_weight="1" -->
+<!--             android:hint="點我增加分類" -->
+<!--             android:inputType="text" -->
+<!--             android:maxLength="6" /> -->
     </LinearLayout>
 
     <TextView
@@ -113,6 +113,6 @@
         android:layout_weight="1"
         android:background="@color/attach_color"
         android:gravity="center"
-        android:text="本系統以簡訊報案" />
+        android:text="本系統以簡訊方式，通知警方及緊急聯絡人" />
 
 </LinearLayout>
