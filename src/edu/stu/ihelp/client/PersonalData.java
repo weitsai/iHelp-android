@@ -127,7 +127,7 @@ public class PersonalData extends Activity {
                         .commit();
 
                 String contactsPhone = "";
-                Iterator iterator = Variable.contactsPhone.iterator();
+                Iterator<String> iterator = Variable.contactsPhone.iterator();
                 while (iterator.hasNext()) {
                     contactsPhone += iterator.next() + ",";
                 }
