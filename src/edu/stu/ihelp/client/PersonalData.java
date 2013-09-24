@@ -67,6 +67,7 @@ public class PersonalData extends Activity {
 
         getPhoneBookData();
 
+        contactCount.setText(Variable.contactsPhone.size() + "");
         adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
         listview.setAdapter(adapter);
