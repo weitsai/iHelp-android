@@ -5,7 +5,8 @@ iHelp-Android
 - 注意事項：本 App 尚在開發階段因此還沒有正式報案功能，目前僅會通知設定的緊急聯絡人
 
 
-[安裝檔下載](https://docs.google.com/file/d/0BxjvKLescVarbWdDRGd1UENMMHM/edit?usp=sharing)
+[安裝檔下載](https://docs.google.com/file/d/0B9uRw66X-sBGT0sybDk3cC1JUFU/edit?usp=sharing)
+
 
 ▼畫面一，點選個人資料編輯個人資料
 - 首先必須填寫個人資料才能夠進行報案動作唷！！
