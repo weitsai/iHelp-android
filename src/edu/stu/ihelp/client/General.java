@@ -78,7 +78,7 @@ public class General extends Activity {
                             Spanned.SPAN_COMPOSING);
                 }
 
-                if (address.equals("")) {
+                if (!address.equals("")) {
                     reportBody.append("\n" + address);
                 }
 
@@ -110,7 +110,7 @@ public class General extends Activity {
             gps.showSettingsAlert();
         }
 
-        if (checkIntrnet()) {
+        if (checkIntrnet() && !gps.canGetLocation()) {
             address = gps.getAddressByLocation(gps.getPosition());
         }
 
