@@ -138,7 +138,11 @@ public class General extends Activity {
         // sendSMS(cityPhone, title + reportBody);
 
         for (String phone : Variable.contactsPhone) {
-            sendSMS(phone, title + reportBody);
+            if (phone.equals("")) {
+                continue;
+            }
+            sendSMS(phone.replaceAll("\\s+", ""), title + reportBody);
+
         }
 
         General.this.finish();
