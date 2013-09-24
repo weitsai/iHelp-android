@@ -67,8 +67,6 @@ public class PersonalData extends Activity {
 
         getPhoneBookData();
 
-        contactCount.setText(Variable.contactsPhone.size() + "");
-
         adapter = new ContactList(getLayoutInflater(), contactsArrayList);
 
         listview.setAdapter(adapter);
@@ -132,8 +130,7 @@ public class PersonalData extends Activity {
                     contactsPhone += iterator.next() + ",";
                 }
 
-                spfs.edit().putString("contacts", contactsPhone)
-                        .commit();
+                spfs.edit().putString("contacts", contactsPhone).commit();
 
                 Variable.name = et_name.getText().toString();
 
