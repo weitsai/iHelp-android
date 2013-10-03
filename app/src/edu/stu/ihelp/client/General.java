@@ -109,7 +109,7 @@ public class General extends Activity {
             gps.showSettingsAlert();
         }
 
-        if (checkIntrnet() && !gps.canGetLocation()) {
+        if (checkIntrnet() && gps.canGetLocation()) {
             address = gps.getAddressByLocation(gps.getPosition());
         }
 
