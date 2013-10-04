@@ -19,8 +19,8 @@ iHelp-Android
 ![github](https://github.com/cy-project/iHelp-android/blob/master/image/PersonalData.png?raw=true "填寫個人資訊")
 
 ▼畫面三，報案畫面
-- 選擇災情後下方會顯示欲寄出的簡訊內容，如果想要修改詳細內容可以直接修改其內容，再點選寄送
-- 若是下方沒有住址代表該裝置，目前沒有網路連線能力或沒有 GPS 位置 
+- 選擇災情後下方會顯示欲寄出的簡訊內容，如果想要修改詳細內容可以直接修改其內容，再點選**確定送出**
+- 若是下方沒有住址代表該裝置，目前**沒有網路連線能力或沒有 GPS 位置** 
 
 ![github](https://github.com/cy-project/iHelp-android/blob/master/image/General-Internet.png?raw=true "報案畫面")
 
