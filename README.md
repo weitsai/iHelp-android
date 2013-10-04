@@ -2,24 +2,25 @@ iHelp-Android
 =============
 
 聾啞人士報案系統
-- 注意事項：本 App 尚在開發階段因此還沒有正式報案功能，目前僅會通知設定的緊急聯絡人
+- 提醒：本 App 尚在開發階段，因此暫時把報案程式碼註解，如有需要使用的人可以自行開啟
+- [報案程式碼 **138** 行] https://github.com/cy-project/iHelp-android/blob/master/app/src/edu/stu/ihelp/client/General.java
 
 
 [安裝檔下載](https://docs.google.com/file/d/0B9uRw66X-sBGT0sybDk3cC1JUFU/edit?usp=sharing)
 
 
-▼畫面一，點選個人資料編輯個人資料
-- 首先必須填寫個人資料才能夠進行報案動作唷！！
+▼畫面一， 主畫面
 
 ![github](https://github.com/cy-project/iHelp-android/blob/master/image/Main.png?raw=true "進入畫面")
 
-▼畫面二，填寫個人資料並儲存
-- 緊急聯絡人電話號碼必須填寫正確，若沒有正確填寫會無法接收到此 App 所發送出求救訊息
+▼畫面二，個人資料
+- 若有填寫個人姓名，報案時會把姓名告知警方以便到場確認身分，下方被勾選的緊急聯絡人是警方以外需要被通知的聯絡人。
 
 ![github](https://github.com/cy-project/iHelp-android/blob/master/image/PersonalData.png?raw=true "填寫個人資訊")
 
-▼畫面三，選擇報案類型及受害人數，再點擊報案（選選報）
-- 建議使用地點為室外，因為 GPS 定位會較為準確，警方比較好掌握位置，但不論在室內或室外，警方都會發送簡訊詢問更確切的位置
+▼畫面三，報案畫面
+- 選擇災情後下方會顯示欲寄出的簡訊內容，如果想要修改詳細內容可以直接修改其內容，再點選寄送
+- 若是下方沒有住址代表該裝置，目前沒有網路連線能力或沒有 GPS 位置 
 
 ![github](https://github.com/cy-project/iHelp-android/blob/master/image/General-Internet.png?raw=true "報案畫面")
 
