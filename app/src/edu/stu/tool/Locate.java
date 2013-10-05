@@ -360,60 +360,59 @@ public class Locate implements LocationListener {
     }
 
     public String getAddress() throws InterruptedException, ExecutionException {
-	return new locationToAddressTask(this.getPosition())
-		.execute().get();
+        return new locationToAddressTask(this.getPosition()).execute().get();
     }
 
     class locationToAddressTask extends AsyncTask<Void, Void, String> {
 
-	final String LOCATION;
+        final String LOCATION;
 
-	locationToAddressTask(String Location) {
-	    this.LOCATION = Location;
-	}
+        locationToAddressTask(String Location) {
+            this.LOCATION = Location;
+        }
 
-	protected String doInBackground(Void... Void) {
-	    StringBuilder json = new StringBuilder();
-	    String address = "";
-	    HttpClient client = new DefaultHttpClient();
-	    HttpGet httpGet = new HttpGet(
-		    "http://maps.googleapis.com/maps/api/geocode/json?latlng="
-			    + LOCATION + "&sensor=false&language=zh-tw");
-	    HttpResponse response;
-	    try {
-		response = client.execute(httpGet);
-		StatusLine statusLine = response.getStatusLine();
-		int statusCode = statusLine.getStatusCode();
-		if (!(statusCode == 200)) {
-		    Log.e(getClass().getName(), "連線錯誤：" + statusCode);
-		}
+        protected String doInBackground(Void... Void) {
+            StringBuilder json = new StringBuilder();
+            String address = "";
+            HttpClient client = new DefaultHttpClient();
+            HttpGet httpGet = new HttpGet(
+                    "http://maps.googleapis.com/maps/api/geocode/json?latlng="
+                            + LOCATION + "&sensor=false&language=zh-tw");
+            HttpResponse response;
+            try {
+                response = client.execute(httpGet);
+                StatusLine statusLine = response.getStatusLine();
+                int statusCode = statusLine.getStatusCode();
+                if (!(statusCode == 200)) {
+                    Log.e(getClass().getName(), "連線錯誤：" + statusCode);
+                }
 
-		HttpEntity entity = response.getEntity();
-		InputStream content = entity.getContent();
-		BufferedReader reader = new BufferedReader(
-			new InputStreamReader(content));
-		String line;
-		while ((line = reader.readLine()) != null) {
-		    json.append(line);
-		}
-		JSONObject mainObject = new JSONObject(json.toString());
-		JSONArray addressArray = mainObject.getJSONArray("results");
-		address = addressArray.getJSONObject(0).getString(
-			"formatted_address");
+                HttpEntity entity = response.getEntity();
+                InputStream content = entity.getContent();
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    json.append(line);
+                }
+                JSONObject mainObject = new JSONObject(json.toString());
+                JSONArray addressArray = mainObject.getJSONArray("results");
+                address = addressArray.getJSONObject(0).getString(
+                        "formatted_address");
 
-	    } catch (ClientProtocolException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    } catch (JSONException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
+            } catch (ClientProtocolException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
-	    return address;
-	}
+            return address;
+        }
     }
 
 }
