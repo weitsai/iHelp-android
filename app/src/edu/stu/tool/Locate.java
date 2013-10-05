@@ -1,9 +1,25 @@
 package edu.stu.tool;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +31,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -340,6 +357,63 @@ public class Locate implements LocationListener {
             }
             return false;
         }
+    }
+
+    public String getAddress() throws InterruptedException, ExecutionException {
+	return new locationToAddressTask(this.getPosition())
+		.execute().get();
+    }
+
+    class locationToAddressTask extends AsyncTask<Void, Void, String> {
+
+	final String LOCATION;
+
+	locationToAddressTask(String Location) {
+	    this.LOCATION = Location;
+	}
+
+	protected String doInBackground(Void... Void) {
+	    StringBuilder json = new StringBuilder();
+	    String address = "";
+	    HttpClient client = new DefaultHttpClient();
+	    HttpGet httpGet = new HttpGet(
+		    "http://maps.googleapis.com/maps/api/geocode/json?latlng="
+			    + LOCATION + "&sensor=false&language=zh-tw");
+	    HttpResponse response;
+	    try {
+		response = client.execute(httpGet);
+		StatusLine statusLine = response.getStatusLine();
+		int statusCode = statusLine.getStatusCode();
+		if (!(statusCode == 200)) {
+		    Log.e(getClass().getName(), "連線錯誤：" + statusCode);
+		}
+
+		HttpEntity entity = response.getEntity();
+		InputStream content = entity.getContent();
+		BufferedReader reader = new BufferedReader(
+			new InputStreamReader(content));
+		String line;
+		while ((line = reader.readLine()) != null) {
+		    json.append(line);
+		}
+		JSONObject mainObject = new JSONObject(json.toString());
+		JSONArray addressArray = mainObject.getJSONArray("results");
+		address = addressArray.getJSONObject(0).getString(
+			"formatted_address");
+
+	    } catch (ClientProtocolException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    } catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+
+	    return address;
+	}
     }
 
 }

@@ -2,6 +2,7 @@ package edu.stu.ihelp.client;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 import test.whell.OnWheelChangedListener;
 import test.whell.OnWheelScrollListener;
@@ -110,7 +111,15 @@ public class General extends Activity {
         }
 
         if (checkIntrnet() && gps.canGetLocation()) {
-            address = gps.getAddressByLocation(gps.getPosition());
+	    try {
+		address = gps.getAddress();
+	    } catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    } catch (ExecutionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
         }
 
     }
