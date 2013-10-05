@@ -24,7 +24,7 @@ iHelp-Android
 
 ![github](https://github.com/cy-project/iHelp-android/blob/master/image/General-Internet.png?raw=true "報案畫面")
 
-▼畫面三，警方及緊急聯絡人收到的簡訊
+▼畫面四，警方及緊急聯絡人收到的簡訊
 - 無論警方或是緊急聯絡人收到簡訊，只要在有網路的情況下點選前面的 URL 就可以對報案者做路線規劃的動作
 
 ![github](https://github.com/cy-project/iHelp-android/blob/master/image/SMS.png?raw=true "簡訊畫面")
