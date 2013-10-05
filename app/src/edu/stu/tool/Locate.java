@@ -204,23 +204,6 @@ public class Locate implements LocationListener {
 
     }
 
-    public String getAddressByLocation(String location) {
-        String returnAddress = "";
-        try {
-            if (location != null) {
-                String locaitons[] = location.split(",");
-                Geocoder gc = new Geocoder(mContext, Locale.TRADITIONAL_CHINESE); // 地區:台灣
-                List<Address> lstAddress = gc.getFromLocation(
-                        Double.parseDouble(locaitons[0]),
-                        Double.parseDouble(locaitons[1]), 1);
-                returnAddress = lstAddress.get(0).getAddressLine(0);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return returnAddress;
-    }
-
     public String getCityName(double x, double y) {
         CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
