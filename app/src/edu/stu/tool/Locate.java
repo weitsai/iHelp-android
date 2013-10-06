@@ -340,14 +340,14 @@ public class Locate implements LocationListener {
     }
 
     public String getAddress() throws InterruptedException, ExecutionException {
-        return new locationToAddressTask(this.getPosition()).execute().get();
+        return new LocationToAddressTask(this.getPosition()).execute().get();
     }
 
-    class locationToAddressTask extends AsyncTask<Void, Void, String> {
+    class LocationToAddressTask extends AsyncTask<Void, Void, String> {
 
         final String LOCATION;
 
-        locationToAddressTask(String Location) {
+        LocationToAddressTask(String Location) {
             this.LOCATION = Location;
         }
 
