@@ -31,8 +31,6 @@ import edu.stu.tool.Internet;
 import edu.stu.tool.Locate;
 
 public class General extends Activity {
-    private String tag = "General";
-    private TextView data;
     private EditText reportData;
     // Wheel
     private WheelView join1;
