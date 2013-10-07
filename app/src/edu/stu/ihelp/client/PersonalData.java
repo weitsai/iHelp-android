@@ -38,7 +38,7 @@ import edu.stu.ihelp.client.PersonalData.ContactList.ViewHolder;
 public class PersonalData extends Activity {
 
     private EditText et_search, et_name;
-    private Button confirm, cancel;
+    private Button confirm;
     private TextView contactCount;
     private SharedPreferences spfs;
 
