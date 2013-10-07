@@ -45,29 +45,13 @@ public class IHelpActivity extends Activity {
     }
 
     public void onClickGeneral(View v) {
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        switch (tm.getSimState()) {
-        case TelephonyManager.SIM_STATE_ABSENT:
-            Toast.makeText(this, "若沒有插入 sim 卡可能無法使用該服務", 0).show();
-            break;
-        case TelephonyManager.SIM_STATE_UNKNOWN:
-            Toast.makeText(this, "sim 卡發生了不知名狀況請聯絡電信商", 0).show();
-            break;
-        case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-            Toast.makeText(this, "請先將 NetworkPIN 碼解鎖", 0).show();
-            break;
-        case TelephonyManager.SIM_STATE_PIN_REQUIRED:
-            Toast.makeText(this, "請先將 sim 卡 PIN 碼解鎖", 0).show();
-            break;
-        case TelephonyManager.SIM_STATE_PUK_REQUIRED:
-            Toast.makeText(this, "請先將 sim 卡 PUK 碼解鎖", 0).show();
-            break;
-        case TelephonyManager.SIM_STATE_READY:
-            startActivityForResult(
-                    new Intent(IHelpActivity.this, General.class),
-                    INTENT_GENERAL);
-            break;
+        if (!checkSimCard()) {
+            return;
         }
+
+        startActivityForResult(new Intent(IHelpActivity.this, General.class),
+                INTENT_GENERAL);
+
     }
 
     private boolean checkSimCard() {
