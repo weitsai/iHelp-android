@@ -130,7 +130,7 @@ public class PersonalData extends Activity {
                 }
 
                 if (et_name.getText().toString().equals("")) {
-                    Toast.makeText(PersonalData.this, "建議您輸入姓名", 0).show();
+                    Toast.makeText(PersonalData.this, "建議您輸入姓名", Toast.LENGTH_SHORT).show();
                 }
 
                 spfs.edit().putString("UserName", et_name.getText().toString())
@@ -147,7 +147,7 @@ public class PersonalData extends Activity {
                 Variable.name = et_name.getText().toString();
 
                 setResult(RESULT_OK);
-                Toast.makeText(PersonalData.this, "儲存成功", 0).show();
+                Toast.makeText(PersonalData.this, "儲存成功", Toast.LENGTH_SHORT).show();
                 PersonalData.this.finish();
             }
         });

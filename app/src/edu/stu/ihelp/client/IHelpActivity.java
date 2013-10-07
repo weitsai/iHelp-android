@@ -29,7 +29,7 @@ public class IHelpActivity extends Activity {
             Variable.contactsPhone = new HashSet<String>(
                     Arrays.asList(contactsPhone.split(",")));
         if (Variable.name.equals("")) {
-            Toast.makeText(this, "建議您到個人資料輸入姓名", 0).show();
+            Toast.makeText(this, "建議您到個人資料輸入姓名", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -63,19 +63,19 @@ public class IHelpActivity extends Activity {
 
         switch (simStatieNum) {
         case TelephonyManager.SIM_STATE_ABSENT:
-            Toast.makeText(this, "若沒有插入 sim 卡可能無法使用該服務", 0).show();
+            Toast.makeText(this, "若沒有插入 sim 卡可能無法使用該服務", Toast.LENGTH_SHORT).show();
             break;
         case TelephonyManager.SIM_STATE_UNKNOWN:
-            Toast.makeText(this, "sim 卡發生了不知名狀況請聯絡電信商", 0).show();
+            Toast.makeText(this, "sim 卡發生了不知名狀況請聯絡電信商", Toast.LENGTH_SHORT).show();
             break;
         case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-            Toast.makeText(this, "請先將 NetworkPIN 碼解鎖", 0).show();
+            Toast.makeText(this, "請先將 NetworkPIN 碼解鎖", Toast.LENGTH_SHORT).show();
             break;
         case TelephonyManager.SIM_STATE_PIN_REQUIRED:
-            Toast.makeText(this, "請先將 sim 卡 PIN 碼解鎖", 0).show();
+            Toast.makeText(this, "請先將 sim 卡 PIN 碼解鎖", Toast.LENGTH_SHORT).show();
             break;
         case TelephonyManager.SIM_STATE_PUK_REQUIRED:
-            Toast.makeText(this, "請先將 sim 卡 PUK 碼解鎖", 0).show();
+            Toast.makeText(this, "請先將 sim 卡 PUK 碼解鎖", Toast.LENGTH_SHORT).show();
             break;
         }
 

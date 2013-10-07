@@ -123,7 +123,7 @@ public class General extends Activity {
     }
 
     public void clock(View v) {
-        Toast.makeText(this, "取消求救", 0).show();
+        Toast.makeText(this, "取消求救", Toast.LENGTH_SHORT).show();
         this.finish();
     }
 
