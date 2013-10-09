@@ -6,6 +6,7 @@ iHelp-Android
 - [報案程式碼 **147** 行] (https://github.com/cy-project/iHelp-android/blob/master/app/src/edu/stu/ihelp/client/General.java)
 
 
+Android Apk 下載點（v1.3.2）：
 [安裝檔下載](https://docs.google.com/file/d/0B9uRw66X-sBGT0sybDk3cC1JUFU/edit?usp=sharing)
 
 
