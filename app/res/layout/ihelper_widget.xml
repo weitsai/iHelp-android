@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/widget_margin"
+     >
+
+    <Button
+        android:id="@+id/btnWidgetIHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IHelp" />
+
+    <Button
+        android:id="@+id/btnWidgetVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video" />
+
+    <Button
+        android:id="@+id/btnWidgetPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Photo" />
+
+    <Button
+        android:id="@+id/btnWidgetGeneral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="General" />
+    
+</LinearLayout>
