@@ -48,3 +48,11 @@ Android apk 下載點（v1.3.2）：
 - @slayer       莊國煜
 - @afutseng     曾坤福
 - @water        陳小水
+
+
+[Facebook 社團](http://www.facebook.com/groups/308375875947826/)
+================================================================
+
+若有任何意見可以透過此社團回覆，或是直接找[蔡佳緯](http://www.facebook.com/stuwebbertsai)。
+
+聯絡信箱： begining1003@gmail.com
