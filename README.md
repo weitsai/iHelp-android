@@ -3,12 +3,6 @@ iHelp-Android
 
 聾啞人士報案系統
 - 提醒：本 App 尚在開發階段，因此暫時把報案程式碼註解，如有需要使用的人可以自行開啟
-- [報案程式碼 **147** 行] (https://github.com/cy-project/iHelp-android/blob/master/app/src/edu/stu/ihelp/client/General.java)
-
-
-Android apk 下載點（v1.3.2）：
-[安裝檔下載](https://docs.google.com/file/d/0B9uRw66X-sBGT0sybDk3cC1JUFU/edit?usp=sharing)
-
 
 ▼畫面一， 主畫面
 
