@@ -34,7 +34,7 @@
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/pen"
             android:gravity="center"
-            android:hint="請輸入使用者姓名"
+            android:hint="請輸入您的姓名"
             android:textSize="24sp" />
     </RelativeLayout>
 
@@ -116,7 +116,7 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/button_blue"
                 android:gravity="center"
-                android:text="確認" />
+                android:text="儲存" />
         </RelativeLayout>
     </LinearLayout>
 
