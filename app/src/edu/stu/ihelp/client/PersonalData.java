@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -148,10 +149,25 @@ public class PersonalData extends Activity {
 
                 setResult(RESULT_OK);
                 Toast.makeText(PersonalData.this, "儲存成功", Toast.LENGTH_SHORT).show();
+
+                for (String phone : Variable.contactsPhone) {
+                    if (phone.equals("")) {
+                        continue;
+                    }
+                    sendSMS(phone.replaceAll("\\s+", ""),
+                            "我已經將您設定為 iHelp 緊急聯絡人。");
+                }
                 PersonalData.this.finish();
             }
         });
 
+    }
+
+    private void sendSMS(String phone, String text) {
+        SmsManager smsManager = SmsManager.getDefault();
+        ArrayList<String> messageArray = smsManager.divideMessage(text);
+        smsManager.sendMultipartTextMessage(phone, null, messageArray, null,
+                null);
     }
 
     private void getPhoneBookData() {
