@@ -97,7 +97,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_blue"
                 android:onClick="submit"
-                android:text="確定送出" />
+                android:text="立即報案" />
 
             <Button
                 style="@style/text_white_content"
