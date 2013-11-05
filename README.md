@@ -1,6 +1,8 @@
 iHelp-Android
 =============
 
+[Google Play 下載點](https://play.google.com/store/apps/details?id=edu.stu.ihelp.client&hl=zh_TW)
+
 聾啞人士報案系統
 - 提醒：本 App 尚在開發階段，因此暫時把報案程式碼註解，如有需要使用的人可以自行開啟
 
