@@ -183,14 +183,16 @@ public class PersonalData extends Activity {
 
             phone = contacts_number
                     .getString(contacts_number
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replaceAll("\\s", "");
 
-            if (!phone.equals("")) {
-                contactsMap = new HashMap<String, String>();
-                contactsMap.put(Variable.CONTACT_NAME, name);
-                contactsMap.put(Variable.CONTACT_PHONE, phone);
-                contactsArrayList.add(contactsMap);
+            if (phone.equals("") || phone.matches("0[1-8]{1}[\\d]{7,8}")) {
+               continue;
             }
+
+            contactsMap = new HashMap<String, String>();
+            contactsMap.put(Variable.CONTACT_NAME, name);
+            contactsMap.put(Variable.CONTACT_PHONE, phone);
+            contactsArrayList.add(contactsMap);
 
         }
     }
