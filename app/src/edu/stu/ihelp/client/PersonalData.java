@@ -185,7 +185,10 @@ public class PersonalData extends Activity {
                     .getString(contacts_number
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replaceAll("\\s", "");
 
-            if (phone.equals("") || phone.matches("0[1-8]{1}[\\d]{7,8}")) {
+            if (phone.equals("")) {
+               continue;
+            }
+            if (! phone.matches("^(09|\\+886).*")) {
                continue;
             }
 
