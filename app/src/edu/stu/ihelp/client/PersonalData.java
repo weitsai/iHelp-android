@@ -1,13 +1,12 @@
 package edu.stu.ihelp.client;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import edu.stu.ihelp.client.PersonalData.ContactList.ViewHolder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -34,7 +33,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
-import edu.stu.ihelp.client.PersonalData.ContactList.ViewHolder;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class PersonalData extends Activity {
 
@@ -131,7 +135,8 @@ public class PersonalData extends Activity {
                 }
 
                 if (et_name.getText().toString().equals("")) {
-                    Toast.makeText(PersonalData.this, "建議您輸入姓名", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PersonalData.this, "建議您輸入姓名",
+                            Toast.LENGTH_SHORT).show();
                 }
 
                 spfs.edit().putString("UserName", et_name.getText().toString())
@@ -148,16 +153,39 @@ public class PersonalData extends Activity {
                 Variable.name = et_name.getText().toString();
 
                 setResult(RESULT_OK);
-                Toast.makeText(PersonalData.this, "儲存成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PersonalData.this, "儲存成功", Toast.LENGTH_SHORT)
+                        .show();
 
-                for (String phone : Variable.contactsPhone) {
-                    if (phone.equals("")) {
-                        continue;
-                    }
-                    sendSMS(phone.replaceAll("\\s+", ""),
-                            "我已經將您設定為 iHelp 緊急聯絡人。");
-                }
-                PersonalData.this.finish();
+                Builder alerDialog = new AlertDialog.Builder(PersonalData.this);
+                alerDialog.setTitle("通知緊急聯絡人");
+                alerDialog.setMessage("是否要發簡訊通知緊急聯絡人已經成為 iHELP 通知對象呢？");
+                alerDialog.setPositiveButton("好",
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                for (String phone : Variable.contactsPhone) {
+                                    if (phone.equals("")) {
+                                        continue;
+                                    }
+                                    sendSMS(phone.replaceAll("\\s+", ""),
+                                            "我已經將您設定為 iHelp 緊急聯絡人。");
+                                }
+                                
+                                PersonalData.this.finish();
+                            }
+                        });
+
+                alerDialog.setNegativeButton("不用",
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                PersonalData.this.finish();
+                            }
+                        });
+                
+                alerDialog.show();
+
             }
         });
 
@@ -182,14 +210,16 @@ public class PersonalData extends Activity {
                     .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
             phone = contacts_number
-                    .getString(contacts_number
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replaceAll("\\s", "");
+                    .getString(
+                            contacts_number
+                                    .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                    .replaceAll("\\s", "");
 
             if (phone.equals("")) {
-               continue;
+                continue;
             }
-            if (! phone.matches("^(09|\\+886).*")) {
-               continue;
+            if (!phone.matches("^(09|\\+886).*")) {
+                continue;
             }
 
             contactsMap = new HashMap<String, String>();
