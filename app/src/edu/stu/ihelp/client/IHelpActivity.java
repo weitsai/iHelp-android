@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,7 +24,9 @@ public class IHelpActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        showDisclaimerDialog();
+            
+        
         SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
         String contactsPhone = spfs.getString("contacts", "");
@@ -87,5 +92,28 @@ public class IHelpActivity extends Activity {
         bool = false;
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+    
+    private void showDisclaimerDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(IHelpActivity.this);
+        dialog.setTitle("免則聲明");
+        dialog.setMessage(R.string.disclaimer);
+        dialog.setPositiveButton("同意", new OnClickListener() {
+            
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                
+            }
+        });
+        dialog.setNegativeButton("不同意", new OnClickListener() {
+            
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                IHelpActivity.this.finish();
+                
+            }
+        });
+        dialog.show();
     }
 }
