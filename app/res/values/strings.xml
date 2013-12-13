@@ -3,5 +3,15 @@
 
     <string name="hello">Hello World, IHelpActivity!</string>
     <string name="app_name">iHELP</string>
+    <string name="disclaimer">本 iHelp 內的資訊及服務均以 App 形式提供，本 iHelp 不提供任何種類的明示或暗示的保證，包括但不限於：\n
+本 iHelp 不保證 iHelp 資訊及服務的準確性、可靠性、安全性及即時性，您於使用本 iHelp 資訊和服務時應自行評估及判斷，\n
+本 iHelp 不保證 iHelp 資訊及服務適合使用者使用，\n
+本 iHelp 不保證 iHelp 資訊及服務未侵害第三人之權利，\n
+本 iHelp 不保證 iHelp 資訊及服務不含電腦病毒，\n
+本 iHelp 不就 iHelp 資訊任何錯誤、遺漏、或與事實不符之處述承擔任何責任。\n
+對於任何因使用本 iHelp 所提供的資訊或服務而導致或所涉及的任何損失、損害或利益之喪失，本 iHelp 概不承擔任何法律責任及賠償義務。\n
+本 iHelp 包含由第三人提供的內容及通往第三人 iHelp 的連結。 本 iHelp 提供的任何第三人所有之內容或 iHelp 連結均不構成任何該等第三人與本 iHelp 的任何形式的合作或聯繫。\n
+本 iHelp 得不附理由隨時修改或停止提供 iHelp 內容及服務， 無須於事先或事後告知您 。\n
+當您使用本 iHelp 之任何功能，即表示您無條件接受上述所載的免責條款，您並同意本 iHelp 有權隨時修改及增補上述條款，毋須在事前或事後告知通知您，您應定期瀏覽此免責條款以便取得最新之條款內容。</string>
 
 </resources>
