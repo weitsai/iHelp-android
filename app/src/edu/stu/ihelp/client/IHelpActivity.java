@@ -25,8 +25,7 @@ public class IHelpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         showDisclaimerDialog();
-            
-        
+
         SharedPreferences spfs = getSharedPreferences("PersonalData", 0);
         Variable.name = spfs.getString("UserName", "");
         String contactsPhone = spfs.getString("contacts", "");
@@ -68,19 +67,24 @@ public class IHelpActivity extends Activity {
 
         switch (simStatieNum) {
         case TelephonyManager.SIM_STATE_ABSENT:
-            Toast.makeText(this, "若沒有插入 sim 卡可能無法使用該服務", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "若沒有插入 sim 卡可能無法使用該服務", Toast.LENGTH_SHORT)
+                    .show();
             break;
         case TelephonyManager.SIM_STATE_UNKNOWN:
-            Toast.makeText(this, "sim 卡發生了不知名狀況請聯絡電信商", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "sim 卡發生了不知名狀況請聯絡電信商", Toast.LENGTH_SHORT)
+                    .show();
             break;
         case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-            Toast.makeText(this, "請先將 NetworkPIN 碼解鎖", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "請先將 NetworkPIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
             break;
         case TelephonyManager.SIM_STATE_PIN_REQUIRED:
-            Toast.makeText(this, "請先將 sim 卡 PIN 碼解鎖", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "請先將 sim 卡 PIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
             break;
         case TelephonyManager.SIM_STATE_PUK_REQUIRED:
-            Toast.makeText(this, "請先將 sim 卡 PUK 碼解鎖", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "請先將 sim 卡 PUK 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
             break;
         }
 
@@ -93,25 +97,25 @@ public class IHelpActivity extends Activity {
 
         super.onActivityResult(requestCode, resultCode, data);
     }
-    
+
     private void showDisclaimerDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(IHelpActivity.this);
         dialog.setTitle("免責聲明");
         dialog.setMessage(R.string.disclaimer);
         dialog.setPositiveButton("同意", new OnClickListener() {
-            
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                
+
             }
         });
         dialog.setNegativeButton("不同意", new OnClickListener() {
-            
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 IHelpActivity.this.finish();
-                
+
             }
         });
         dialog.show();
