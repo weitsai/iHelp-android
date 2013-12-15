@@ -136,26 +136,7 @@ public class General extends Activity {
             return;
         }
 
-        final String located = gps.getPosition();
-        String title = "http://maps.google.com.tw/maps?q=" + located
-                + "&GeoSMS=iHELP\n";
-
-        String locatedArray[] = located.split(",");
-        String cityPhone = gps.getCityPhone(
-                Double.parseDouble(locatedArray[1]),
-                Double.parseDouble(locatedArray[0]));
-
-        sendSMS(cityPhone, title + reportBody);
-
-        for (String phone : Variable.contactsPhone) {
-            if (phone.equals("")) {
-                continue;
-            }
-            sendSMS(phone.replaceAll("\\s+", ""), title + reportBody);
-
-        }
-
-        General.this.finish();
+        showCheckSubmitDialog();
 
     }
 
@@ -233,21 +214,41 @@ public class General extends Activity {
     }
 
     private void showCheckSubmitDialog() {
-        int a = 0;
         AlertDialog.Builder dialog = new AlertDialog.Builder(General.this);
         dialog.setTitle("是否確定送出報案？");
         dialog.setPositiveButton("同意", new OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                final String located = gps.getPosition();
+                String title = "http://maps.google.com.tw/maps?q=" + located
+                        + "&GeoSMS=iHELP\n";
 
+                String locatedArray[] = located.split(",");
+                String cityPhone = gps.getCityPhone(
+                        Double.parseDouble(locatedArray[1]),
+                        Double.parseDouble(locatedArray[0]));
+
+                sendSMS(cityPhone, title + reportBody);
+
+                for (String phone : Variable.contactsPhone) {
+                    if (phone.equals("")) {
+                        continue;
+                    }
+                    sendSMS(phone.replaceAll("\\s+", ""), title + reportBody);
+
+                }
+                
+                dialog.dismiss();
+                General.this.finish();
             }
         });
         dialog.setNegativeButton("不同意", new OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                Toast.makeText(General.this, "報案訊息取消送出", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
         dialog.show();
