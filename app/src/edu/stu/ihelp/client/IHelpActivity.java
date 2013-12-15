@@ -96,7 +96,7 @@ public class IHelpActivity extends Activity {
     
     private void showDisclaimerDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(IHelpActivity.this);
-        dialog.setTitle("免則聲明");
+        dialog.setTitle("免責聲明");
         dialog.setMessage(R.string.disclaimer);
         dialog.setPositiveButton("同意", new OnClickListener() {
             
