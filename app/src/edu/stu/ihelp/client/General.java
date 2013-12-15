@@ -9,7 +9,10 @@ import test.whell.OnWheelScrollListener;
 import test.whell.WheelView;
 import test.whell.adapters.ArrayWheelAdapter;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -227,6 +230,27 @@ public class General extends Activity {
             currentItem = index;
             return super.getItem(index, cachedView, parent);
         }
+    }
+
+    private void showCheckSubmitDialog() {
+        int a = 0;
+        AlertDialog.Builder dialog = new AlertDialog.Builder(General.this);
+        dialog.setTitle("是否確定送出報案？");
+        dialog.setPositiveButton("同意", new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dialog.setNegativeButton("不同意", new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dialog.show();
     }
 
 }
