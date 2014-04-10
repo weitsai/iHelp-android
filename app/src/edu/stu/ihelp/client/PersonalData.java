@@ -53,7 +53,7 @@ public class PersonalData extends Activity {
     private ListView listview;
     private Cursor contacts_number;
     private Map<String, String> contactsMap;
-    private List<Map<String, String>> contactsArrayList;
+    private List<Map<String, String>> contactsArrayList;//聯絡人list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class PersonalData extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.personal_data);
 
-        et_name = (EditText) findViewById(R.id.name);
-        et_search = (EditText) findViewById(R.id.searchName);
+        et_name = (EditText) findViewById(R.id.name);//使用者姓名
+        et_search = (EditText) findViewById(R.id.searchName);//尋找聯絡人
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
@@ -304,7 +304,7 @@ public class PersonalData extends Activity {
         }
 
         @Override
-        public Filter getFilter() {
+        public Filter getFilter() {//姓名篩選函數
             Filter filter = new Filter() {
 
                 @SuppressWarnings("unchecked")
@@ -324,17 +324,23 @@ public class PersonalData extends Activity {
                     if (constraint == null || constraint.length() == 0) {
                         Log.e("constraint", "==null");
                         // No filter implemented we return all the list
-                        results.values = origin;
+                        results.values = origin;//若沒有輸入任何資料，則顯示全部聯絡人
                         results.count = origin.size();
                         Log.e("Size", results.count + "");
                     } else {
                         Log.e("constraint", "!=null");
                         for (int i = 0; i < show.size(); i++) {
                             Map<String, String> data = show.get(i);
-                            if (data.get(Variable.CONTACT_NAME).toLowerCase()
+                            if (data.get(Variable.CONTACT_NAME).toLowerCase()//篩選輸入姓名
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
                             }
+                            if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話(Add By政大 Timing&Dennis Wang)
+                                    .contains(constraint.toString())) {
+                                FilteredList.add(data);
+                            }
+                            
+                            
                         }
                         results.values = FilteredList;
                         results.count = FilteredList.size();
