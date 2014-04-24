@@ -49,7 +49,7 @@ public class IHelpActivity extends Activity {
     }
 
     public void onClickGeneral(View v) {
-        if (!checkSimCard()) {
+        if (!checkSimCard()) {//nccu T&W
             return;
         }
 

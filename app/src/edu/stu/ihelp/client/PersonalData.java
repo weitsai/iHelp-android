@@ -6,12 +6,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -127,6 +129,7 @@ public class PersonalData extends Activity {
             }
         });
 
+        
         confirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +137,7 @@ public class PersonalData extends Activity {
                     Variable.setData(PersonalData.this, adapter.getList());
                 }
 
+                
                 if (et_name.getText().toString().equals("")) {
                     Toast.makeText(PersonalData.this, "建議您輸入姓名",
                             Toast.LENGTH_SHORT).show();
@@ -157,12 +161,19 @@ public class PersonalData extends Activity {
                         .show();
 
                 Builder alerDialog = new AlertDialog.Builder(PersonalData.this);
+                               
                 alerDialog.setTitle("通知緊急聯絡人");
                 alerDialog.setMessage("是否要發簡訊通知緊急聯絡人已經成為 iHELP 通知對象呢？");
+                
+                
                 alerDialog.setPositiveButton("好",
                         new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
+                                
+                                if (!checkSimCard()) {
+                                    return;
+                                } 
 
                                 for (String phone : Variable.contactsPhone) {
                                     if (phone.equals("")) {
@@ -191,7 +202,10 @@ public class PersonalData extends Activity {
 
     }
 
+    
+    
     private void sendSMS(String phone, String text) {
+    
         SmsManager smsManager = SmsManager.getDefault();
         ArrayList<String> messageArray = smsManager.divideMessage(text);
         smsManager.sendMultipartTextMessage(phone, null, messageArray, null,
@@ -370,7 +384,45 @@ public class PersonalData extends Activity {
 
             return result;
         }
+        
+        
+       
 
+    }
+    
+    
+    ///
+    public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        int simStatieNum = tm.getSimState();
+        if (TelephonyManager.SIM_STATE_READY == simStatieNum) {
+            return true;
+        }
+
+        switch (simStatieNum) {
+        case TelephonyManager.SIM_STATE_ABSENT:
+            Toast.makeText(PersonalData.this, "若沒有插入 sim 卡可能無法使用該服務", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_UNKNOWN:
+            Toast.makeText(PersonalData.this, "sim 卡發生了不知名狀況請聯絡電信商", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
+            Toast.makeText(PersonalData.this, "請先將 NetworkPIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_PIN_REQUIRED:
+            Toast.makeText(PersonalData.this, "請先將 sim 卡 PIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_PUK_REQUIRED:
+            Toast.makeText(PersonalData.this, "請先將 sim 卡 PUK 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        }
+
+        return false;
     }
 
 }
