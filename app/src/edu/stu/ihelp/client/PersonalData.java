@@ -171,7 +171,7 @@ public class PersonalData extends Activity {
 
                             public void onClick(DialogInterface dialog, int which) {
                                 
-                                if (!checkSimCard()) {
+                                if (!checkSimCard()) {//檢查SIM卡
                                     return;
                                 } 
 
