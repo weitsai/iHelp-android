@@ -128,7 +128,6 @@ public class PersonalData extends Activity {
                 adapter.setStatus(name, holder.selected.isChecked());
             }
         });
-
         
         confirm.setOnClickListener(new OnClickListener() {
             @Override
@@ -136,7 +135,6 @@ public class PersonalData extends Activity {
                 if (adapter.getList().size() > 0) {
                     Variable.setData(PersonalData.this, adapter.getList());
                 }
-
                 
                 if (et_name.getText().toString().equals("")) {
                     Toast.makeText(PersonalData.this, "建議您輸入姓名",
@@ -164,8 +162,7 @@ public class PersonalData extends Activity {
                                
                 alerDialog.setTitle("通知緊急聯絡人");
                 alerDialog.setMessage("是否要發簡訊通知緊急聯絡人已經成為 iHELP 通知對象呢？");
-                
-                
+                                
                 alerDialog.setPositiveButton("好",
                         new DialogInterface.OnClickListener() {
 
@@ -201,9 +198,7 @@ public class PersonalData extends Activity {
         });
 
     }
-
-    
-    
+        
     private void sendSMS(String phone, String text) {
     
         SmsManager smsManager = SmsManager.getDefault();
@@ -352,9 +347,7 @@ public class PersonalData extends Activity {
                             if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話(Add By政大 Timing&Dennis Wang)
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
-                            }
-                            
-                            
+                            }                                                    
                         }
                         results.values = FilteredList;
                         results.count = FilteredList.size();
@@ -383,15 +376,9 @@ public class PersonalData extends Activity {
             }
 
             return result;
-        }
-        
-        
-       
-
+        }                     
     }
-    
-    
-    ///
+        
     public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         int simStatieNum = tm.getSimState();
