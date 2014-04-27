@@ -128,11 +128,16 @@ public class PersonalData extends Activity {
                 adapter.setStatus(name, holder.selected.isChecked());
             }
         });
-
-        
+      
         confirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(contactCount.getText().equals("0")){
+                    Toast.makeText(PersonalData.this, "您沒有選擇任何緊急聯絡人喔", Toast.LENGTH_SHORT)
+                    .show();
+                    return;
+                }
+                
                 if (adapter.getList().size() > 0) {
                     Variable.setData(PersonalData.this, adapter.getList());
                 }
@@ -157,11 +162,8 @@ public class PersonalData extends Activity {
                 Variable.name = et_name.getText().toString();
 
                 setResult(RESULT_OK);
-                Toast.makeText(PersonalData.this, "儲存成功", Toast.LENGTH_SHORT)
-                        .show();
 
-                Builder alerDialog = new AlertDialog.Builder(PersonalData.this);
-                               
+                Builder alerDialog = new AlertDialog.Builder(PersonalData.this);              
                 alerDialog.setTitle("通知緊急聯絡人");
                 alerDialog.setMessage("是否要發簡訊通知緊急聯絡人已經成為 iHELP 通知對象呢？");
                 
@@ -181,22 +183,18 @@ public class PersonalData extends Activity {
                                     }
                                     sendSMS(phone.replaceAll("\\s+", ""),
                                             "我已經將您設定為 iHelp 緊急聯絡人。");
-                                }
-                                
-                                PersonalData.this.finish();
+                                }                               
                             }
                         });
 
                 alerDialog.setNegativeButton("不用",
                         new DialogInterface.OnClickListener() {
-
                             public void onClick(DialogInterface dialog, int which) {
-                                PersonalData.this.finish();
+                                return;
                             }
                         });
                 
                 alerDialog.show();
-
             }
         });
 
@@ -349,12 +347,10 @@ public class PersonalData extends Activity {
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
                             }
-                            if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話(Add By政大 Timing&Dennis Wang)
+                            if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
-                            }
-                            
-                            
+                            }                         
                         }
                         results.values = FilteredList;
                         results.count = FilteredList.size();
@@ -384,14 +380,8 @@ public class PersonalData extends Activity {
 
             return result;
         }
-        
-        
-       
-
     }
     
-    
-    ///
     public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         int simStatieNum = tm.getSimState();
