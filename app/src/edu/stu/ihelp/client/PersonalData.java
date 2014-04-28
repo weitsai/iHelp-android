@@ -128,11 +128,7 @@ public class PersonalData extends Activity {
                 adapter.setStatus(name, holder.selected.isChecked());
             }
         });
-<<<<<<< HEAD
-        
-=======
-      
->>>>>>> 890d0c8588b4e18e59c94bf6b0c7f8e73b0365d4
+
         confirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -383,37 +379,6 @@ public class PersonalData extends Activity {
         }                     
     }
         
-    public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        int simStatieNum = tm.getSimState();
-        if (TelephonyManager.SIM_STATE_READY == simStatieNum) {
-            return true;
-        }
-
-        switch (simStatieNum) {
-        case TelephonyManager.SIM_STATE_ABSENT:
-            Toast.makeText(PersonalData.this, "若沒有插入 sim 卡可能無法使用該服務", Toast.LENGTH_SHORT)
-                    .show();
-            break;
-        case TelephonyManager.SIM_STATE_UNKNOWN:
-            Toast.makeText(PersonalData.this, "sim 卡發生了不知名狀況請聯絡電信商", Toast.LENGTH_SHORT)
-                    .show();
-            break;
-        case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-            Toast.makeText(PersonalData.this, "請先將 NetworkPIN 碼解鎖", Toast.LENGTH_SHORT)
-                    .show();
-            break;
-        case TelephonyManager.SIM_STATE_PIN_REQUIRED:
-            Toast.makeText(PersonalData.this, "請先將 sim 卡 PIN 碼解鎖", Toast.LENGTH_SHORT)
-                    .show();
-            break;
-        case TelephonyManager.SIM_STATE_PUK_REQUIRED:
-            Toast.makeText(PersonalData.this, "請先將 sim 卡 PUK 碼解鎖", Toast.LENGTH_SHORT)
-                    .show();
-            break;
-        }
-    }
-    
     public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         int simStatieNum = tm.getSimState();
