@@ -128,10 +128,20 @@ public class PersonalData extends Activity {
                 adapter.setStatus(name, holder.selected.isChecked());
             }
         });
+<<<<<<< HEAD
         
+=======
+      
+>>>>>>> 890d0c8588b4e18e59c94bf6b0c7f8e73b0365d4
         confirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(contactCount.getText().equals("0")){
+                    Toast.makeText(PersonalData.this, "您沒有選擇任何緊急聯絡人喔", Toast.LENGTH_SHORT)
+                    .show();
+                    return;
+                }
+                
                 if (adapter.getList().size() > 0) {
                     Variable.setData(PersonalData.this, adapter.getList());
                 }
@@ -155,8 +165,6 @@ public class PersonalData extends Activity {
                 Variable.name = et_name.getText().toString();
 
                 setResult(RESULT_OK);
-                Toast.makeText(PersonalData.this, "儲存成功", Toast.LENGTH_SHORT)
-                        .show();
 
                 Builder alerDialog = new AlertDialog.Builder(PersonalData.this);
                                
@@ -178,28 +186,24 @@ public class PersonalData extends Activity {
                                     }
                                     sendSMS(phone.replaceAll("\\s+", ""),
                                             "我已經將您設定為 iHelp 緊急聯絡人。");
-                                }
-                                
-                                PersonalData.this.finish();
+                                }                               
                             }
                         });
 
                 alerDialog.setNegativeButton("不用",
                         new DialogInterface.OnClickListener() {
-
                             public void onClick(DialogInterface dialog, int which) {
-                                PersonalData.this.finish();
+                                return;
                             }
                         });
                 
                 alerDialog.show();
-
             }
         });
 
     }
-        
-    private void sendSMS(String phone, String text) {
+    
+	private void sendSMS(String phone, String text) {
     
         SmsManager smsManager = SmsManager.getDefault();
         ArrayList<String> messageArray = smsManager.divideMessage(text);
@@ -344,10 +348,10 @@ public class PersonalData extends Activity {
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
                             }
-                            if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話(Add By政大 Timing&Dennis Wang)
+                            if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
-                            }                                                    
+                            }                         
                         }
                         results.values = FilteredList;
                         results.count = FilteredList.size();
@@ -379,6 +383,37 @@ public class PersonalData extends Activity {
         }                     
     }
         
+    public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        int simStatieNum = tm.getSimState();
+        if (TelephonyManager.SIM_STATE_READY == simStatieNum) {
+            return true;
+        }
+
+        switch (simStatieNum) {
+        case TelephonyManager.SIM_STATE_ABSENT:
+            Toast.makeText(PersonalData.this, "若沒有插入 sim 卡可能無法使用該服務", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_UNKNOWN:
+            Toast.makeText(PersonalData.this, "sim 卡發生了不知名狀況請聯絡電信商", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
+            Toast.makeText(PersonalData.this, "請先將 NetworkPIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_PIN_REQUIRED:
+            Toast.makeText(PersonalData.this, "請先將 sim 卡 PIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_PUK_REQUIRED:
+            Toast.makeText(PersonalData.this, "請先將 sim 卡 PUK 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        }
+    }
+    
     public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         int simStatieNum = tm.getSimState();
