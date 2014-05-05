@@ -210,13 +210,19 @@ public class Locate implements LocationListener {
         return cityName;
     }
 
-    public String getCityPhone(double x, double y) {
+    public String getCityPhone(double x, double y, int type) {
         CityAdapter test = new CityAdapter(mContext);
         test.createDatabase();
         test.open();
-        String cityPhone = test.getCityPhoneNumber(getCityId(x, y));
-        test.close();
-        return cityPhone;
+        if(type==1){
+            String cityPhone = test.getCityPhoneNumber119(getCityId(x, y));
+            test.close();
+            return cityPhone;
+        }else{
+            String cityPhone = test.getCityPhoneNumber(getCityId(x, y));
+            test.close();
+            return cityPhone;
+        }
     }
 
     private int getCityId(double x, double y) {

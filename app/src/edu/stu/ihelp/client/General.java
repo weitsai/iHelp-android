@@ -227,7 +227,8 @@ public class General extends Activity {
                 String locatedArray[] = located.split(",");
                 String cityPhone = gps.getCityPhone(
                         Double.parseDouble(locatedArray[1]),
-                        Double.parseDouble(locatedArray[0]));
+                        Double.parseDouble(locatedArray[0]),
+                        join1.getCurrentItem());
 
                 sendSMS(cityPhone, title + reportBody);
 
