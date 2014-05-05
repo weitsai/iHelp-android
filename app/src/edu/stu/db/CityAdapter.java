@@ -1,6 +1,7 @@
 package edu.stu.db;
 
 import java.io.IOException;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -90,6 +91,21 @@ public class CityAdapter {
                 return "0988281110";
             }
             String sql = "SELECT phone FROM city where id = " + city_id;
+            Cursor mCur = mDb.rawQuery(sql, null);
+            mCur.moveToNext();
+            return mCur.getString(mCur.getColumnIndex("phone"));
+        } catch (SQLException mSQLException) {
+            Log.e(TAG, "getTestData >>" + mSQLException.toString());
+            throw mSQLException;
+        }
+    }
+    
+    public String getCityPhoneNumber119(int city_id) {
+        try {
+            if (city_id < 0) {
+                return "0988281110";
+            }
+            String sql = "SELECT phone_119 FROM city where id = " + city_id;
             Cursor mCur = mDb.rawQuery(sql, null);
             mCur.moveToNext();
             return mCur.getString(mCur.getColumnIndex("phone"));
