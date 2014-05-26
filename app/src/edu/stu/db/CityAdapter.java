@@ -85,6 +85,9 @@ public class CityAdapter {
         }
     }
 
+    /*
+     * Get the number of police office of the city
+     */
     public String getCityPhoneNumber(int city_id) {
         try {
             if (city_id < 0) {
@@ -100,6 +103,10 @@ public class CityAdapter {
         }
     }
     
+
+    /*
+     * Get the number of emergency of the city
+     */
     public String getCityPhoneNumber119(int city_id) {
         try {
             if (city_id < 0) {
@@ -108,7 +115,7 @@ public class CityAdapter {
             String sql = "SELECT phone_119 FROM city where id = " + city_id;
             Cursor mCur = mDb.rawQuery(sql, null);
             mCur.moveToNext();
-            return mCur.getString(mCur.getColumnIndex("phone"));
+            return mCur.getString(mCur.getColumnIndex("phone_119"));
         } catch (SQLException mSQLException) {
             Log.e(TAG, "getTestData >>" + mSQLException.toString());
             throw mSQLException;
