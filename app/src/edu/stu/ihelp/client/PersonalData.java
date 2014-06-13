@@ -35,6 +35,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,14 +49,17 @@ public class PersonalData extends Activity {
     private Button confirm;
     private TextView contactCount;
     private SharedPreferences spfs;
-
     private ContentResolver resolver;
-
     private ContactList adapter;
     private ListView listview;
     private Cursor contacts_number;
     private Map<String, String> contactsMap;
+    private Map<String, String> contactsMapChecked;
     private List<Map<String, String>> contactsArrayList;//聯絡人list
+    private ContactList adapterChecked;
+    
+
+    private List<Map<String, String>> contactsArrayListFilter;//聯絡人list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +72,8 @@ public class PersonalData extends Activity {
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
+        
         spfs = getSharedPreferences("PersonalData", 0);
-
         et_name.setText(Variable.name);
 
         resolver = getContentResolver();
@@ -107,6 +111,8 @@ public class PersonalData extends Activity {
             }
         });
 
+        
+        
         listview.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -116,11 +122,20 @@ public class PersonalData extends Activity {
 
                 String name = holder.name.getText().toString();
                 String phone = holder.phone.getText().toString();
+
+                contactsMapChecked = new HashMap<String, String>();
+                contactsMapChecked.put(Variable.CONTACT_NAME, name);
+                contactsMapChecked.put(Variable.CONTACT_PHONE, phone);
+
                 if (holder.selected.isChecked()) {
                     Variable.contactsPhone.add(phone);
+                    contactsArrayListFilter.add(contactsMapChecked);
                 } else {
                     Variable.contactsPhone.remove(phone);
+                    contactsArrayListFilter.remove(contactsMapChecked);
                 }
+                adapterChecked = new ContactList(getLayoutInflater(), contactsArrayListFilter);                               
+                
                 contactCount.setText(Variable.contactsPhone.size() + "");
 
                 Log.e("CheckBox clicked",
@@ -140,7 +155,8 @@ public class PersonalData extends Activity {
                 
                 if (adapter.getList().size() > 0) {
                     Variable.setData(PersonalData.this, adapter.getList());
-                }
+                }                
+
                 
                 if (et_name.getText().toString().equals("")) {
                     Toast.makeText(PersonalData.this, "建議您輸入姓名",
@@ -191,16 +207,29 @@ public class PersonalData extends Activity {
                             public void onClick(DialogInterface dialog, int which) {
                                 return;
                             }
-                        });
-                
+                        });             
                 alerDialog.show();
             }
-        });
-
+        });       
     }
+    public void onToggleClicked(View view){
+        boolean on = ((ToggleButton) view).isChecked();
+       
+        if(on){
+            Toast.makeText(PersonalData.this, "只顯示緊急聯絡人 ON", Toast.LENGTH_SHORT)
+            .show();
+      
+            listview.setAdapter(adapterChecked);                  
+        }
+        else{
+            Toast.makeText(PersonalData.this, "只顯示緊急聯絡人 OFF", Toast.LENGTH_SHORT)
+            .show();
+            
+            listview.setAdapter(adapter); 
+        }       
+    }    
     
-	private void sendSMS(String phone, String text) {
-    
+    private void sendSMS(String phone, String text) {    
         SmsManager smsManager = SmsManager.getDefault();
         ArrayList<String> messageArray = smsManager.divideMessage(text);
         smsManager.sendMultipartTextMessage(phone, null, messageArray, null,
@@ -209,6 +238,7 @@ public class PersonalData extends Activity {
 
     private void getPhoneBookData() {
         contactsArrayList = new ArrayList<Map<String, String>>();
+        contactsArrayListFilter = new ArrayList<Map<String, String>>();//
         contacts_number = resolver.query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,
                 null, null);
@@ -235,7 +265,6 @@ public class PersonalData extends Activity {
             contactsMap.put(Variable.CONTACT_NAME, name);
             contactsMap.put(Variable.CONTACT_PHONE, phone);
             contactsArrayList.add(contactsMap);
-
         }
     }
 
@@ -243,6 +272,7 @@ public class PersonalData extends Activity {
         LayoutInflater inflater;
         Map<String, Boolean> btnStatus;
         List<Map<String, String>> show;
+        List<Map<String, String>> showChecked;
         List<Map<String, String>> origin;
 
         ContactList(LayoutInflater inflat, List<Map<String, String>> list) {
@@ -301,7 +331,7 @@ public class PersonalData extends Activity {
             String phone = show.get(position).get(Variable.CONTACT_PHONE);
             holder.name.setText(name);
             holder.phone.setText(phone);
-            holder.selected.setChecked(Variable.contactsPhone.contains(phone));
+            holder.selected.setChecked(Variable.contactsPhone.contains(phone));  
 
             return view;
         }
@@ -347,7 +377,7 @@ public class PersonalData extends Activity {
                             if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
-                            }                         
+                            }  
                         }
                         results.values = FilteredList;
                         results.count = FilteredList.size();
@@ -356,6 +386,7 @@ public class PersonalData extends Activity {
                     return results;
                 }
             };
+            
             return filter;
         }
 
@@ -376,7 +407,7 @@ public class PersonalData extends Activity {
             }
 
             return result;
-        }                     
+        } 
     }
         
     public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
