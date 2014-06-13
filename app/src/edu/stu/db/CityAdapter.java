@@ -103,7 +103,6 @@ public class CityAdapter {
         }
     }
     
-
     /*
      * Get the number of emergency of the city
      */
@@ -113,6 +112,30 @@ public class CityAdapter {
                 return "0988281110";
             }
             String sql = "SELECT phone_119 FROM city where id = " + city_id;
+            Cursor mCur = mDb.rawQuery(sql, null);
+            mCur.moveToNext();
+            return mCur.getString(mCur.getColumnIndex("phone_119"));
+        } catch (SQLException mSQLException) {
+            Log.e(TAG, "getTestData >>" + mSQLException.toString());
+            throw mSQLException;
+        }
+    }
+    
+    public String getCityPhoneNumberByName(String city) {
+        try {
+            String sql = "SELECT phone FROM city where name = " + "'" + city + "'";
+            Cursor mCur = mDb.rawQuery(sql, null);
+            mCur.moveToNext();
+            return mCur.getString(mCur.getColumnIndex("phone"));
+        } catch (SQLException mSQLException) {
+            Log.e(TAG, "getTestData >>" + mSQLException.toString());
+            throw mSQLException;
+        }
+    }
+    
+    public String getCityPhoneNumberByName119(String city) {
+        try {
+            String sql = "SELECT phone_119 FROM city where name = " + "'" + city + "'";
             Cursor mCur = mDb.rawQuery(sql, null);
             mCur.moveToNext();
             return mCur.getString(mCur.getColumnIndex("phone_119"));
