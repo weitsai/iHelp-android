@@ -17,10 +17,9 @@
 
      <LinearLayout
     	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_weight="0.3" 
+    	android:layout_height="wrap_content" 
     	android:orientation="horizontal"
-    	android:paddingTop="20dp">
+    	android:padding="40dp">
     
     	<TextView
     	    android:id="@+id/textView1"
@@ -29,17 +28,17 @@
     	    android:layout_height="wrap_content"
     	    android:layout_gravity="left"
     	    android:paddingLeft="30dp"
-    	    android:paddingRight="5dp"
+    	    android:paddingRight="20dp"
     	    android:paddingTop="10dp"
     	    android:text="災情選擇" />
 
     	<Spinner
     	    android:id="@+id/spinner1"
     	    android:layout_width="fill_parent"
-    	    android:layout_height="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_gravity="right"
     	    android:layout_marginLeft="20dp"
-    	    android:layout_marginRight="20dp"
-    	     />
+    	    android:layout_marginRight="40dp" />
     	
     </LinearLayout>
     
@@ -47,8 +46,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="0.3" 
-        android:paddingTop="10dp" >
+        android:paddingBottom="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
 
         <TextView
             android:id="@+id/textView2"
@@ -57,27 +57,29 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:paddingLeft="30dp"
-            android:paddingRight="5dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
             android:text="發生位置" />
 
         <EditText
             android:id="@+id/report_position"
             style="@style/text_black_content"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:gravity="left"
-            android:singleLine="true" />
-
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:gravity="left" />
     </LinearLayout>
     
      <LinearLayout
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_weight="0.3"
-         android:orientation="horizontal"
-         android:paddingTop="10dp" >
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
 
         <TextView
             android:id="@+id/textView3"
@@ -86,23 +88,23 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:paddingLeft="30dp"
-    	    android:paddingRight="5dp"
-    	    android:paddingTop="10dp"
+            android:paddingTop="10dp"
             android:text="發送目的地" />
 
         <Spinner
             android:id="@+id/spinner2"
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp" />
 
         <TextView
             android:id="@+id/helper"
             style="@style/text_black_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="40dp"
             android:paddingTop="10dp"
             android:text="警察局" />
     </LinearLayout>
@@ -111,11 +113,10 @@
     <TextView
         style="@style/text_black_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="0.5"
         android:gravity="bottom"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="30dp"
         android:paddingLeft="30dp"
         android:text="其他相關資訊，請輸入:" />
 
@@ -140,7 +141,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="80dp"
         android:orientation="vertical" />
     
     <LinearLayout
@@ -163,7 +164,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_blue"
                 android:onClick="submit"
@@ -176,7 +177,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_blue"
                 android:onClick="clock"
