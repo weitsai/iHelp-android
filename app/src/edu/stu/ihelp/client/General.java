@@ -244,7 +244,7 @@ public class General extends Activity{
                     }
                     finish();
                 }else{
-                    Toast.makeText(General.this, "報案訊息送出" + cityPhone, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(General.this, "報案訊息送出", Toast.LENGTH_SHORT).show();
                     sendSMS(cityPhone, message.getText().toString());
                     finish();
                 }
