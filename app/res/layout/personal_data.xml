@@ -36,6 +36,7 @@
             android:singleLine="true"
             android:textColor="@android:color/black"
             android:textSize="30sp" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -44,6 +45,7 @@
         android:background="@drawable/title" >
 
         <TextView
+            android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -59,9 +61,12 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:textColor="@android:color/white" />
+
+
+
     </RelativeLayout>
 
-    <RelativeLayout
+   <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@android:color/white" >
@@ -80,6 +85,9 @@
             android:hint="搜尋"
             android:inputType="text"
             android:textColor="@android:color/black" />
+
+
+
     </RelativeLayout>
 
     <ImageView
@@ -99,7 +107,7 @@
     <RelativeLayout
         android:id="@+id/btn"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="123dp"
         android:background="@color/attach_color"
         android:orientation="horizontal" >
 
@@ -113,6 +121,69 @@
             android:text="確認"
             android:textColor="#DDD"
             android:textSize="20sp" />
+
+                <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="40dp"
+            android:background="@drawable/button_blue"
+            android:text="確認"
+            android:textColor="#DDD"
+            android:textSize="20sp" />
+
+                <Button
+                    style="@style/text_white_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_blue"
+                    android:onClick="clock"
+                    android:text="取消報案" />
+
+                <Button
+                    style="@style/text_white_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_blue"
+                    android:onClick="clock"
+                    android:text="取消報案" />
+
+                <Button
+                    style="@style/text_white_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_blue"
+                    android:onClick="clock"
+                    android:text="取消報案" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignTop="@+id/btn_submit"
+                    android:layout_marginLeft="35dp"
+                    android:text="Button" />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="45dp"
+                    android:layout_toRightOf="@+id/btn_submit"
+                    android:text="Switch" />
+        
     </RelativeLayout>
 
 </LinearLayout>

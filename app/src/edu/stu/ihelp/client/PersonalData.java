@@ -6,12 +6,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +35,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,14 +49,17 @@ public class PersonalData extends Activity {
     private Button confirm;
     private TextView contactCount;
     private SharedPreferences spfs;
-
     private ContentResolver resolver;
-
     private ContactList adapter;
     private ListView listview;
     private Cursor contacts_number;
     private Map<String, String> contactsMap;
-    private List<Map<String, String>> contactsArrayList;
+    private Map<String, String> contactsMapChecked;
+    private List<Map<String, String>> contactsArrayList;//聯絡人list
+    private ContactList adapterChecked;
+    
+
+    private List<Map<String, String>> contactsArrayListFilter;//聯絡人list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +67,13 @@ public class PersonalData extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.personal_data);
 
-        et_name = (EditText) findViewById(R.id.name);
-        et_search = (EditText) findViewById(R.id.searchName);
+        et_name = (EditText) findViewById(R.id.name);//使用者姓名
+        et_search = (EditText) findViewById(R.id.searchName);//尋找聯絡人
         listview = (ListView) findViewById(R.id.contact_list);
         confirm = (Button) findViewById(R.id.btn_submit);
         contactCount = (TextView) findViewById(R.id.contact_count);
+        
         spfs = getSharedPreferences("PersonalData", 0);
-
         et_name.setText(Variable.name);
 
         resolver = getContentResolver();
@@ -105,6 +111,8 @@ public class PersonalData extends Activity {
             }
         });
 
+        
+        
         listview.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -114,11 +122,20 @@ public class PersonalData extends Activity {
 
                 String name = holder.name.getText().toString();
                 String phone = holder.phone.getText().toString();
+
+                contactsMapChecked = new HashMap<String, String>();
+                contactsMapChecked.put(Variable.CONTACT_NAME, name);
+                contactsMapChecked.put(Variable.CONTACT_PHONE, phone);
+
                 if (holder.selected.isChecked()) {
                     Variable.contactsPhone.add(phone);
+                    contactsArrayListFilter.add(contactsMapChecked);
                 } else {
                     Variable.contactsPhone.remove(phone);
+                    contactsArrayListFilter.remove(contactsMapChecked);
                 }
+                adapterChecked = new ContactList(getLayoutInflater(), contactsArrayListFilter);                               
+                
                 contactCount.setText(Variable.contactsPhone.size() + "");
 
                 Log.e("CheckBox clicked",
@@ -130,10 +147,17 @@ public class PersonalData extends Activity {
         confirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(contactCount.getText().equals("0")){
+                    Toast.makeText(PersonalData.this, "您沒有選擇任何緊急聯絡人喔", Toast.LENGTH_SHORT)
+                    .show();
+                    return;
+                }
+                
                 if (adapter.getList().size() > 0) {
                     Variable.setData(PersonalData.this, adapter.getList());
-                }
+                }                
 
+                
                 if (et_name.getText().toString().equals("")) {
                     Toast.makeText(PersonalData.this, "建議您輸入姓名",
                             Toast.LENGTH_SHORT).show();
@@ -153,16 +177,20 @@ public class PersonalData extends Activity {
                 Variable.name = et_name.getText().toString();
 
                 setResult(RESULT_OK);
-                Toast.makeText(PersonalData.this, "儲存成功", Toast.LENGTH_SHORT)
-                        .show();
 
                 Builder alerDialog = new AlertDialog.Builder(PersonalData.this);
+                               
                 alerDialog.setTitle("通知緊急聯絡人");
                 alerDialog.setMessage("是否要發簡訊通知緊急聯絡人已經成為 iHELP 通知對象呢？");
+                                
                 alerDialog.setPositiveButton("好",
                         new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
+                                
+                                if (!checkSimCard()) {//檢查SIM卡
+                                    return;
+                                } 
 
                                 for (String phone : Variable.contactsPhone) {
                                     if (phone.equals("")) {
@@ -170,28 +198,38 @@ public class PersonalData extends Activity {
                                     }
                                     sendSMS(phone.replaceAll("\\s+", ""),
                                             "我已經將您設定為 iHelp 緊急聯絡人。");
-                                }
-                                
-                                PersonalData.this.finish();
+                                }                               
                             }
                         });
 
                 alerDialog.setNegativeButton("不用",
                         new DialogInterface.OnClickListener() {
-
                             public void onClick(DialogInterface dialog, int which) {
-                                PersonalData.this.finish();
+                                return;
                             }
-                        });
-                
+                        });             
                 alerDialog.show();
-
             }
-        });
-
+        });       
     }
-
-    private void sendSMS(String phone, String text) {
+    public void onToggleClicked(View view){
+        boolean on = ((ToggleButton) view).isChecked();
+       
+        if(on){
+            Toast.makeText(PersonalData.this, "只顯示緊急聯絡人 ON", Toast.LENGTH_SHORT)
+            .show();
+      
+            listview.setAdapter(adapterChecked);                  
+        }
+        else{
+            Toast.makeText(PersonalData.this, "只顯示緊急聯絡人 OFF", Toast.LENGTH_SHORT)
+            .show();
+            
+            listview.setAdapter(adapter); 
+        }       
+    }    
+    
+    private void sendSMS(String phone, String text) {    
         SmsManager smsManager = SmsManager.getDefault();
         ArrayList<String> messageArray = smsManager.divideMessage(text);
         smsManager.sendMultipartTextMessage(phone, null, messageArray, null,
@@ -200,6 +238,7 @@ public class PersonalData extends Activity {
 
     private void getPhoneBookData() {
         contactsArrayList = new ArrayList<Map<String, String>>();
+        contactsArrayListFilter = new ArrayList<Map<String, String>>();//
         contacts_number = resolver.query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,
                 null, null);
@@ -226,7 +265,6 @@ public class PersonalData extends Activity {
             contactsMap.put(Variable.CONTACT_NAME, name);
             contactsMap.put(Variable.CONTACT_PHONE, phone);
             contactsArrayList.add(contactsMap);
-
         }
     }
 
@@ -234,6 +272,7 @@ public class PersonalData extends Activity {
         LayoutInflater inflater;
         Map<String, Boolean> btnStatus;
         List<Map<String, String>> show;
+        List<Map<String, String>> showChecked;
         List<Map<String, String>> origin;
 
         ContactList(LayoutInflater inflat, List<Map<String, String>> list) {
@@ -292,7 +331,7 @@ public class PersonalData extends Activity {
             String phone = show.get(position).get(Variable.CONTACT_PHONE);
             holder.name.setText(name);
             holder.phone.setText(phone);
-            holder.selected.setChecked(Variable.contactsPhone.contains(phone));
+            holder.selected.setChecked(Variable.contactsPhone.contains(phone));  
 
             return view;
         }
@@ -304,7 +343,7 @@ public class PersonalData extends Activity {
         }
 
         @Override
-        public Filter getFilter() {
+        public Filter getFilter() {//姓名篩選函數
             Filter filter = new Filter() {
 
                 @SuppressWarnings("unchecked")
@@ -324,17 +363,21 @@ public class PersonalData extends Activity {
                     if (constraint == null || constraint.length() == 0) {
                         Log.e("constraint", "==null");
                         // No filter implemented we return all the list
-                        results.values = origin;
+                        results.values = origin;//若沒有輸入任何資料，則顯示全部聯絡人
                         results.count = origin.size();
                         Log.e("Size", results.count + "");
                     } else {
                         Log.e("constraint", "!=null");
                         for (int i = 0; i < show.size(); i++) {
                             Map<String, String> data = show.get(i);
-                            if (data.get(Variable.CONTACT_NAME).toLowerCase()
+                            if (data.get(Variable.CONTACT_NAME).toLowerCase()//篩選輸入姓名
                                     .contains(constraint.toString())) {
                                 FilteredList.add(data);
                             }
+                            if (data.get(Variable.CONTACT_PHONE).toLowerCase()//篩選輸入電話
+                                    .contains(constraint.toString())) {
+                                FilteredList.add(data);
+                            }  
                         }
                         results.values = FilteredList;
                         results.count = FilteredList.size();
@@ -343,6 +386,7 @@ public class PersonalData extends Activity {
                     return results;
                 }
             };
+            
             return filter;
         }
 
@@ -363,8 +407,40 @@ public class PersonalData extends Activity {
             }
 
             return result;
+        } 
+    }
+        
+    public boolean checkSimCard() {//issue:思考如何減少重複性的code???(同iHelpActivity的checkSimCard)
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        int simStatieNum = tm.getSimState();
+        if (TelephonyManager.SIM_STATE_READY == simStatieNum) {
+            return true;
         }
 
+        switch (simStatieNum) {
+        case TelephonyManager.SIM_STATE_ABSENT:
+            Toast.makeText(PersonalData.this, "若沒有插入 sim 卡可能無法使用該服務", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_UNKNOWN:
+            Toast.makeText(PersonalData.this, "sim 卡發生了不知名狀況請聯絡電信商", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
+            Toast.makeText(PersonalData.this, "請先將 NetworkPIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_PIN_REQUIRED:
+            Toast.makeText(PersonalData.this, "請先將 sim 卡 PIN 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        case TelephonyManager.SIM_STATE_PUK_REQUIRED:
+            Toast.makeText(PersonalData.this, "請先將 sim 卡 PUK 碼解鎖", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        }
+
+        return false;
     }
 
 }
