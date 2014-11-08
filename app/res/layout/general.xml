@@ -7,126 +7,62 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical" >
 
-        
     <TextView
         style="@style/title"
-    	android:layout_width="match_parent"
-       	android:layout_height="wrap_content"
-       	android:layout_alignParentLeft="true"
-       	android:text="一般報案" />  
-
-     <LinearLayout
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_weight="0.3" 
-    	android:orientation="horizontal"
-    	android:paddingTop="20dp">
-    
-    	<TextView
-    	    android:id="@+id/textView1"
-    	    style="@style/text_black_content"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    android:layout_gravity="left"
-    	    android:paddingLeft="30dp"
-    	    android:paddingRight="5dp"
-    	    android:paddingTop="10dp"
-    	    android:text="災情選擇" />
-
-    	<Spinner
-    	    android:id="@+id/spinner1"
-    	    android:layout_width="fill_parent"
-    	    android:layout_height="match_parent"
-    	    android:layout_marginLeft="20dp"
-    	    android:layout_marginRight="20dp"
-    	     />
-    	
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="0.3" 
-        android:paddingTop="10dp" >
-
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/text_black_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:paddingLeft="30dp"
-            android:paddingRight="5dp"
-            android:text="發生位置" />
-
-        <EditText
-            android:id="@+id/report_position"
-            style="@style/text_black_content"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:gravity="left"
-            android:singleLine="true" />
-
-    </LinearLayout>
-    
-     <LinearLayout
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_weight="0.3"
-         android:orientation="horizontal"
-         android:paddingTop="10dp" >
-
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/text_black_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:paddingLeft="30dp"
-    	    android:paddingRight="5dp"
-    	    android:paddingTop="10dp"
-            android:text="發送目的地" />
-
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
-
-        <TextView
-            android:id="@+id/helper"
-            style="@style/text_black_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:text="警察局" />
-    </LinearLayout>
-    
+        android:text="一般報案" />
 
     <TextView
         style="@style/text_black_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:gravity="bottom"
-        android:paddingTop="20dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
-        android:text="其他相關資訊，請輸入:" />
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:text="請選擇災情：" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="2"
+        android:layout_weight="4"
         android:background="@color/wheel_bg_color"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="6dp" >
+
+        <test.whell.WheelView
+            android:id="@+id/join1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="3" />
+
+        <!-- <EditText -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="0dp" -->
+        <!-- android:layout_weight="1" -->
+        <!-- android:hint="點我增加分類" -->
+        <!-- android:inputType="text" -->
+        <!-- android:maxLength="6" /> -->
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_black_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:text="您即將傳送的報案內容如下：" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#EEEFEF" >
 
         <EditText
             android:id="@+id/report_data"
@@ -138,11 +74,6 @@
             android:gravity="center" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:orientation="vertical" />
-    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -163,7 +94,6 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_blue"
                 android:onClick="submit"
@@ -176,7 +106,6 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_blue"
                 android:onClick="clock"
