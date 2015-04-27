@@ -68,7 +68,9 @@ public class PersonalData extends Activity {
         contactCount = (TextView) findViewById(R.id.contact_count);
         spfs = getSharedPreferences("PersonalData", 0);
 
-        et_name.setText(Variable.name);
+        if (null != Variable.name) {
+            et_name.setText(Variable.name);
+        }
 
         resolver = getContentResolver();
 
