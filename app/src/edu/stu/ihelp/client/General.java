@@ -104,25 +104,22 @@ public class General extends Activity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
         gps = new Locate(General.this);
         setWhellData();
-
         if (!gps.canGetLocation()) {
             gps.showSettingsAlert();
         }
 
         if (checkIntrnet() && gps.canGetLocation()) {
-            try {
-                address = gps.getAddress();
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            // address = gps.getAddress();
+            new LocationToAddressTask(new Locate(this).getPosition()).execute();
         }
 
+        super.onStart();
     }
 
     public void clock(View v) {
@@ -153,7 +150,7 @@ public class General extends Activity {
             return false;
         }
 
-        return interner.isWanConnect("8.8.8.8");
+        return true;
     }
 
     private void setWhellData() {
@@ -247,11 +244,70 @@ public class General extends Activity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(General.this, "報案訊息取消送出", Toast.LENGTH_SHORT).show();
+                Toast.makeText(General.this, "報案訊息取消送出", Toast.LENGTH_SHORT)
+                        .show();
                 dialog.dismiss();
             }
         });
         dialog.show();
+    }
+
+    class LocationToAddressTask extends AsyncTask<Void, Void, String> {
+
+        final String LOCATION;
+
+        LocationToAddressTask(String Location) {
+            this.LOCATION = Location;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            address = result;
+            super.onPostExecute(result);
+        }
+
+        protected String doInBackground(Void... Void) {
+            StringBuilder json = new StringBuilder();
+            String address = "";
+            HttpClient client = new DefaultHttpClient();
+            HttpGet httpGet = new HttpGet(
+                    "http://maps.googleapis.com/maps/api/geocode/json?latlng="
+                            + LOCATION + "&sensor=false&language=zh-tw");
+            HttpResponse response;
+            try {
+                response = client.execute(httpGet);
+                StatusLine statusLine = response.getStatusLine();
+                int statusCode = statusLine.getStatusCode();
+                if (!(statusCode == 200)) {
+                    Log.e(getClass().getName(), "連線錯誤：" + statusCode);
+                }
+
+                HttpEntity entity = response.getEntity();
+                InputStream content = entity.getContent();
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    json.append(line);
+                }
+                JSONObject mainObject = new JSONObject(json.toString());
+                JSONArray addressArray = mainObject.getJSONArray("results");
+                address = addressArray.getJSONObject(0).getString(
+                        "formatted_address");
+
+            } catch (ClientProtocolException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            return address;
+        }
     }
 
 }
