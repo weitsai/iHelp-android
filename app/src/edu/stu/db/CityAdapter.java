@@ -87,7 +87,7 @@ public class CityAdapter {
     public String getCityPhoneNumber(int city_id) {
         try {
             if (city_id < 0) {
-                return "0988281110";
+                return "0223318898";
             }
             String sql = "SELECT phone FROM city where id = " + city_id;
             Cursor mCur = mDb.rawQuery(sql, null);
