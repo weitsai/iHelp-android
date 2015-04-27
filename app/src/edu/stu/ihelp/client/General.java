@@ -1,13 +1,24 @@
 package edu.stu.ihelp.client;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.concurrent.ExecutionException;
+import edu.stu.tool.Internet;
+import edu.stu.tool.Locate;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import test.whell.OnWheelChangedListener;
 import test.whell.OnWheelScrollListener;
 import test.whell.WheelView;
 import test.whell.adapters.ArrayWheelAdapter;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.text.Editable;
@@ -30,8 +42,13 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import edu.stu.tool.Internet;
-import edu.stu.tool.Locate;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class General extends Activity {
     private EditText reportData;
