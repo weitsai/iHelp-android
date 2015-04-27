@@ -16,7 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static String TAG = "DataBaseHelper"; // Tag just for the LogCat
     private static String DB_PATH = "";
     private static final String DB_NAME = "city.sqlite3";// Database name
-    private static final int DB_VESION = 1;
+    private static final int DB_VESION = 2;
     private SQLiteDatabase mDataBase;
     private final Context mContext;
 
@@ -93,9 +93,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
-
+        if (newVersion > oldVersion) {
+            try {
+                copyDataBase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
-
 }
