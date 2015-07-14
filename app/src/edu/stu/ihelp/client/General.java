@@ -85,10 +85,10 @@ public class General extends Activity {
                 titleLength = reportBody.length();
 
                 if (join1.getCurrentItem() == 0) {
-                    reportBody.append("發生緊急狀況。");
-                    reportBody.setSpan(new ForegroundColorSpan(Color.RED),
-                            titleLength + 2, reportBody.length() - 1,
-                            Spanned.SPAN_COMPOSING);
+                    // reportBody.append("發生緊急狀況。");
+                    // reportBody.setSpan(new ForegroundColorSpan(Color.RED),
+                    // titleLength + 2, reportBody.length() - 1,
+                    // Spanned.SPAN_COMPOSING);
                 } else {
                     reportBody.append("Help, <font color=\"red\">" + joindata[join1.getCurrentItem()]
                             + "</font> disaster here!");
@@ -141,7 +141,7 @@ public class General extends Activity {
     }
 
     public void clock(View v) {
-        Toast.makeText(this, "取消求救", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "取消求救(Cancel)", Toast.LENGTH_SHORT).show();
         this.finish();
     }
 
@@ -182,8 +182,8 @@ public class General extends Activity {
          * 控制一開始的位子 APRIL為第一個,ALL_STYLES 為第二個,MONTH 為中間值
          */
         int curMonth = calendar.get(Calendar.APRIL);
-        joindata = new String[] { "請選擇災情", "火災", "鬧事", "身體狀況", "搶劫", "交通事故",
-                "偷竊" };
+        joindata = new String[] { "Select occurred event", "Fire",
+                "Disturbance", "Sick", "Robbery", "Traffic accident" };
         join1.setViewAdapter(new DateArrayAdapter(this, joindata, 0));
         join1.setCurrentItem(curMonth);
 
@@ -253,7 +253,7 @@ public class General extends Activity {
                     sendSMS(phone.replaceAll("\\s+", ""), title + reportBody);
 
                 }
-                
+
                 dialog.dismiss();
                 General.this.finish();
             }
