@@ -30,6 +30,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.text.Editable;
+import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
@@ -89,8 +90,8 @@ public class General extends Activity {
                             titleLength + 2, reportBody.length() - 1,
                             Spanned.SPAN_COMPOSING);
                 } else {
-                    reportBody.append("發生" + joindata[join1.getCurrentItem()]
-                            + "。");
+                    reportBody.append("Help, <font color=\"red\">" + joindata[join1.getCurrentItem()]
+                            + "</font> disaster here!");
                     reportBody.setSpan(new ForegroundColorSpan(Color.RED),
                             titleLength + 2, reportBody.length() - 1,
                             Spanned.SPAN_COMPOSING);
@@ -100,7 +101,7 @@ public class General extends Activity {
                     reportBody.append("\n" + address);
                 }
 
-                reportData.setText(reportBody);
+                reportData.setText(Html.fromHtml(reportBody.toString()));
             }
         });
 
